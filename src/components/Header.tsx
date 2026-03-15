@@ -27,8 +27,8 @@ const navLinks = [
   { href: "/why-choose-us", label: "Why Us" },
   { href: "/testimonials", label: "Success Stories" },
   { href: "/event", label: "Events" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact Us" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 const Header = ({ initialSettings }: { initialSettings?: any }) => {
@@ -40,8 +40,7 @@ const Header = ({ initialSettings }: { initialSettings?: any }) => {
   const dropdownRefServices = useRef<HTMLLIElement>(null);
   const [settings, setSettings] = useState(initialSettings || {
     email: 'Infinityconsultantsfsd@gmail.com',
-    phone: '+92 326 4571906',
-    location: 'Mazzanine floor, Media com plaza, Office No. 63, 64 Kohinoor Rd, Faisalabad'
+
   });
 
   useEffect(() => {
@@ -104,14 +103,8 @@ const Header = ({ initialSettings }: { initialSettings?: any }) => {
         <div className="site-navbar__inner py-1">
           <div className="d-flex gap-4 small text-white">
             <span><i className="fa fa-envelope col_green me-2"></i> {settings.email}</span>
-            <span><i className="fa fa-phone col_green me-2"></i> {settings.phone}</span>
-            <span><i className="fa fa-map-marker col_green me-2"></i> {settings.location}</span>
           </div>
           <div className="ms-auto d-flex gap-3 align-items-center text-white small">
-            <a href="#" className="text-white hover-oran"><i className="fa fa-facebook"></i></a>
-            <a href="#" className="text-white hover-oran"><i className="fa fa-youtube-play"></i></a>
-            <a href="#" className="text-white hover-oran"><i className="fa fa-instagram"></i></a>
-            <a href="#" className="text-white hover-oran"><i className="fa fa-music"></i></a>
             <Link href="/login" className="text-white hover-oran ms-2" title="Login">
               <i className="fa fa-user fs-6"></i>
             </Link>

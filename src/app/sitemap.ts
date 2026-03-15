@@ -31,10 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/services/immigration/australia", priority: 0.8, changeFrequency: "weekly" },
 
         // Information
-        { url: "/team", priority: 0.7, changeFrequency: "monthly" },
         { url: "/testimonials", priority: 0.7, changeFrequency: "weekly" },
         { url: "/blog", priority: 0.8, changeFrequency: "daily" },
-        { url: "/faqs", priority: 0.7, changeFrequency: "monthly" },
         { url: "/event", priority: 0.7, changeFrequency: "weekly" },
         { url: "/assessment", priority: 0.7, changeFrequency: "monthly" },
 

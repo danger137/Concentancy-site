@@ -95,9 +95,61 @@ const successStories = [
     }
 ];
 
+const services = [
+    {
+        title: "Study Abroad",
+        description: "Expert guidance for choosing world-class universities in UK, Europe, Australia, and beyond.",
+        image: "/img/hero_main.png",
+        icon: "graduation-cap"
+    },
+    {
+        title: "Visa Assistance",
+        description: "High success rates for student, visit, and immigration visas with professional documentation.",
+        image: "/img/hero_main.png",
+        icon: "plane"
+    },
+    {
+        title: "Scholarship Guidance",
+        description: "We help you identify and apply for merit-based and fully funded scholarships abroad.",
+        image: "/img/hero_main.png",
+        icon: "money"
+    },
+    {
+        title: "Career Counseling",
+        description: "Mapping out your educational journey to align with global market demands and career goals.",
+        image: "/img/hero_main.png",
+        icon: "users"
+    },
+    {
+        title: "Document Verification",
+        description: "Thorough auditing of academic and financial documents to ensure error-free submissions.",
+        image: "/img/hero_main.png",
+        icon: "file-text"
+    },
+    {
+        title: "Travel & Placement",
+        description: "Assisting with flight bookings, accommodation, and initial settlement in your new country.",
+        image: "/img/hero_main.png",
+        icon: "suitcase"
+    }
+];
+
 async function main() {
+    console.log('Seeding admin user...');
+    await prisma.adminUser.upsert({
+        where: { id: 'admin' },
+        update: {
+            email: 'dangerchamp2@gmail.com',
+            password: 'Nokia927'
+        },
+        create: {
+            id: 'admin',
+            email: 'dangerchamp2@gmail.com',
+            password: 'Nokia927'
+        }
+    });
+
     console.log('Seeding blogs...');
-    // Delete existing blogs to prevent duplicates if running seed multiple times
     await prisma.blog.deleteMany();
     for (const blog of blogs) {
         await prisma.blog.create({
@@ -106,11 +158,18 @@ async function main() {
     }
 
     console.log('Seeding success stories...');
-    // Delete existing stories to ensure we have exactly our 7 countries
     await prisma.successStory.deleteMany();
     for (const story of successStories) {
         await prisma.successStory.create({
             data: story
+        });
+    }
+
+    console.log('Seeding services...');
+    await prisma.service.deleteMany();
+    for (const service of services) {
+        await prisma.service.create({
+            data: service
         });
     }
     console.log('Seeding finished.');

@@ -134,7 +134,7 @@ const jsonLd = {
   ]
 };
 
-import SmoothScroll from "@/components/SmoothScroll";
+import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 import { prisma } from "@/lib/prisma";
 
 async function getSettings() {
@@ -182,9 +182,9 @@ export default async function RootLayout({
         </noscript>
       </head>
       <body className={`${inter.variable} ${outfit.variable} ${inter.className} d-flex flex-column min-vh-100`}>
-        <SmoothScroll>
+        <SmoothScrollWrapper>
           <SiteShell settings={await getSettings()}>{children}</SiteShell>
-        </SmoothScroll>
+        </SmoothScrollWrapper>
         <WhatsAppButton />
         <Script
           src="/js/bootstrap.bundle.min.js"

@@ -184,6 +184,7 @@ exports.Prisma.SuccessStoryScalarFieldEnum = {
   name: 'name',
   feedback: 'feedback',
   image: 'image',
+  flag: 'flag',
   country: 'country',
   visaType: 'visaType',
   degree: 'degree',

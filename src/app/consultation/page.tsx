@@ -1,9 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import StatCounter from '@/components/StatCounter';
 import { Metadata } from 'next';
 import { prisma } from '@/lib/prisma';
-import ConsultationFormWrapper from '@/components/ConsultationFormWrapper';
 
 export const metadata: Metadata = {
     title: 'Book Free Consultation | Infinity Overseas Faisalabad',
@@ -30,13 +28,6 @@ async function getSettings() {
 export default async function Consultation() {
     const settings = await getSettings();
 
-    const expectationSteps = [
-        { title: 'Personal Assessment', desc: 'Our experts analyze your academic and professional background to find the best pathways.', icon: 'fa-user-o' },
-        { title: 'Strategic Roadmap', desc: 'We provide a clear, step-by-step plan for your admission or immigration journey.', icon: 'fa-map-o' },
-        { title: 'Financial Briefing', desc: 'Receive a transparent breakdown of costs, fees, and potential scholarships.', icon: 'fa-money' },
-        { title: 'Q&A Session', desc: 'Get direct answers to your specific concerns from experienced consultants.', icon: 'fa-comments-o' }
-    ];
-
     return (
         <>
             <section id="center" className="consultation_hero" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.85), rgba(7, 41, 77, 0.85)), url("/img/study_abroad_service.png")', backgroundSize: 'cover', backgroundPosition: 'center', padding: '120px 0 160px' }}>
@@ -57,84 +48,65 @@ export default async function Consultation() {
             </section>
 
             {/* Consultation Layout Section */}
-            <section id="consultation_content" className="p_5 bg-white" style={{ marginTop: '-80px' }}>
+            <section id="consultation_content" className="p_5 bg-white position-relative" style={{ marginTop: '-80px', zIndex: 5 }}>
                 <div className="container-xl">
-                    <div className="row g-0 border border-danger border-5 rounded-4 overflow-hidden shadow-2xl">
-                        {/* Map Column */}
-                        <div className="col-md-6 order-2 order-md-1">
-                            <div className="h-100 min-vh-50">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.8876!2d73.1119!3d31.4158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x392242a895a55ca9%3A0xdec58f88932671c6!2sMedia%20Com%20Plaza!5e0!3m2!1sen!2s!4v1741224213000!5m2!1sen!2s"
-                                    width="100%"
-                                    height="100%"
-                                    style={{ border: 0, minHeight: '600px' }}
-                                    allowFullScreen
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                ></iframe>
-                            </div>
-                        </div>
-
-                        {/* Form Column */}
-                        <div className="col-md-6 order-1 order-md-2 bg-white">
-                            <ConsultationFormWrapper settings={settings} />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            {/* What to Expect Section - Increasing Page Length */}
-            <section className="p_5 bg-light overflow-hidden">
-                <div className="container-xl">
-                    <div className="row text-center mb-5">
-                        <div className="col-md-12">
-                            <h4 className="col_green uppercase fw-bold">YOUR CONSULTATION JOURNEY</h4>
-                            <h2 className="display-4 fw-bold mb-0">What to <span className="col_oran">Expect?</span></h2>
-                            <p className="text-muted max-w-600 mx-auto mt-3">Our consultation logic is structured to provide maximum value in minimal time.</p>
-                        </div>
-                    </div>
-                    <div className="row g-4">
-                        {expectationSteps.map((step, i) => (
-                            <div key={i} className="col-md-3">
-                                <div className="p-4 bg-white rounded-4 shadow-sm border h-100 transition-all hvr-float-shadow">
-                                    <div className="mb-4 d-inline-flex p-3 rounded-circle bg_blue text-white shadow-md">
-                                        <i className={`fa ${step.icon} fs-4 text-white`}></i>
+                    <div className="row justify-content-center">
+                        <div className="col-12 col-xl-11">
+                            <div className="card border-0 shadow-2xl rounded-5 overflow-hidden">
+                                <div className="row g-0">
+                                    {/* Left Side: Massive Phone Number */}
+                                    <div className="col-lg-7 p-4 p-md-5 d-flex flex-column justify-content-center bg_blue position-relative" style={{ borderRight: '5px solid #FF7700' }}>
+                                        {/* Decorative elements */}
+                                        <div className="position-absolute rounded-circle" style={{ width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(255,119,0,0.15) 0%, rgba(255,119,0,0) 70%)', top: '-100px', left: '-100px' }}></div>
+                                        
+                                        <div className="position-relative z-index-1">
+                                            <span className="badge bg-white text-dark mb-4 py-2 px-3 rounded-pill fw-bold shadow-sm" style={{ letterSpacing: '2px' }}>
+                                                <i className="fa fa-phone col_oran me-2"></i> DIRECT HELPLINE
+                                            </span>
+                                            <h1 className="fw-bolder mb-4 text-nowrap display-4" style={{ letterSpacing: '-1px' }}>
+                                                <a href={`tel:${settings.phone.replace(/[^+\d]/g, '')}`} className="text-decoration-none col_oran transition-all d-inline-block hvr-grow" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.2)' }}>
+                                                    {settings.phone}
+                                                </a>
+                                            </h1>
+                                            <p className="text-white opacity-75 fs-5 mb-0 ps-3 border-start border-3" style={{ borderColor: 'rgba(255,119,0,0.5) !important' }}>
+                                                Available Monday to Saturday<br/> 
+                                                <span className="fw-bold">9:00 AM - 6:00 PM</span> for expert consultancy.
+                                            </p>
+                                        </div>
                                     </div>
-                                    <h5 className="fw-bold mb-3">{step.title}</h5>
-                                    <p className="text-muted small mb-0">{step.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-            {/* Global Reach Section */}
-            <section className="p_5 bg-white">
-                <div className="container-xl">
-                    <div className="row align-items-center g-5">
-                        <div className="col-md-6 order-md-2 text-center text-md-start">
-                            <h2 className="display-4 fw-bold mb-4 h1">Our Commitment to <span className="col_green">Your Success</span></h2>
-                            <p className="lead text-muted mb-4">With offices in Faisalabad and partners globally, we ensure you have support wherever you go.</p>
-                            <div className="d-flex flex-wrap gap-4 mt-4 justify-content-center justify-content-md-start">
-                                <div className="text-center">
-                                    <h3 className="fw-bold col_oran mb-0"><StatCounter end={1500} suffix="+" /></h3>
-                                    <span className="small text-muted text-uppercase">Students Placed</span>
+                                    {/* Right Side: Location and Socials */}
+                                    <div className="col-lg-5 p-4 p-md-5 bg-white d-flex flex-column justify-content-center">
+                                        <div className="mb-5">
+                                            <div className="d-flex align-items-center mb-3">
+                                                <div className="d-inline-flex align-items-center justify-content-center rounded-circle bg-light shadow-sm me-3" style={{ width: '60px', height: '60px' }}>
+                                                    <i className="fa fa-map-marker col_oran fs-3"></i>
+                                                </div>
+                                                <h3 className="fw-bold mb-0" style={{ color: '#07294D' }}>Office Location</h3>
+                                            </div>
+                                            <p className="text-muted fs-5 lh-base ps-1 ms-5 ps-4">
+                                                {settings.location}
+                                            </p>
+                                        </div>
+
+                                        <hr className="bg-light opacity-50 mb-4" />
+
+                                        <div>
+                                            <h5 className="fw-bold mb-4 text-uppercase text-muted" style={{ letterSpacing: '1px' }}>Connect Digitally</h5>
+                                            <div className="d-flex gap-3">
+                                                <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center shadow-sm hvr-grow" style={{ width: '60px', height: '60px', borderWidth: '2px' }}>
+                                                    <i className="fa fa-facebook-f fs-3"></i>
+                                                </a>
+                                                <a href="https://www.instagram.com" target="_blank" rel="noreferrer" className="btn btn-outline-danger rounded-circle d-flex align-items-center justify-content-center shadow-sm hvr-grow" style={{ width: '60px', height: '60px', borderWidth: '2px' }}>
+                                                    <i className="fa fa-instagram fs-3"></i>
+                                                </a>
+                                                <a href="https://www.youtube.com" target="_blank" rel="noreferrer" className="btn btn-outline-danger rounded-circle d-flex align-items-center justify-content-center shadow-sm hvr-grow" style={{ width: '60px', height: '60px', borderWidth: '2px' }}>
+                                                    <i className="fa fa-youtube-play fs-3"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="text-center">
-                                    <h3 className="fw-bold col_oran mb-0"><StatCounter end={40} suffix="+" /></h3>
-                                    <span className="small text-muted text-uppercase">Countries Covered</span>
-                                </div>
-                                <div className="text-center">
-                                    <h3 className="fw-bold col_oran mb-0"><StatCounter end={10} suffix="+" /></h3>
-                                    <span className="small text-muted text-uppercase">Years Experience</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 order-md-1">
-                            <div className="p-3 bg-light rounded-5 shadow-inner">
-                                <img src="/img/global_campus.png" className="img-fluid rounded-5 shadow-lg grayscale-hover transition-all" alt="Infinity Global Office" />
                             </div>
                         </div>
                     </div>

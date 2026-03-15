@@ -98,7 +98,9 @@ export default function VideoSection({ videos = DEFAULT_VIDEOS }: { videos?: Vid
                                         />
                                         <div className="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-10 d-flex align-items-center justify-content-center">
                                             <div className="play-button bg-white bg-opacity-70 rounded-circle d-flex align-items-center justify-content-center shadow-lg" style={{ width: '80px', height: '80px', border: '2px solid white' }}>
-                                                <i className="fa fa-play fs-1 col_oran ms-1"></i>
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="#FF7700" style={{ marginLeft: '4px' }}>
+                                                    <polygon points="5,3 19,12 5,21" />
+                                                </svg>
                                             </div>
                                         </div>
                                     </div>
@@ -111,14 +113,14 @@ export default function VideoSection({ videos = DEFAULT_VIDEOS }: { videos?: Vid
                     <div className="position-absolute top-50 start-0 translate-middle-y z-3 ms-4">
                         <Magnetic>
                             <button onClick={prevSlide} className="btn bg-dark bg-opacity-50 text-white rounded-circle p-3 shadow-lg border-0 nav-btn">
-                                <i className="fa fa-chevron-left fs-4"></i>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
                             </button>
                         </Magnetic>
                     </div>
                     <div className="position-absolute top-50 end-0 translate-middle-y z-3 me-4">
                         <Magnetic>
                             <button onClick={nextSlide} className="btn bg-dark bg-opacity-50 text-white rounded-circle p-3 shadow-lg border-0 nav-btn">
-                                <i className="fa fa-chevron-right fs-4"></i>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                             </button>
                         </Magnetic>
                     </div>
@@ -180,7 +182,7 @@ export default function VideoSection({ videos = DEFAULT_VIDEOS }: { videos?: Vid
                                 e.currentTarget.style.boxShadow = 'none';
                             }}
                         >
-                            <i className="fa fa-times fs-2"></i>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                         </button>
 
                         <motion.div

@@ -6,12 +6,13 @@ import { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
 import { unstable_cache } from 'next/cache';
 import TestimonialGrid from '@/components/TestimonialGrid';
+import { fallbackSuccessStories } from '@/data/fallbackStories';
 
 export const metadata = {
     title: 'Testimonials - Infinity Overseas Consultant'
 };
 
-export const revalidate = 3600;
+export const revalidate = 3600; // Fixed from 0 to avoid potential invariant issues
 
 const getCachedStories = unstable_cache(
     async () => {
@@ -24,6 +25,7 @@ const getCachedStories = unstable_cache(
                     feedback: true,
                     image: true,
                     country: true,
+                    flag: true,
                     visaType: true,
                     degree: true,
                     date: true,
@@ -39,81 +41,17 @@ const getCachedStories = unstable_cache(
     { revalidate: 3600 }
 );
 
-const DEFAULT_STORIES = [
-    {
-        id: "f1",
-        name: "Aisha Khan",
-        feedback: "Infinity Overseas Consultant made my dream of studying in the UK a reality! Their team guided me through every step of the visa process.",
-        image: "/img/student_1.png",
-        country: "UK",
-        visaType: "Study Visa",
-        degree: "MSc Engineering Management",
-        date: "12 Aug, 2025"
-    },
-    {
-        id: "f2",
-        name: "Ali Raza",
-        feedback: "The process of applying to French universities seemed daunting, but Infinity made it seamless. Highly recommended!",
-        image: "/img/student_2.png",
-        country: "FRANCE",
-        visaType: "Study Visa",
-        degree: "Master's in Data Science",
-        date: "05 Sep, 2025"
-    },
-    {
-        id: "f3",
-        name: "Fatima Noor",
-        feedback: "Exceptional service! They provided all the right details for studying in Germany. I am so grateful for their support.",
-        image: "/img/student_3.png",
-        country: "GERMANY",
-        visaType: "Study Visa",
-        degree: "MBA",
-        date: "22 Jul, 2025"
-    },
-    {
-        id: "f4",
-        name: "Hassan Tariq",
-        feedback: "Italy has always been my dream destination. With Infinity Overseas, I got admission to a top university with a scholarship.",
-        image: "/img/student_1.png",
-        country: "ITALY",
-        visaType: "Study Visa",
-        degree: "BSc Computer Science",
-        date: "18 Oct, 2025"
-    },
-    {
-        id: "f5",
-        name: "Sana Malik",
-        feedback: "Got my visa for Australia in record time thanks to the dedicated team at IO Consultants. Best consultants in town!",
-        image: "/img/student_2.png",
-        country: "AUSTRALIA",
-        visaType: "Study Visa",
-        degree: "Master of Public Health",
-        date: "10 Nov, 2025"
-    },
-    {
-        id: "f6",
-        name: "Usman Ahmed",
-        feedback: "The guidance for Canadian universities was top-notch. I felt supported throughout the complicated application process.",
-        image: "/img/student_3.png",
-        country: "CANADA",
-        visaType: "Study Visa",
-        degree: "BEng Civil Engineering",
-        date: "03 Dec, 2025"
-    },
-    {
-        id: "f7",
-        name: "Zainab Javed",
-        feedback: "Studying in the USA was my ultimate goal. They helped me ace my visa interview and choose the right program.",
-        image: "/img/student_1.png",
-        country: "USA",
-        visaType: "Study Visa",
-        degree: "MSc Business Administration",
-        date: "25 Jan, 2026"
-    }
-];
+const DEFAULT_STORIES = fallbackSuccessStories;
 
 export default async function Testimonials() {
-    const dbStories = await getCachedStories();
+    let dbStories: any[] = [];
+    try {
+        dbStories = await prisma.successStory.findMany({ 
+            orderBy: { createdAt: 'desc' }
+        });
+    } catch (e) {
+        console.error("DB Error:", e);
+    }
     const storiesToDisplay = dbStories.length > 0 ? dbStories : DEFAULT_STORIES;
 
     return (

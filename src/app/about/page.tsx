@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 
 import { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
-import { unstable_cache } from 'next/cache';
 import "../../styles/about.css";
 
 export const metadata: Metadata = {
@@ -13,12 +12,13 @@ export const metadata: Metadata = {
     keywords: ["About Infinity Overseas", "Khurram Hashmi Founder", "Immigration Consultants History", "Study Abroad Mission"],
 };
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export default async function About() {
 
     return (
         <>
+            {/* Hero Banner */}
             <section id="center" className="center_o p_3 bg_blue">
                 <div className="container-xl">
                     <div className="row center_o1">
@@ -34,34 +34,46 @@ export default async function About() {
                 </div>
             </section>
 
+            {/* Our Story Section */}
             <section id="story" className="p_3">
                 <div className="container-xl d-flex flex-column">
-                    <div className="row align-items-center">
-                        {/* <div className="col-md-6">
-                            <Reveal animation="scale-in">
-                                <Image
-                                    src="/founder.jpg"
-                                    width={800}
-                                    height={600}
-                                    className="w-100 rounded-3 shadow hover-zoom transition"
-                                    alt="Khurram Hashmi - Founder & CEO"
-                                    priority
-                                    style={{ height: 'auto' }}
-                                />
+                    <div className="row align-items-center g-5">
+                        <div className="col-md-6 pe-md-5 pt-4 text-center text-md-start">
+                            <Reveal animation="fade-right">
+                                <h4 className="col_oran uppercase fw-bold mb-3 ls-1">OUR FOUNDER'S VISION</h4>
+                                <h2 className="display-4 fw-bold mt-2 lh-sm mb-4">Where Experience Meets <br /><span className="col_oran">Excellence</span></h2>
+                                <p className="mt-4 lead text-muted" style={{ lineHeight: '1.8' }}> The Founder & CEO of Infinity Overseas Consultant, has led the organization with a clear vision and a passion for helping people achieve their dreams abroad. Backed by years of experience and a 100% success rate in major visa categories, he has helped thousands navigate their path to international success.</p>
+                                <p className="text-muted" style={{ fontSize: '1.05rem', lineHeight: '1.7' }}>Driven by purpose and defined by results, we simplify your journey to studying abroad. With expert guidance, personalized support, and a deep understanding of global immigration trends, we make the transition smooth and successful.</p>
                             </Reveal>
-                        </div> */}
-                        <div className="col-md-6 ps-md-5 pt-4">
-                            <Reveal animation="fade-left">
-
-                                <h2 className="display-5 fw-bold mt-2">Where Experience Meets <span className="col_oran">Excellence</span></h2>
-                                <p className="mt-4 lead text-muted"> The Founder & CEO of Infinity Overseas Consultant, has led the organization with a clear vision and a passion for helping people achieve their dreams abroad. Backed by years of experience and a 100% success rate in major visa categories, he has helped thousands navigate their path to international success.</p>
-                                <p className="text-muted">Driven by purpose and defined by results, we simplify your journey to studying abroad. With expert guidance, personalized support, and a deep understanding of global immigration trends, we make the transition smooth and successful.</p>
+                        </div>
+                        <div className="col-md-6 mt-5 mt-md-0">
+                            <Reveal animation="scale-in" delay={0.2}>
+                                <div className="position-relative">
+                                    <Image 
+                                        src="/img/about_experience.png" 
+                                        alt="Global Education Experience" 
+                                        width={600} 
+                                        height={500} 
+                                        className="img-fluid rounded-4 shadow-2xl hover-zoom transition w-100"
+                                        style={{ height: '500px', objectFit: 'cover' }}
+                                    />
+                                    <div className="position-absolute bottom-0 start-0 m-4 bg-white p-3 rounded-4 shadow-lg d-none d-lg-block">
+                                        <div className="d-flex align-items-center">
+                                            <i className="fa fa-graduation-cap fs-2 col_oran me-3"></i>
+                                            <div>
+                                                <h5 className="mb-0 fw-bold">100%</h5>
+                                                <small className="text-muted fw-bold">Success Rate</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </Reveal>
                         </div>
                     </div>
                 </div>
             </section>
 
+            {/* Services Cards */}
             <section id="member" className="p_3 bg-light">
                 <div className="container-xl">
                     <div className="row member_1">
@@ -95,7 +107,6 @@ export default async function About() {
                     </div>
                 </div>
             </section>
-
 
         </>
     );

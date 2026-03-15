@@ -10,19 +10,49 @@ interface Subscriber {
     createdAt?: string;
 }
 
+const defaultCountryFlags: Record<string, string> = {
+    FRANCE: '/img/dest_france.png',
+    UK: '/img/dest_uk.png',
+    'UNITED KINGDOM': '/img/dest_uk.png',
+    IRELAND: '/img/dest_ireland.png',
+    GERMANY: '/img/6.png',
+    ITALY: '/img/dest_italy.png',
+    SPAIN: '/img/dest_spain.png',
+    TURKEY: '/img/dest_turkey.png',
+    SWEDEN: '/img/21.png',
+    DENMARK: '/img/dest_uk.png',
+    FINLAND: '/img/5.png',
+    ROMANIA: '/img/19.jpg',
+    HUNGARY: '/img/18.jpg',
+    LITHUANIA: '/img/23.png',
+    CYPRUS: '/img/17.jpg',
+    MALTA: '/img/20.png',
+    GEORGIA: '/img/5.png',
+    DUBAI: '/img/1.png',
+    UAE: '/img/1.png',
+    'UNITED ARAB EMIRATES': '/img/1.png',
+    CANADA: '/img/study_canada.png',
+    USA: '/img/study_usa.png',
+    AUSTRALIA: '/img/study_australia.png',
+    NETHERLANDS: '/img/22.png',
+    PORTUGAL: '/img/16.jpg',
+    POLAND: '/img/15.jpg',
+    CHINA: '/img/8.png',
+    MALAYSIA: '/img/3.png',
+    THAILAND: 'https://flagcdn.com/w160/th.png',
+    LATVIA: 'https://flagcdn.com/w320/lv.png',
+};
+
 export default function AdminNewsletter() {
-    const [activeTab, setActiveTab] = useState<'subscribers' | 'compose' | 'blogs' | 'events' | 'team' | 'services' | 'settings' | 'successStories' | 'faqs' | 'videos'>('subscribers');
+    const [activeTab, setActiveTab] = useState<'blogs' | 'events' | 'stories' | 'settings'>('stories');
     const [isBlogFormOpen, setIsBlogFormOpen] = useState(false);
     const [showEventForm, setShowEventForm] = useState(false);
-    const [showTeamForm, setShowTeamForm] = useState(false);
     const [showServiceForm, setShowServiceForm] = useState(false);
     const [showSuccessStoryForm, setShowSuccessStoryForm] = useState(false);
-    const [showFaqForm, setShowFaqForm] = useState(false);
     const [showVideoForm, setShowVideoForm] = useState(false);
 
     const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
     const [successStories, setSuccessStories] = useState<any[]>([]);
-    const [faqs, setFaqs] = useState<any[]>([]);
     const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
@@ -31,25 +61,18 @@ export default function AdminNewsletter() {
     const [status, setStatus] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
     const [blogs, setBlogs] = useState<any[]>([]);
     const [events, setEvents] = useState<any[]>([]);
-    const [team, setTeam] = useState<any[]>([]);
     const [services, setServices] = useState<any[]>([]);
     const [videos, setVideos] = useState<any[]>([]);
     const [editingBlog, setEditingBlog] = useState<any | null>(null);
     const [editingEvent, setEditingEvent] = useState<any | null>(null);
-    const [editingTeam, setEditingTeam] = useState<any | null>(null);
-    const [editingService, setEditingService] = useState<any | null>(null);
     const [editingSuccessStory, setEditingSuccessStory] = useState<any | null>(null);
-    const [editingFaq, setEditingFaq] = useState<any | null>(null);
+    const [editingService, setEditingService] = useState<any | null>(null);
     const [editingVideo, setEditingVideo] = useState<any | null>(null);
-    const [successStoryForm, setSuccessStoryForm] = useState({ name: '', feedback: '', image: '', date: '' });
-    const [faqForm, setFaqForm] = useState({ question: '', answer: '' });
+    const [successStoryForm, setSuccessStoryForm] = useState({ name: '', country: '', visaType: '', degree: '', image: '', flag: '' });
     const [videoForm, setVideoForm] = useState({ title: '', url: '', thumbnail: '', country: '' });
     const [blogForm, setBlogForm] = useState({ title: '', description: '', content: '', image: '', category: '', date: '' });
     const [eventForm, setEventForm] = useState({
         title: '', description: '', image: '', time: '', location: '', date: '', dayLabel: '', dayId: '', color: 'bg-light', textWhite: false
-    });
-    const [teamForm, setTeamForm] = useState({
-        name: '', role: '', description: '', image: '', twitter: '', instagram: '', linkedin: ''
     });
     const [serviceForm, setServiceForm] = useState({
         title: '', description: '', image: '', icon: 'globe'
@@ -85,15 +108,13 @@ export default function AdminNewsletter() {
         const fetchAll = async () => {
             setFetching(true);
             try {
-                const [subRes, blogRes, eventRes, teamRes, svcRes, setRes, storyRes, faqRes, vidRes] = await Promise.allSettled([
+                const [subRes, blogRes, eventRes, svcRes, setRes, storyRes, vidRes] = await Promise.allSettled([
                     fetch('/api/admin/tools?action=subscribers', { signal }),
                     fetch('/api/admin/cms/blog', { signal }),
                     fetch('/api/admin/cms/event', { signal }),
-                    fetch('/api/admin/cms/teamMember', { signal }),
                     fetch('/api/admin/cms/service', { signal }),
                     fetch('/api/admin/tools?action=settings', { signal }),
                     fetch('/api/admin/cms/successStory', { signal }),
-                    fetch('/api/admin/cms/faq', { signal }),
                     fetch('/api/admin/cms/video', { signal }),
                 ]);
                 if (subRes.status === 'fulfilled' && subRes.value.ok) {
@@ -105,9 +126,6 @@ export default function AdminNewsletter() {
                 if (eventRes.status === 'fulfilled' && eventRes.value.ok) {
                     const d = await eventRes.value.json(); if (Array.isArray(d)) setEvents(d);
                 }
-                if (teamRes.status === 'fulfilled' && teamRes.value.ok) {
-                    const d = await teamRes.value.json(); if (Array.isArray(d)) setTeam(d);
-                }
                 if (svcRes.status === 'fulfilled' && svcRes.value.ok) {
                     const d = await svcRes.value.json(); if (Array.isArray(d)) setServices(d);
                 }
@@ -116,9 +134,6 @@ export default function AdminNewsletter() {
                 }
                 if (storyRes.status === 'fulfilled' && storyRes.value.ok) {
                     const d = await storyRes.value.json(); if (Array.isArray(d)) setSuccessStories(d);
-                }
-                if (faqRes.status === 'fulfilled' && faqRes.value.ok) {
-                    const d = await faqRes.value.json(); if (Array.isArray(d)) setFaqs(d);
                 }
                 if (vidRes.status === 'fulfilled' && vidRes.value.ok) {
                     const d = await vidRes.value.json(); if (Array.isArray(d)) setVideos(d);
@@ -156,13 +171,6 @@ export default function AdminNewsletter() {
             if (res.ok && Array.isArray(data)) setEvents(data);
         } catch (e) { console.error(e); }
     };
-    const fetchTeam = async () => {
-        try {
-            const res = await fetch('/api/admin/cms/teamMember');
-            const data = await res.json();
-            if (res.ok && Array.isArray(data)) setTeam(data);
-        } catch (e) { console.error(e); }
-    };
     const fetchServices = async () => {
         try {
             const res = await fetch('/api/admin/cms/service');
@@ -182,13 +190,6 @@ export default function AdminNewsletter() {
             const res = await fetch('/api/admin/cms/successStory');
             const data = await res.json();
             if (res.ok && Array.isArray(data)) setSuccessStories(data);
-        } catch (e) { console.error(e); }
-    };
-    const fetchFaqs = async () => {
-        try {
-            const res = await fetch('/api/admin/cms/faq');
-            const data = await res.json();
-            if (res.ok && Array.isArray(data)) setFaqs(data);
         } catch (e) { console.error(e); }
     };
     const fetchVideos = async () => {
@@ -282,39 +283,6 @@ export default function AdminNewsletter() {
         } catch (e) { showStatus({ type: 'error', text: 'Error deleting event.' }); }
     };
 
-    const handleSaveTeam = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const method = editingTeam ? 'PUT' : 'POST';
-            const url = editingTeam ? `/api/admin/cms/teamMember/${editingTeam.id}` : '/api/admin/cms/teamMember';
-            const res = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(teamForm),
-            });
-            if (res.ok) {
-                showStatus({ type: 'success', text: `✓ Team member ${editingTeam ? 'updated' : 'created'} successfully!` });
-                setShowTeamForm(false);
-                setEditingTeam(null);
-                setTeamForm({ name: '', role: '', description: '', image: '', twitter: '', instagram: '', linkedin: '' });
-                fetchTeam();
-            }
-        } catch (e) { showStatus({ type: 'error', text: 'Error saving team member.' }); }
-        finally { setLoading(false); }
-    };
-
-    const deleteTeam = async (id: string) => {
-        if (!confirm('Are you sure you want to delete this team member?')) return;
-        try {
-            const res = await fetch(`/api/admin/cms/teamMember/${id}`, { method: 'DELETE' });
-            if (res.ok) {
-                showStatus({ type: 'success', text: '✓ Team member deleted successfully.' });
-                fetchTeam();
-            }
-        } catch (e) { showStatus({ type: 'error', text: 'Error deleting team member.' }); }
-    };
-
     const handleSaveSuccessStory = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -324,13 +292,13 @@ export default function AdminNewsletter() {
             const res = await fetch(url, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(successStoryForm),
+                body: JSON.stringify({ ...successStoryForm, feedback: successStoryForm.name + " Visa Success" }),
             });
             if (res.ok) {
                 showStatus({ type: 'success', text: `✓ Success Story ${editingSuccessStory ? 'updated' : 'created'} successfully!` });
                 setShowSuccessStoryForm(false);
                 setEditingSuccessStory(null);
-                setSuccessStoryForm({ name: '', feedback: '', image: '', date: '' });
+                setSuccessStoryForm({ name: '', country: '', visaType: '', degree: '', image: '', flag: '' });
                 fetchSuccessStories();
             }
         } catch (e) { showStatus({ type: 'error', text: 'Error saving success story.' }); }
@@ -381,39 +349,6 @@ export default function AdminNewsletter() {
         } catch (e) { showStatus({ type: 'error', text: 'Error deleting service.' }); }
     };
 
-    const handleSaveFaq = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const method = editingFaq ? 'PUT' : 'POST';
-            const url = editingFaq ? `/api/admin/cms/faq/${editingFaq.id}` : '/api/admin/cms/faq';
-            const res = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(faqForm),
-            });
-            if (res.ok) {
-                showStatus({ type: 'success', text: `✓ FAQ ${editingFaq ? 'updated' : 'created'} successfully!` });
-                setShowFaqForm(false);
-                setEditingFaq(null);
-                setFaqForm({ question: '', answer: '' });
-                fetchFaqs();
-            }
-        } catch (e) { showStatus({ type: 'error', text: 'Error saving FAQ.' }); }
-        finally { setLoading(false); }
-    };
-
-    const deleteFaq = async (id: string) => {
-        if (!confirm('Are you sure you want to delete this FAQ?')) return;
-        try {
-            const res = await fetch(`/api/admin/cms/faq/${id}`, { method: 'DELETE' });
-            if (res.ok) {
-                showStatus({ type: 'success', text: '✓ FAQ deleted successfully.' });
-                fetchFaqs();
-            }
-        } catch (e) { showStatus({ type: 'error', text: 'Error deleting FAQ.' }); }
-    };
-
     const handleSaveVideo = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -447,7 +382,7 @@ export default function AdminNewsletter() {
         } catch (e) { showStatus({ type: 'error', text: 'Error deleting Video.' }); }
     };
 
-    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'blog' | 'event' | 'team' | 'service' | 'successStory' | 'videoThumbnail') => {
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'blog' | 'event' | 'service' | 'successStory' | 'successStoryFlag' | 'videoThumbnail') => {
         const file = e.target.files?.[0];
         if (!file) return;
         setUploading(true);
@@ -462,9 +397,9 @@ export default function AdminNewsletter() {
             if (data.url) {
                 if (target === 'blog') setBlogForm(prev => ({ ...prev, image: data.url }));
                 else if (target === 'event') setEventForm(prev => ({ ...prev, image: data.url }));
-                else if (target === 'team') setTeamForm(prev => ({ ...prev, image: data.url }));
                 else if (target === 'service') setServiceForm(prev => ({ ...prev, image: data.url }));
                 else if (target === 'successStory') setSuccessStoryForm(prev => ({ ...prev, image: data.url }));
+                else if (target === 'successStoryFlag') setSuccessStoryForm(prev => ({ ...prev, flag: data.url }));
                 else if (target === 'videoThumbnail') setVideoForm(prev => ({ ...prev, thumbnail: data.url }));
                 showStatus({ type: 'success', text: '✓ Image uploaded to Cloudinary!' });
             } else {
@@ -775,15 +710,10 @@ export default function AdminNewsletter() {
 
                     <div className="nav-tabs-group">
                         {[
-                            { key: 'subscribers', icon: 'fa-users', label: 'Subscribers' },
-                            { key: 'blogs', icon: 'fa-newspaper-o', label: 'Blogs' },
+                            { key: 'stories', icon: 'fa-star', label: 'Success Stories' },
+                            { key: 'blogs', icon: 'fa-newspaper-o', label: 'Blog' },
                             { key: 'events', icon: 'fa-calendar', label: 'Events' },
-                            { key: 'team', icon: 'fa-users', label: 'Team' },
-                            { key: 'videos', icon: 'fa-play-circle', label: 'Videos' },
-                            { key: 'services', icon: 'fa-briefcase', label: 'Services' },
-                            { key: 'successStories', icon: 'fa-star', label: 'Stories' },
-                            { key: 'faqs', icon: 'fa-question-circle', label: 'FAQs' },
-                            { key: 'settings', icon: 'fa-cog', label: 'Settings' },
+                            { key: 'settings', icon: 'fa-cog', label: 'Contact & Settings' },
                         ].map(t => (
                             <button
                                 key={t.key}
@@ -819,10 +749,7 @@ export default function AdminNewsletter() {
                             { ico: 'fa-newspaper-o', cls: 'ico-purple', label: 'Total Blogs', val: blogs.length },
                             { ico: 'fa-calendar', cls: 'ico-green', label: 'Total Events', val: events.length },
                             { ico: 'fa-play-circle', cls: 'ico-blue', label: 'Total Videos', val: videos.length },
-                            { ico: 'fa-users', cls: 'ico-orange', label: 'Team Members', val: team.length },
-                            { ico: 'fa-briefcase', cls: 'ico-blue', label: 'Services', val: services.length },
                             { ico: 'fa-star', cls: 'ico-purple', label: 'Success Stories', val: successStories.length },
-                            { ico: 'fa-question-circle', cls: 'ico-green', label: 'FAQs', val: faqs.length },
                         ].map((s, i) => (
                             <div className="stat-box" key={i}>
                                 <div className={`stat-ico ${s.cls}`}><i className={`fa ${s.ico}`}></i></div>
@@ -834,165 +761,135 @@ export default function AdminNewsletter() {
                         ))}
                     </div>
 
-                    {/* Tab: Subscribers */}
-                    {activeTab === 'subscribers' && (
-                        <div className="card">
-                            <div className="card-top">
-                                <h2 className="card-title">Subscriber List</h2>
-                                <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
-                                    <span className={`badge ${selectedEmails.length > 0 ? 'badge-green' : 'badge-gray'}`}>
-                                        {selectedEmails.length} selected
-                                    </span>
-                                    <button className="btn-outline" onClick={toggleAll}>
-                                        {allSelected ? 'Deselect All' : 'Select All'}
-                                    </button>
-                                    {selectedEmails.length > 0 && (
-                                        <button className="btn-ghost" onClick={() => setActiveTab('compose')}>
-                                            Compose Email →
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-
-                            <div className="table-wrap">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: 40 }}>
-                                                <div className={`chk ${allSelected ? 'on' : ''}`} onClick={toggleAll}>
-                                                    {allSelected && <i className="fa fa-check"></i>}
-                                                </div>
-                                            </th>
-                                            <th>Email Address</th>
-                                            <th>Joined Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {fetching ? (
-                                            <tr><td colSpan={3} style={{ textAlign: 'center', padding: 40, color: 'rgba(255,255,255,0.2)' }}>
-                                                <i className="fa fa-spinner fa-spin"></i> Loading...
-                                            </td></tr>
-                                        ) : subscribers.length === 0 ? (
-                                            <tr><td colSpan={3} style={{ textAlign: 'center', padding: 40, color: 'rgba(255,255,255,0.2)' }}>No subscribers yet.</td></tr>
-                                        ) : subscribers.map(sub => {
-                                            const on = selectedEmails.includes(sub.email);
-                                            return (
-                                                <tr key={sub.id}>
-                                                    <td>
-                                                        <div className={`chk ${on ? 'on' : ''}`} onClick={() => toggleOne(sub.email)}>
-                                                            {on && <i className="fa fa-check"></i>}
-                                                        </div>
-                                                    </td>
-                                                    <td className="email-cell">{sub.email}</td>
-                                                    <td className="date-cell">{sub.createdAt ? new Date(sub.createdAt).toLocaleDateString() : 'N/A'}</td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Tab: Settings */}
+                    {/* Tab: Contact & Settings */}
                     {activeTab === 'settings' && (
-                        <div className="card" style={{ maxWidth: 800, margin: '0 auto' }}>
-                            <div className="card-top">
-                                <div>
-                                    <h2 className="card-title"><i className="fa fa-cog" style={{ marginRight: 10, color: '#FF7700' }}></i>Site Configuration</h2>
-                                    <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: 13, margin: '6px 0 0 0' }}>
-                                        Manage your website&apos;s contact information displayed across all pages
-                                    </p>
-                                </div>
-                            </div>
-
-                            <form onSubmit={handleSaveSettings}>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, marginBottom: 20 }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
+                            <div className="card" style={{ maxWidth: 800, margin: '0 auto', width: '100%' }}>
+                                <div className="card-top">
                                     <div>
-                                        <label className="field-label"><i className="fa fa-envelope" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Contact Email</label>
-                                        <input
-                                            className="field-input"
-                                            type="email"
-                                            value={settingsForm.email}
-                                            onChange={e => setSettingsForm({ ...settingsForm, email: e.target.value })}
-                                            placeholder="Infinityconsultantsfsd@gmail.com"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="field-label"><i className="fa fa-phone" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Phone Number</label>
-                                        <input
-                                            className="field-input"
-                                            type="tel"
-                                            value={settingsForm.phone}
-                                            onChange={e => setSettingsForm({ ...settingsForm, phone: e.target.value })}
-                                            placeholder="+92 326 4571906"
-                                            required
-                                        />
+                                        <h2 className="card-title"><i className="fa fa-cog" style={{ marginRight: 10, color: '#FF7700' }}></i>Site Configuration</h2>
+                                        <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: 13, margin: '6px 0 0 0' }}>
+                                            Manage your website&apos;s contact information displayed across all pages
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div style={{ marginBottom: 28 }}>
-                                    <label className="field-label"><i className="fa fa-map-marker" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Physical Location</label>
-                                    <input
-                                        className="field-input"
-                                        value={settingsForm.location}
-                                        onChange={e => setSettingsForm({ ...settingsForm, location: e.target.value })}
-                                        placeholder="Mazzanine floor, Media com plaza, Office No. 63, 64 Kohinoor Rd, Faisalabad"
-                                        required
-                                    />
-                                </div>
+                                <form onSubmit={handleSaveSettings}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20, marginBottom: 20 }}>
+                                        <div>
+                                            <label className="field-label"><i className="fa fa-envelope" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Contact Email</label>
+                                            <input
+                                                className="field-input"
+                                                type="email"
+                                                value={settingsForm.email}
+                                                onChange={e => setSettingsForm({ ...settingsForm, email: e.target.value })}
+                                                placeholder="Email..."
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="field-label"><i className="fa fa-phone" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Phone Number</label>
+                                            <input
+                                                className="field-input"
+                                                type="tel"
+                                                value={settingsForm.phone}
+                                                onChange={e => setSettingsForm({ ...settingsForm, phone: e.target.value })}
+                                                placeholder="Phone..."
+                                                required
+                                            />
+                                        </div>
+                                    </div>
 
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                                    <button className="btn-primary" type="submit" disabled={loading}>
-                                        {loading ? <><i className="fa fa-spinner fa-spin"></i> Saving...</> : <><i className="fa fa-save"></i> Save Settings</>}
-                                    </button>
-                                    <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: 12 }}>
-                                        Changes will be reflected across the website
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                    )}
+                                    <div style={{ marginBottom: 28 }}>
+                                        <label className="field-label"><i className="fa fa-map-marker" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Physical Location</label>
+                                        <input
+                                            className="field-input"
+                                            value={settingsForm.location}
+                                            onChange={e => setSettingsForm({ ...settingsForm, location: e.target.value })}
+                                            placeholder="Mazzanine floor, Media com plaza, Office No. 63, 64 Kohinoor Rd, Faisalabad"
+                                            required
+                                        />
+                                    </div>
 
-                    {/* Tab: Compose */}
-                    {activeTab === 'compose' && (
-                        <div className="card" style={{ maxWidth: 700, margin: '0 auto' }}>
-                            <div className="card-top">
-                                <h2 className="card-title">Compose Email</h2>
-                                <span className={`badge ${selectedEmails.length > 0 ? 'badge-green' : 'badge-gray'}`}>
-                                    {selectedEmails.length} recipient(s)
-                                </span>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                                        <button className="btn-primary" type="submit" disabled={loading}>
+                                            {loading ? <><i className="fa fa-spinner fa-spin"></i> Saving...</> : <><i className="fa fa-save"></i> Save Settings</>}
+                                        </button>
+                                        <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: 12 }}>
+                                            Changes will be reflected across the website
+                                        </span>
+                                    </div>
+                                </form>
                             </div>
 
-                            {selectedEmails.length === 0 && (
-                                <div className="warn-box">
-                                    <i className="fa fa-exclamation-triangle" style={{ marginRight: 8 }}></i>
-                                    No recipients selected.{' '}
-                                    <button onClick={() => setActiveTab('subscribers')} style={{ background: 'none', border: 'none', color: '#FF9A00', fontWeight: 700, cursor: 'pointer' }}>
-                                        Select from Subscribers →
-                                    </button>
+                            <div className="card">
+                                <div className="card-top">
+                                    <h2 className="card-title"><i className="fa fa-users" style={{ marginRight: 10, color: '#FF7700' }}></i>Subscribers & Newsletter</h2>
+                                    <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+                                        <span className={`badge ${selectedEmails.length > 0 ? 'badge-green' : 'badge-gray'}`}>
+                                            {selectedEmails.length} selected
+                                        </span>
+                                        <button className="btn-outline" onClick={toggleAll}>
+                                            {allSelected ? 'Deselect All' : 'Select All'}
+                                        </button>
+                                    </div>
                                 </div>
-                            )}
 
-                            <form onSubmit={handleSend}>
-                                <div style={{ marginBottom: 18 }}>
-                                    <label className="field-label">Subject</label>
-                                    <input className="field-input" type="text" value={subject} onChange={e => setSubject(e.target.value)} placeholder="Enter email subject..." required />
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}>
+                                    <div className="table-wrap">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th style={{ width: 40 }}>
+                                                        <div className={`chk ${allSelected ? 'on' : ''}`} onClick={toggleAll}>
+                                                            {allSelected && <i className="fa fa-check"></i>}
+                                                        </div>
+                                                    </th>
+                                                    <th>Email Address</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {fetching ? (
+                                                    <tr><td colSpan={2} style={{ textAlign: 'center', padding: 20 }}>Loading...</td></tr>
+                                                ) : subscribers.length === 0 ? (
+                                                    <tr><td colSpan={2} style={{ textAlign: 'center', padding: 20 }}>No subscribers yet.</td></tr>
+                                                ) : subscribers.map(sub => {
+                                                    const on = selectedEmails.includes(sub.email);
+                                                    return (
+                                                        <tr key={sub.id}>
+                                                            <td>
+                                                                <div className={`chk ${on ? 'on' : ''}`} onClick={() => toggleOne(sub.email)}>
+                                                                    {on && <i className="fa fa-check"></i>}
+                                                                </div>
+                                                            </td>
+                                                            <td className="email-cell">{sub.email}</td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className="compose-area">
+                                        <h4 className="field-label"><i className="fa fa-paper-plane" style={{ marginRight: 8, color: '#FF7700' }}></i>Quick Compose</h4>
+                                        <form onSubmit={handleSend}>
+                                            <div style={{ marginBottom: 15 }}>
+                                                <input className="field-input" type="text" value={subject} onChange={e => setSubject(e.target.value)} placeholder="Subject..." required />
+                                            </div>
+                                            <div style={{ marginBottom: 15 }}>
+                                                <textarea className="field-input" rows={6} value={message} onChange={e => setMessage(e.target.value)} placeholder="Message..." required />
+                                            </div>
+                                            <button type="submit" className="btn-primary full" disabled={loading || selectedEmails.length === 0}>
+                                                {loading ? 'Sending...' : 'Send to Selected'}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div style={{ marginBottom: 24 }}>
-                                    <label className="field-label">Message</label>
-                                    <textarea className="field-input" rows={10} value={message} onChange={e => setMessage(e.target.value)} placeholder="Write your message here..." required />
-                                </div>
-                                <button type="submit" className="btn-primary full" disabled={loading || selectedEmails.length === 0}>
-                                    {loading
-                                        ? <><i className="fa fa-spinner fa-spin"></i> Sending...</>
-                                        : <><i className="fa fa-paper-plane"></i> Send Newsletter</>
-                                    }
-                                </button>
-                            </form>
+                            </div>
                         </div>
                     )}
+
+
 
                     {/* Tab: Blogs */}
                     {activeTab === 'blogs' && (
@@ -1257,519 +1154,235 @@ export default function AdminNewsletter() {
                             )}
                         </div>
                     )}
-                    {/* Tab: Team */}
-                    {activeTab === 'team' && (
-                        <div className="card">
-                            <div className="card-top">
-                                <h2 className="card-title">{showTeamForm ? (editingTeam ? 'Edit Team Member' : 'Add Team Member') : 'Manage Our Team'}</h2>
-                                <button className="btn-primary" onClick={() => {
-                                    if (showTeamForm) {
-                                        setShowTeamForm(false);
-                                        setEditingTeam(null);
-                                    } else {
-                                        setTeamForm({ name: '', role: '', description: '', image: '', twitter: '', instagram: '', linkedin: '' });
-                                        setShowTeamForm(true);
-                                    }
-                                }}>
-                                    {showTeamForm ? '← Back to List' : <><i className="fa fa-plus"></i> Add Member</>}
-                                </button>
-                            </div>
-
-                            {showTeamForm ? (
-                                <form onSubmit={handleSaveTeam} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-                                        <div>
-                                            <label className="field-label">Name</label>
-                                            <input className="field-input" value={teamForm.name} onChange={e => setTeamForm({ ...teamForm, name: e.target.value })} placeholder="Full name..." required />
-                                        </div>
-                                        <div>
-                                            <label className="field-label">Role</label>
-                                            <input className="field-input" value={teamForm.role} onChange={e => setTeamForm({ ...teamForm, role: e.target.value })} placeholder="e.g. Director, Manager" required />
-                                        </div>
-                                    </div>
-                                    <div style={{ marginBottom: 20 }}>
-                                        <label className="field-label">Description</label>
-                                        <textarea className="field-input" rows={4} value={teamForm.description} onChange={e => setTeamForm({ ...teamForm, description: e.target.value })} placeholder="Brief bio..." required />
-                                    </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 15, marginBottom: 20 }}>
-                                        <div>
-                                            <label className="field-label">Twitter</label>
-                                            <input className="field-input" value={teamForm.twitter || ''} onChange={e => setTeamForm({ ...teamForm, twitter: e.target.value })} placeholder="Profile URL" />
-                                        </div>
-                                        <div>
-                                            <label className="field-label">Instagram</label>
-                                            <input className="field-input" value={teamForm.instagram || ''} onChange={e => setTeamForm({ ...teamForm, instagram: e.target.value })} placeholder="Profile URL" />
-                                        </div>
-                                        <div>
-                                            <label className="field-label">LinkedIn</label>
-                                            <input className="field-input" value={teamForm.linkedin || ''} onChange={e => setTeamForm({ ...teamForm, linkedin: e.target.value })} placeholder="Profile URL" />
-                                        </div>
-                                    </div>
-                                    <div style={{ marginBottom: 30 }}>
-                                        <label className="field-label">Member Image</label>
-                                        <div style={{ display: 'flex', gap: 15, alignItems: 'center' }}>
-                                            <label style={{
-                                                display: 'inline-flex', alignItems: 'center', gap: 8,
-                                                padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
-                                                border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
-                                                color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
-                                                transition: 'all 0.2s'
-                                            }}>
-                                                <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (teamForm.image ? 'fa-refresh' : 'fa-cloud-upload')}`}></i>
-                                                {uploading ? 'Uploading...' : (teamForm.image ? 'Change Photo' : 'Upload Photo')}
-                                                <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'team')} style={{ display: 'none' }} />
-                                            </label>
-                                            {teamForm.image && (
-                                                <img src={teamForm.image} alt="Preview" style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'cover', border: '2px solid #FF7700' }} />
-                                            )}
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="btn-primary full" disabled={loading}>
-                                        {loading ? <i className="fa fa-spinner fa-spin"></i> : <i className="fa fa-save"></i>}
-                                        {editingTeam ? ' Update Member' : ' Add Member'}
+                    {/* Tab: Stories (Success Stories & Videos) */}
+                    {activeTab === 'stories' && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
+                            {/* Success Stories Section */}
+                            <div className="card">
+                                <div className="card-top">
+                                    <h2 className="card-title">{showSuccessStoryForm ? (editingSuccessStory ? 'Edit Success Story' : 'Add Success Story') : 'Student Success Stories'}</h2>
+                                    <button className="btn-primary" onClick={() => {
+                                        if (showSuccessStoryForm) {
+                                            setShowSuccessStoryForm(false);
+                                            setEditingSuccessStory(null);
+                                        } else {
+                                            setSuccessStoryForm({ name: '', country: '', visaType: '', degree: '', image: '', flag: '' });
+                                            setShowSuccessStoryForm(true);
+                                        }
+                                    }}>
+                                        {showSuccessStoryForm ? '← Back to List' : <><i className="fa fa-plus"></i> Add Story</>}
                                     </button>
-                                </form>
-                            ) : (
-                                <div className="event-list">
-                                    {team.length === 0 ? (
-                                        <div style={{ textAlign: 'center', padding: 60, color: 'rgba(255,255,255,0.2)' }}>
-                                            <i className="fa fa-users fa-3x mb-3"></i>
-                                            <p>No team members added yet.</p>
+                                </div>
+
+                                {showSuccessStoryForm ? (
+                                    <form onSubmit={handleSaveSuccessStory} style={{ maxWidth: 800, margin: '0 auto' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                            <div>
+                                                <label className="field-label">Student Name</label>
+                                                <input className="field-input" value={successStoryForm.name} onChange={e => setSuccessStoryForm({ ...successStoryForm, name: e.target.value })} placeholder="Student Name..." required />
+                                            </div>
+                                            <div>
+                                                <label className="field-label">Country (e.g. UK, CANADA)</label>
+                                                <input 
+                                                    className="field-input" 
+                                                    value={successStoryForm.country || ''} 
+                                                    onChange={e => setSuccessStoryForm({ ...successStoryForm, country: e.target.value })} 
+                                                    placeholder="Type or select country..." 
+                                                    list="country-suggestions"
+                                                    required 
+                                                />
+                                                <datalist id="country-suggestions">
+                                                    {Object.keys(defaultCountryFlags).sort().map(c => (
+                                                        <option key={c} value={c} />
+                                                    ))}
+                                                </datalist>
+                                            </div>
                                         </div>
-                                    ) : team.map(member => (
-                                        <div key={member.id} className="blog-card">
-                                            <img src={member.image} className="blog-img" alt="" style={{ borderRadius: '50%', width: 80, height: 80 }} />
-                                            <div className="blog-info">
-                                                <h3 className="blog-title-text">{member.name}</h3>
-                                                <div className="blog-meta">
-                                                    <span><i className="fa fa-id-badge"></i> {member.role}</span>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                            <div>
+                                                <label className="field-label">Visa Type</label>
+                                                <input className="field-input" value={successStoryForm.visaType || ''} onChange={e => setSuccessStoryForm({ ...successStoryForm, visaType: e.target.value })} placeholder="e.g. Study Visa, Visit Visa" required />
+                                            </div>
+                                            <div>
+                                                <label className="field-label">Degree/Program</label>
+                                                <input className="field-input" value={successStoryForm.degree || ''} onChange={e => setSuccessStoryForm({ ...successStoryForm, degree: e.target.value })} placeholder="e.g. MSc Data Science" required />
+                                            </div>
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
+                                            <div>
+                                                <label className="field-label">Student Photo</label>
+                                                <div style={{ display: 'flex', gap: 15, alignItems: 'center' }}>
+                                                    <label style={{
+                                                        display: 'inline-flex', alignItems: 'center', gap: 8,
+                                                        padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
+                                                        border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
+                                                        color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
+                                                        transition: 'all 0.2s'
+                                                    }}>
+                                                        <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (successStoryForm.image ? 'fa-refresh' : 'fa-cloud-upload')}`}></i>
+                                                        {uploading ? 'Uploading...' : (successStoryForm.image ? 'Change Photo' : 'Upload Photo')}
+                                                        <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'successStory')} style={{ display: 'none' }} />
+                                                    </label>
+                                                    {successStoryForm.image && (
+                                                        <img src={successStoryForm.image} alt="Preview" style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'cover', border: '2px solid #FF7700' }} />
+                                                    )}
                                                 </div>
-                                                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', margin: '10px 0' }}>
-                                                    {member.description.substring(0, 100)}...
-                                                </p>
                                             </div>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                                                <button className="btn-outline" onClick={() => {
-                                                    setEditingTeam(member);
-                                                    setTeamForm({
-                                                        name: member.name,
-                                                        role: member.role,
-                                                        description: member.description,
-                                                        image: member.image,
-                                                        twitter: member.twitter || '',
-                                                        instagram: member.instagram || '',
-                                                        linkedin: member.linkedin || ''
-                                                    });
-                                                    setShowTeamForm(true);
-                                                }}>
-                                                    <i className="fa fa-edit"></i>
-                                                </button>
-                                                <button className="btn-danger" onClick={() => deleteTeam(member.id)}>
-                                                    <i className="fa fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Tab: Success Stories */}
-                    {activeTab === 'successStories' && (
-                        <div className="card">
-                            <div className="card-top">
-                                <h2 className="card-title">{showSuccessStoryForm ? (editingSuccessStory ? 'Edit Success Story' : 'Add Success Story') : 'Manage Success Stories'}</h2>
-                                <button className="btn-primary" onClick={() => {
-                                    if (showSuccessStoryForm) {
-                                        setShowSuccessStoryForm(false);
-                                        setEditingSuccessStory(null);
-                                    } else {
-                                        setSuccessStoryForm({ name: '', feedback: '', image: '', date: '' });
-                                        setShowSuccessStoryForm(true);
-                                    }
-                                }}>
-                                    {showSuccessStoryForm ? '← Back to List' : <><i className="fa fa-plus"></i> Add Story</>}
-                                </button>
-                            </div>
-
-                            {showSuccessStoryForm ? (
-                                <form onSubmit={handleSaveSuccessStory} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-                                        <div>
-                                            <label className="field-label">Student Name</label>
-                                            <input className="field-input" value={successStoryForm.name} onChange={e => setSuccessStoryForm({ ...successStoryForm, name: e.target.value })} placeholder="Student Name..." required />
-                                        </div>
-                                        <div>
-                                            <label className="field-label">Date (Optional)</label>
-                                            <input className="field-input" value={successStoryForm.date || ''} onChange={e => setSuccessStoryForm({ ...successStoryForm, date: e.target.value })} placeholder="e.g. July 2022" />
-                                        </div>
-                                    </div>
-                                    <div style={{ marginBottom: 20 }}>
-                                        <label className="field-label">Feedback / Story</label>
-                                        <textarea className="field-input" rows={4} value={successStoryForm.feedback} onChange={e => setSuccessStoryForm({ ...successStoryForm, feedback: e.target.value })} placeholder="Student's feedback..." required />
-                                    </div>
-                                    <div style={{ marginBottom: 30 }}>
-                                        <label className="field-label">Student Image</label>
-                                        <div style={{ display: 'flex', gap: 15, alignItems: 'center' }}>
-                                            <label style={{
-                                                display: 'inline-flex', alignItems: 'center', gap: 8,
-                                                padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
-                                                border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
-                                                color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
-                                                transition: 'all 0.2s'
-                                            }}>
-                                                <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (successStoryForm.image ? 'fa-refresh' : 'fa-cloud-upload')}`}></i>
-                                                {uploading ? 'Uploading...' : (successStoryForm.image ? 'Change Photo' : 'Upload Photo')}
-                                                <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'successStory')} style={{ display: 'none' }} />
-                                            </label>
-                                            {successStoryForm.image && (
-                                                <img src={successStoryForm.image} alt="Preview" style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'cover', border: '2px solid #FF7700' }} />
-                                            )}
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="btn-primary full" disabled={loading}>
-                                        {loading ? <i className="fa fa-spinner fa-spin"></i> : <i className="fa fa-save"></i>}
-                                        {editingSuccessStory ? ' Update Story' : ' Add Story'}
-                                    </button>
-                                </form>
-                            ) : (
-                                <div className="event-list">
-                                    {successStories.length === 0 ? (
-                                        <div style={{ textAlign: 'center', padding: 60, color: 'rgba(255,255,255,0.2)' }}>
-                                            <i className="fa fa-star fa-3x mb-3"></i>
-                                            <p>No success stories added yet.</p>
-                                        </div>
-                                    ) : successStories.map(story => (
-                                        <div key={story.id} className="blog-card">
-                                            <img src={story.image} className="blog-img" alt="" style={{ borderRadius: '50%', width: 80, height: 80 }} />
-                                            <div className="blog-info">
-                                                <h3 className="blog-title-text">{story.name}</h3>
-                                                <div className="blog-meta">
-                                                    <span><i className="fa fa-calendar"></i> {story.date}</span>
+                                            <div>
+                                                <label className="field-label">
+                                                    Country Flag {defaultCountryFlags[successStoryForm.country.toUpperCase().trim()] ? '(Optional - Using Default)' : '(Required)'}
+                                                </label>
+                                                <div style={{ display: 'flex', gap: 15, alignItems: 'center' }}>
+                                                    <label style={{
+                                                        display: 'inline-flex', alignItems: 'center', gap: 8,
+                                                        padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
+                                                        border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
+                                                        color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
+                                                        transition: 'all 0.2s'
+                                                    }}>
+                                                        <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (successStoryForm.flag ? 'fa-refresh' : 'fa-flag')}`}></i>
+                                                        {uploading ? 'Uploading...' : (successStoryForm.flag ? 'Change Custom Flag' : 'Upload Custom Flag')}
+                                                        <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'successStoryFlag')} style={{ display: 'none' }} />
+                                                    </label>
+                                                    {(successStoryForm.flag || defaultCountryFlags[successStoryForm.country.toUpperCase().trim()]) && (
+                                                        <div style={{ position: 'relative' }}>
+                                                            <img 
+                                                                src={successStoryForm.flag || defaultCountryFlags[successStoryForm.country.toUpperCase().trim()]} 
+                                                                alt="Flag Preview" 
+                                                                style={{ width: 60, height: 40, borderRadius: 4, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} 
+                                                            />
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', margin: '10px 0' }}>
-                                                    "{story.feedback.substring(0, 100)}..."
-                                                </p>
-                                            </div>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                                                <button className="btn-outline" onClick={() => {
-                                                    setEditingSuccessStory(story);
-                                                    setSuccessStoryForm({
-                                                        name: story.name,
-                                                        feedback: story.feedback,
-                                                        image: story.image,
-                                                        date: story.date || ''
-                                                    });
-                                                    setShowSuccessStoryForm(true);
-                                                }}>
-                                                    <i className="fa fa-edit"></i>
-                                                </button>
-                                                <button className="btn-danger" onClick={() => deleteSuccessStory(story.id)}>
-                                                    <i className="fa fa-trash"></i>
-                                                </button>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Tab: Services */}
-                    {activeTab === 'services' && (
-                        <div className="card">
-                            <div className="card-top">
-                                <h2 className="card-title">{showServiceForm ? (editingService ? 'Edit Service' : 'Add New Service') : 'Manage Services'}</h2>
-                                <button className="btn-primary" onClick={() => {
-                                    if (showServiceForm) {
-                                        setShowServiceForm(false);
-                                        setEditingService(null);
-                                    } else {
-                                        setServiceForm({ title: '', description: '', image: '', icon: 'globe' });
-                                        setShowServiceForm(true);
-                                    }
-                                }}>
-                                    {showServiceForm ? '← Back to List' : <><i className="fa fa-plus"></i> Add Service</>}
-                                </button>
+                                        <button type="submit" className="btn-primary full" disabled={loading}>
+                                            {loading ? <i className="fa fa-spinner fa-spin"></i> : <i className="fa fa-save"></i>}
+                                            {editingSuccessStory ? ' Update Story' : ' Add Story'}
+                                        </button>
+                                    </form>
+                                ) : (
+                                    <div className="event-list">
+                                        {successStories.length === 0 ? (
+                                            <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.2)' }}>
+                                                <p>No success stories added yet.</p>
+                                            </div>
+                                        ) : successStories.map(story => (
+                                            <div key={story.id} className="blog-card" style={{ padding: '10px 15px' }}>
+                                                <img 
+                                                    src={story.image || '/img/hero_main.png'} 
+                                                    className="blog-img" alt="" style={{ borderRadius: '50%', width: 50, height: 50 }} 
+                                                />
+                                                <div className="blog-info">
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                                        <h3 className="blog-title-text" style={{ fontSize: 14 }}>{story.name}</h3>
+                                                        <img 
+                                                            src={story.flag || defaultCountryFlags[story.country?.toUpperCase()] || 'https://flagcdn.com/w160/un.png'} 
+                                                            alt="flag" 
+                                                            style={{ width: 20, height: 14, borderRadius: 2, objectFit: 'cover' }} 
+                                                        />
+                                                    </div>
+                                                    <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', margin: 0 }}>{story.country} - {story.visaType} - {story.degree}</p>
+                                                </div>
+                                                <div style={{ display: 'flex', gap: 10 }}>
+                                                    <button className="btn-outline" onClick={() => {
+                                                        setEditingSuccessStory(story);
+                                                        setSuccessStoryForm({ name: story.name, country: story.country || '', visaType: story.visaType || '', degree: story.degree || '', image: story.image, flag: story.flag || '' });
+                                                        setShowSuccessStoryForm(true);
+                                                    }}><i className="fa fa-edit"></i></button>
+                                                    <button className="btn-danger" onClick={() => deleteSuccessStory(story.id)}><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
-                            {showServiceForm ? (
-                                <form onSubmit={handleSaveService} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-                                        <div>
-                                            <label className="field-label">Service Title</label>
-                                            <input className="field-input" value={serviceForm.title} onChange={e => setServiceForm({ ...serviceForm, title: e.target.value })} placeholder="Title..." required />
-                                        </div>
-                                        <div>
-                                            <label className="field-label">FontAwesome Icon</label>
-                                            <input className="field-input" value={serviceForm.icon || ''} onChange={e => setServiceForm({ ...serviceForm, icon: e.target.value })} placeholder="e.g. globe, plane, university" />
-                                        </div>
-                                    </div>
-                                    <div style={{ marginBottom: 20 }}>
-                                        <label className="field-label">Description</label>
-                                        <textarea className="field-input" rows={4} value={serviceForm.description} onChange={e => setServiceForm({ ...serviceForm, description: e.target.value })} placeholder="Service details..." required />
-                                    </div>
-                                    <div style={{ marginBottom: 30 }}>
-                                        <label className="field-label">Service Image</label>
-                                        <div style={{ display: 'flex', gap: 15, alignItems: 'center' }}>
-                                            <label style={{
-                                                display: 'inline-flex', alignItems: 'center', gap: 8,
-                                                padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
-                                                border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
-                                                color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
-                                                transition: 'all 0.2s'
-                                            }}>
-                                                <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (serviceForm.image ? 'fa-refresh' : 'fa-cloud-upload')}`}></i>
-                                                {uploading ? 'Uploading...' : (serviceForm.image ? 'Change Image' : 'Upload Image')}
-                                                <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'service')} style={{ display: 'none' }} />
-                                            </label>
-                                            {serviceForm.image && (
-                                                <img src={serviceForm.image} alt="Preview" style={{ width: 100, height: 60, borderRadius: 10, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
-                                            )}
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="btn-primary full" disabled={loading}>
-                                        {loading ? <i className="fa fa-spinner fa-spin"></i> : <i className="fa fa-save"></i>}
-                                        {editingService ? ' Update Service' : ' Create Service'}
+                            {/* Videos Section */}
+                            <div className="card">
+                                <div className="card-top">
+                                    <h2 className="card-title">{showVideoForm ? (editingVideo ? 'Edit Video' : 'Upload Video') : 'Visa Success Videos'}</h2>
+                                    <button className="btn-primary" onClick={() => {
+                                        if (showVideoForm) {
+                                            setShowVideoForm(false);
+                                            setEditingVideo(null);
+                                        } else {
+                                            setVideoForm({ title: '', url: '', thumbnail: '', country: '' });
+                                            setShowVideoForm(true);
+                                        }
+                                    }}>
+                                        {showVideoForm ? '← Back to List' : <><i className="fa fa-plus"></i> Upload Video</>}
                                     </button>
-                                </form>
-                            ) : (
-                                <div className="event-list">
-                                    {services.length === 0 ? (
-                                        <div style={{ textAlign: 'center', padding: 60, color: 'rgba(255,255,255,0.2)' }}>
-                                            <i className="fa fa-briefcase fa-3x mb-3"></i>
-                                            <p>No services added yet.</p>
-                                        </div>
-                                    ) : services.map(srv => (
-                                        <div key={srv.id} className="blog-card">
-                                            <img src={srv.image} className="blog-img" alt="" />
-                                            <div className="blog-info">
-                                                <h3 className="blog-title-text"><i className={`fa fa-${srv.icon}`} style={{ marginRight: 10, color: '#FF7700' }}></i> {srv.title}</h3>
-                                                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', margin: '10px 0' }}>
-                                                    {srv.description.substring(0, 100)}...
-                                                </p>
-                                            </div>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                                                <button className="btn-outline" onClick={() => {
-                                                    setEditingService(srv);
-                                                    setServiceForm({
-                                                        title: srv.title,
-                                                        description: srv.description,
-                                                        image: srv.image,
-                                                        icon: srv.icon || 'globe'
-                                                    });
-                                                    setShowServiceForm(true);
-                                                }}>
-                                                    <i className="fa fa-edit"></i>
-                                                </button>
-                                                <button className="btn-danger" onClick={() => deleteService(srv.id)}>
-                                                    <i className="fa fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
                                 </div>
-                            )}
-                        </div>
-                    )}
 
-                    {/* Tab: FAQs */}
-                    {activeTab === 'faqs' && (
-                        <div className="card">
-                            <div className="card-top">
-                                <h2 className="card-title">{showFaqForm ? (editingFaq ? 'Edit FAQ' : 'Add FAQ') : 'Manage FAQs'}</h2>
-                                <button className="btn-primary" onClick={() => {
-                                    if (showFaqForm) {
-                                        setShowFaqForm(false);
-                                        setEditingFaq(null);
-                                    } else {
-                                        setFaqForm({ question: '', answer: '' });
-                                        setShowFaqForm(true);
-                                    }
-                                }}>
-                                    {showFaqForm ? '← Back to List' : <><i className="fa fa-plus"></i> Add FAQ</>}
-                                </button>
-                            </div>
-
-                            {showFaqForm ? (
-                                <form onSubmit={handleSaveFaq} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ marginBottom: 20 }}>
-                                        <label className="field-label">Question</label>
-                                        <input className="field-input" value={faqForm.question} onChange={e => setFaqForm({ ...faqForm, question: e.target.value })} placeholder="Frequently asked question..." required />
-                                    </div>
-                                    <div style={{ marginBottom: 30 }}>
-                                        <label className="field-label">Answer</label>
-                                        <textarea className="field-input" rows={6} value={faqForm.answer} onChange={e => setFaqForm({ ...faqForm, answer: e.target.value })} placeholder="Answer to the question..." required />
-                                    </div>
-                                    <button type="submit" className="btn-primary full" disabled={loading}>
-                                        {loading ? <i className="fa fa-spinner fa-spin"></i> : <i className="fa fa-save"></i>}
-                                        {editingFaq ? ' Update FAQ' : ' Add FAQ'}
-                                    </button>
-                                </form>
-                            ) : (
-                                <div className="event-list">
-                                    {faqs.length === 0 ? (
-                                        <div style={{ textAlign: 'center', padding: 60, color: 'rgba(255,255,255,0.2)' }}>
-                                            <i className="fa fa-question-circle fa-3x mb-3"></i>
-                                            <p>No FAQs added yet.</p>
-                                        </div>
-                                    ) : faqs.map(faq => (
-                                        <div key={faq.id} className="blog-card" style={{ flexDirection: 'column' }}>
-                                            <div className="blog-info">
-                                                <h3 className="blog-title-text" style={{ fontSize: 18, marginBottom: 12 }}><i className="fa fa-question-circle" style={{ color: '#FF7700', marginRight: 8 }}></i>{faq.question}</h3>
-                                                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: 1.6 }}>
-                                                    {faq.answer}
-                                                </p>
+                                {showVideoForm ? (
+                                    <form onSubmit={handleSaveVideo} style={{ maxWidth: 800, margin: '0 auto' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                            <div>
+                                                <label className="field-label">Video Title</label>
+                                                <input className="field-input" value={videoForm.title} onChange={e => setVideoForm({ ...videoForm, title: e.target.value })} placeholder="Video Title..." required />
                                             </div>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 15, paddingTop: 15, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                                                <button className="btn-outline" onClick={() => {
-                                                    setEditingFaq(faq);
-                                                    setFaqForm({
-                                                        question: faq.question,
-                                                        answer: faq.answer
-                                                    });
-                                                    setShowFaqForm(true);
-                                                }}>
-                                                    <i className="fa fa-edit"></i> Edit
-                                                </button>
-                                                <button className="btn-danger" onClick={() => deleteFaq(faq.id)}>
-                                                    <i className="fa fa-trash"></i> Delete
-                                                </button>
+                                            <div>
+                                                <label className="field-label">Country</label>
+                                                <input className="field-input" value={videoForm.country} onChange={e => setVideoForm({ ...videoForm, country: e.target.value })} placeholder="e.g. FRANCE" />
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Tab: Videos */}
-                    {activeTab === 'videos' && (
-                        <div className="card">
-                            <div className="card-top">
-                                <h2 className="card-title">{showVideoForm ? (editingVideo ? 'Edit Video' : 'Upload Video') : 'Manage Videos'}</h2>
-                                <button className="btn-primary" onClick={() => {
-                                    if (showVideoForm) {
-                                        setShowVideoForm(false);
-                                        setEditingVideo(null);
-                                    } else {
-                                        setVideoForm({ title: '', url: '', thumbnail: '', country: '' });
-                                        setShowVideoForm(true);
-                                    }
-                                }}>
-                                    {showVideoForm ? '← Back to List' : <><i className="fa fa-plus"></i> Upload Video</>}
-                                </button>
-                            </div>
-
-                            {showVideoForm ? (
-                                <form onSubmit={handleSaveVideo} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-                                        <div>
-                                            <label className="field-label">Video Title</label>
-                                            <input className="field-input" value={videoForm.title} onChange={e => setVideoForm({ ...videoForm, title: e.target.value })} placeholder="Awesome Video Title..." required />
-                                        </div>
-                                        <div>
-                                            <label className="field-label">Country (ex. FRANCE)</label>
-                                            <input className="field-input" value={videoForm.country} onChange={e => setVideoForm({ ...videoForm, country: e.target.value })} placeholder="e.g. FRANCE" />
-                                        </div>
-                                    </div>
-                                    
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
-                                        <div>
-                                            <label className="field-label">Video File (.mp4, .webm)</label>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                                                <label style={{
-                                                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                                                    padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
-                                                    border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
-                                                    color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
-                                                    transition: 'all 0.2s'
-                                                }}>
-                                                    <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (videoForm.url ? 'fa-refresh' : 'fa-video-camera')}`}></i>
-                                                    {uploading ? 'Uploading...' : (videoForm.url ? 'Change Video' : 'Upload Video')}
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
+                                            <div>
+                                                <label className="field-label">Video File</label>
+                                                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 18px', background: 'rgba(255,119,0,0.12)', border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10, color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13 }}>
+                                                    <i className={`fa ${uploading ? 'fa-spinner fa-spin' : 'fa-video-camera'}`}></i>
+                                                    {videoForm.url ? 'Change Video' : 'Upload Video'}
                                                     <input type="file" accept="video/mp4,video/webm" onChange={handleVideoUpload} style={{ display: 'none' }} />
                                                 </label>
-                                                {videoForm.url && (
-                                                    <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>✓ Video Ready</span>
-                                                )}
                                             </div>
-                                            {videoForm.url && (
-                                                <input className="field-input" style={{ marginTop: 8, fontSize: 12 }} value={videoForm.url} onChange={e => setVideoForm({ ...videoForm, url: e.target.value })} placeholder="Or paste Cloudinary URL directly..." required />
-                                            )}
-                                        </div>
-
-                                        <div>
-                                            <label className="field-label">Flag / Thumbnail Image</label>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                                                <label style={{
-                                                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                                                    padding: '10px 18px', background: 'rgba(255,119,0,0.12)',
-                                                    border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10,
-                                                    color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13,
-                                                    transition: 'all 0.2s'
-                                                }}>
-                                                    <i className={`fa ${uploading ? 'fa-spinner fa-spin' : (videoForm.thumbnail ? 'fa-refresh' : 'fa-image')}`}></i>
-                                                    {uploading ? 'Uploading...' : (videoForm.thumbnail ? 'Change Thumbnail' : 'Upload Thumbnail')}
+                                            <div>
+                                                <label className="field-label">Thumbnail</label>
+                                                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 18px', background: 'rgba(255,119,0,0.12)', border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10, color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13 }}>
+                                                    <i className={`fa ${uploading ? 'fa-spinner fa-spin' : 'fa-image'}`}></i>
+                                                    {videoForm.thumbnail ? 'Change Thumbnail' : 'Upload Thumbnail'}
                                                     <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'videoThumbnail')} style={{ display: 'none' }} />
                                                 </label>
-                                                {videoForm.thumbnail && (
-                                                    <img src={videoForm.thumbnail} alt="Preview" style={{ width: 60, height: 40, borderRadius: 8, objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
-                                                )}
                                             </div>
-                                            {videoForm.thumbnail && (
-                                                <input className="field-input" style={{ marginTop: 8, fontSize: 12 }} value={videoForm.thumbnail} onChange={e => setVideoForm({ ...videoForm, thumbnail: e.target.value })} placeholder="Or paste image URL directly..." required />
-                                            )}
                                         </div>
-                                    </div>
-                                    
-                                    <button type="submit" className="btn-primary full" disabled={loading || !videoForm.url || !videoForm.thumbnail}>
-                                        {loading ? <i className="fa fa-spinner fa-spin"></i> : <i className="fa fa-save"></i>}
-                                        {editingVideo ? ' Update Video' : ' Save Video'}
-                                    </button>
-                                </form>
-                            ) : (
-                                <div className="event-list">
-                                    {videos.length === 0 ? (
-                                        <div style={{ textAlign: 'center', padding: 60, color: 'rgba(255,255,255,0.2)' }}>
-                                            <i className="fa fa-play-circle fa-3x mb-3"></i>
-                                            <p>No videos uploaded yet.</p>
-                                        </div>
-                                    ) : videos.map(vid => (
-                                        <div key={vid.id} className="blog-card">
-                                            <img src={vid.thumbnail} className="blog-img" alt={vid.country} />
-                                            <div className="blog-info">
-                                                <h3 className="blog-title-text"><i className="fa fa-play-circle" style={{ marginRight: 10, color: '#FF7700' }}></i> {vid.title}</h3>
-                                                <div className="blog-meta">
-                                                    <span><i className="fa fa-globe"></i> {vid.country}</span>
+                                        <button type="submit" className="btn-primary full" disabled={loading || !videoForm.url || !videoForm.thumbnail}>
+                                            {loading ? 'Saving...' : 'Save Video'}
+                                        </button>
+                                    </form>
+                                ) : (
+                                    <div className="event-list">
+                                        {videos.length === 0 ? (
+                                            <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.2)' }}>
+                                                <p>No videos uploaded yet.</p>
+                                            </div>
+                                        ) : videos.map(vid => (
+                                            <div key={vid.id} className="blog-card" style={{ padding: '10px 15px' }}>
+                                                <img src={vid.thumbnail} className="blog-img" alt="" style={{ width: 60, height: 40, borderRadius: 4 }} />
+                                                <div className="blog-info">
+                                                    <h3 className="blog-title-text" style={{ fontSize: 14 }}>{vid.title}</h3>
+                                                    <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', margin: 0 }}>{vid.country}</p>
                                                 </div>
-                                                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', margin: '10px 0' }}>
-                                                    <a href={vid.url} target="_blank" rel="noreferrer" style={{ color: '#63B3ED', textDecoration: 'none' }}>Preview Video</a>
-                                                </p>
+                                                <div style={{ display: 'flex', gap: 10 }}>
+                                                    <button className="btn-outline" onClick={() => {
+                                                        setEditingVideo(vid);
+                                                        setVideoForm({ title: vid.title, url: vid.url, thumbnail: vid.thumbnail, country: vid.country || '' });
+                                                        setShowVideoForm(true);
+                                                    }}><i className="fa fa-edit"></i></button>
+                                                    <button className="btn-danger" onClick={() => deleteVideo(vid.id)}><i className="fa fa-trash"></i></button>
+                                                </div>
                                             </div>
-                                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                                                <button className="btn-outline" onClick={() => {
-                                                    setEditingVideo(vid);
-                                                    setVideoForm({
-                                                        title: vid.title,
-                                                        url: vid.url,
-                                                        thumbnail: vid.thumbnail,
-                                                        country: vid.country || ''
-                                                    });
-                                                    setShowVideoForm(true);
-                                                }}>
-                                                    <i className="fa fa-edit"></i>
-                                                </button>
-                                                <button className="btn-danger" onClick={() => deleteVideo(vid.id)}>
-                                                    <i className="fa fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     )}
+
+
+
+
+
 
                 </div>
             </div>

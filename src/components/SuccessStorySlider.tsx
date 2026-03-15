@@ -7,12 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface SuccessStory {
     id: string;
     name: string;
-    feedback: string;
     image: string;
     country?: string | null;
     visaType?: string | null;
     degree?: string | null;
-    date?: string | null;
 }
 
 interface SuccessStorySliderProps {

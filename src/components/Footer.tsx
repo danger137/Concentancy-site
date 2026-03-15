@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
 
 const Footer = ({ initialSettings }: { initialSettings?: any }) => {
+    const pathname = usePathname();
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
     const [loading, setLoading] = useState(false);
@@ -47,38 +49,40 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
 
     return (
         <div className="main clearfix position-relative">
-            <div className="main_1 clearfix position-relative w-100">
-                <section id="subs">
-                    <div className="container-xl">
-                        <div className="row subs_1 g-4">
-                            <div className="col-md-4">
-                                <Reveal animation="fade-up" delay={0.1}>
-                                    <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i1">
-                                        <Magnetic><span className="radius_10 d-inline-block col_green text-center span_1 me-3"><i className="fa fa-phone"></i></span></Magnetic>
-                                        <h4 className="lh-base mb-0"> {settings.phone} <br /> <span className="fs-6 span_2 text-muted">Free Support Line</span></h4>
-                                    </div>
-                                </Reveal>
-                            </div>
-                            <div className="col-md-4">
-                                <Reveal animation="fade-up" delay={0.2}>
-                                    <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i2">
-                                        <Magnetic><span className="radius_10 d-inline-block col_oran text-center span_1 me-3"><i className="fa fa-headphones"></i></span></Magnetic>
-                                        <h4 className="lh-base mb-0"> Support Center <br /> <span className="fs-6 span_2 text-muted">365 days full support</span></h4>
-                                    </div>
-                                </Reveal>
-                            </div>
-                            <div className="col-md-4">
-                                <Reveal animation="fade-up" delay={0.3}>
-                                    <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i3">
-                                        <Magnetic><span className="radius_10 d-inline-block col_blue text-center span_1 me-3"><i className="fa fa-tv"></i></span></Magnetic>
-                                        <h4 className="lh-base mb-0"> Live Support <br /> <span className="fs-6 span_2 text-muted">Write Online Now</span></h4>
-                                    </div>
-                                </Reveal>
+            {pathname !== '/consultation' && (
+                <div className="main_1 clearfix position-relative w-100">
+                    <section id="subs">
+                        <div className="container-xl">
+                            <div className="row subs_1 g-4">
+                                <div className="col-md-4">
+                                    <Reveal animation="fade-up" delay={0.1}>
+                                        <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i1">
+                                            <Magnetic><span className="radius_10 d-inline-block col_green text-center span_1 me-3"><i className="fa fa-phone"></i></span></Magnetic>
+                                            <h4 className="lh-base mb-0"> {settings.phone} <br /> <span className="fs-6 span_2 text-muted">Free Support Line</span></h4>
+                                        </div>
+                                    </Reveal>
+                                </div>
+                                <div className="col-md-4">
+                                    <Reveal animation="fade-up" delay={0.2}>
+                                        <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i2">
+                                            <Magnetic><span className="radius_10 d-inline-block col_oran text-center span_1 me-3"><i className="fa fa-headphones"></i></span></Magnetic>
+                                            <h4 className="lh-base mb-0"> Support Center <br /> <span className="fs-6 span_2 text-muted">365 days full support</span></h4>
+                                        </div>
+                                    </Reveal>
+                                </div>
+                                <div className="col-md-4">
+                                    <Reveal animation="fade-up" delay={0.3}>
+                                        <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i3">
+                                            <Magnetic><span className="radius_10 d-inline-block col_blue text-center span_1 me-3"><i className="fa fa-tv"></i></span></Magnetic>
+                                            <h4 className="lh-base mb-0"> Live Support <br /> <span className="fs-6 span_2 text-muted">Write Online Now</span></h4>
+                                        </div>
+                                    </Reveal>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
+                    </section>
+                </div>
+            )}
             <div className="main_2 clearfix">
                 <section id="footer" className="footer_bg">
                     <div className="footer_m p_3">

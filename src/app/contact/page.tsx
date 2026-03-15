@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import ContactForm from '@/components/ContactForm';
+import ContactFormWrapper from '@/components/ContactFormWrapper';
 import { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
 import { prisma } from '@/lib/prisma';
@@ -59,9 +59,9 @@ export default async function Contact() {
             {/* Contact Layout Section */}
             <section className="p_5 bg-white" style={{ marginTop: '-40px' }}>
                 <div className="container-xl">
-                    <div className="row g-4 border border-danger border-5 rounded-4 overflow-hidden shadow-2xl">
+                    <div className="row g-0 contact-container rounded-4 overflow-hidden shadow-2xl">
                         {/* Map Column */}
-                        <div className="col-lg-6 p-0">
+                        <div className="col-lg-6 p-0 map-col">
                             <div className="h-100 min-vh-50">
                                 <Reveal animation="fade-right">
                                     <iframe
@@ -81,7 +81,7 @@ export default async function Contact() {
                         <div className="col-lg-6 p-0">
                             <Reveal animation="fade-left">
                                 <div className="h-100 bg-white">
-                                    <ContactForm settings={settings} />
+                                    <ContactFormWrapper settings={settings} />
                                 </div>
                             </Reveal>
                         </div>
@@ -89,6 +89,20 @@ export default async function Contact() {
                 </div>
             </section>
 
+            <style dangerouslySetInnerHTML={{ __html: `
+                .contact-container {
+                    border: 4px solid #07294D;
+                }
+                .map-col {
+                    border-right: 4px solid #07294D;
+                }
+                @media (max-width: 991px) {
+                    .map-col {
+                        border-right: none;
+                        border-bottom: 4px solid #07294D;
+                    }
+                }
+            `}} />
         </>
     );
 }

@@ -1,24 +1,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import StatCounter from '@/components/StatCounter';
-import FlyingPlane from '@/components/FlyingPlane';
+import FlyingPlaneWrapper from '@/components/FlyingPlaneWrapper';
 import EligibilityForm from '@/components/EligibilityForm';
 import RevealAnimations, { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
 import StudyAbroadAnimation from '@/components/StudyAbroadAnimation';
 import SuccessStorySlider from '@/components/SuccessStorySlider';
-import VideoSection from '@/components/VideoSection';
+
 import { prisma } from '@/lib/prisma';
 import { unstable_cache } from 'next/cache';
 import "../styles/index.css";
 
-export const revalidate = 3600; // Cache homepage for 1 hour
+export const revalidate = 10; // Cache homepage for 10 seconds (faster updates)
 
 // Cache DB queries — avoids hitting database on every request
 const getCachedHomeData = unstable_cache(
   async () => {
     try {
-      const [services, successStories, videos] = await Promise.all([
+      const [services, successStories] = await Promise.all([
         prisma.service.findMany({ orderBy: { createdAt: 'asc' }, take: 6 }),
         prisma.successStory.findMany({ 
           orderBy: { createdAt: 'desc' }, 
@@ -33,18 +33,16 @@ const getCachedHomeData = unstable_cache(
             degree: true,
             date: true
           }
-        }),
-        // Safely check if video model exists on prisma client
-        (prisma as any).video ? (prisma as any).video.findMany({ take: 10 }) : Promise.resolve([])
+        })
       ]);
-      return { services, successStories, videos };
+      return { services, successStories };
     } catch (error) {
       console.error("Database connection error in getCachedHomeData:", error);
-      return { services: [], successStories: [], videos: [] };
+      return { services: [], successStories: [] };
     }
   },
-  ['home-page-data'],
-  { revalidate: 3600 } // Cache for 1 hour
+  ['home-data-final'],
+  { revalidate: 3600 }
 );
 
 const DEFAULT_STORIES = [
@@ -122,7 +120,7 @@ const DEFAULT_STORIES = [
 
 export default async function Home() {
   // ─ Fetch data server-side with caching (no API round-trip, no client waterfall) ─
-  const { services, successStories: dbStories, videos } = await getCachedHomeData();
+  const { services, successStories: dbStories } = await getCachedHomeData();
   const successStories = dbStories.length > 0 ? dbStories : DEFAULT_STORIES;
 
 
@@ -133,7 +131,7 @@ export default async function Home() {
 
       {/* Flying Plane Animation */}
       <Reveal animation="fade-down" delay={0.5}>
-        <FlyingPlane />
+        <FlyingPlaneWrapper />
       </Reveal>
 
       {/* Hero Section */}
@@ -557,8 +555,7 @@ export default async function Home() {
       </section>
 
 
-      {/* Video Section */}
-      <VideoSection videos={videos as any} />
+
 
       {/* CTA */}
       <section id="consultation" className="p_5 cta_bg text-white text-center py-5">

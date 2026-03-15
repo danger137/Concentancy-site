@@ -83,16 +83,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
         }
     }
 
-    // Handle /api/team
-    if (fullPath === 'team') {
-        try {
-            const team = await prisma.teamMember.findMany({ orderBy: { createdAt: 'asc' } });
-            return NextResponse.json(team, { headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' } });
-        } catch (e: any) {
-            console.error('Team API Error:', e);
-            return NextResponse.json({ error: e?.message || 'Failed' }, { status: 500 });
-        }
-    }
 
     // Handle /api/settings
     if (fullPath === 'settings') {

@@ -74,6 +74,7 @@ model SuccessStory {
   name      String
   feedback  String   @db.Text
   image     String   // URL from Cloudinary
+  flag      String?  // Flag image URL
   country   String?  // e.g. "FRANCE"
   visaType  String?  // e.g. "Study Visa"
   degree    String?  // e.g. "Master's in Telecommunications & Networks"

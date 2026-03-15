@@ -6226,6 +6226,7 @@ export namespace Prisma {
     name: string | null
     feedback: string | null
     image: string | null
+    flag: string | null
     country: string | null
     visaType: string | null
     degree: string | null
@@ -6239,6 +6240,7 @@ export namespace Prisma {
     name: string | null
     feedback: string | null
     image: string | null
+    flag: string | null
     country: string | null
     visaType: string | null
     degree: string | null
@@ -6252,6 +6254,7 @@ export namespace Prisma {
     name: number
     feedback: number
     image: number
+    flag: number
     country: number
     visaType: number
     degree: number
@@ -6267,6 +6270,7 @@ export namespace Prisma {
     name?: true
     feedback?: true
     image?: true
+    flag?: true
     country?: true
     visaType?: true
     degree?: true
@@ -6280,6 +6284,7 @@ export namespace Prisma {
     name?: true
     feedback?: true
     image?: true
+    flag?: true
     country?: true
     visaType?: true
     degree?: true
@@ -6293,6 +6298,7 @@ export namespace Prisma {
     name?: true
     feedback?: true
     image?: true
+    flag?: true
     country?: true
     visaType?: true
     degree?: true
@@ -6379,6 +6385,7 @@ export namespace Prisma {
     name: string
     feedback: string
     image: string
+    flag: string | null
     country: string | null
     visaType: string | null
     degree: string | null
@@ -6409,6 +6416,7 @@ export namespace Prisma {
     name?: boolean
     feedback?: boolean
     image?: boolean
+    flag?: boolean
     country?: boolean
     visaType?: boolean
     degree?: boolean
@@ -6422,6 +6430,7 @@ export namespace Prisma {
     name?: boolean
     feedback?: boolean
     image?: boolean
+    flag?: boolean
     country?: boolean
     visaType?: boolean
     degree?: boolean
@@ -6435,6 +6444,7 @@ export namespace Prisma {
     name?: boolean
     feedback?: boolean
     image?: boolean
+    flag?: boolean
     country?: boolean
     visaType?: boolean
     degree?: boolean
@@ -6452,6 +6462,7 @@ export namespace Prisma {
       name: string
       feedback: string
       image: string
+      flag: string | null
       country: string | null
       visaType: string | null
       degree: string | null
@@ -6855,6 +6866,7 @@ export namespace Prisma {
     readonly name: FieldRef<"SuccessStory", 'String'>
     readonly feedback: FieldRef<"SuccessStory", 'String'>
     readonly image: FieldRef<"SuccessStory", 'String'>
+    readonly flag: FieldRef<"SuccessStory", 'String'>
     readonly country: FieldRef<"SuccessStory", 'String'>
     readonly visaType: FieldRef<"SuccessStory", 'String'>
     readonly degree: FieldRef<"SuccessStory", 'String'>
@@ -10788,6 +10800,7 @@ export namespace Prisma {
     name: 'name',
     feedback: 'feedback',
     image: 'image',
+    flag: 'flag',
     country: 'country',
     visaType: 'visaType',
     degree: 'degree',
@@ -11280,6 +11293,7 @@ export namespace Prisma {
     name?: StringFilter<"SuccessStory"> | string
     feedback?: StringFilter<"SuccessStory"> | string
     image?: StringFilter<"SuccessStory"> | string
+    flag?: StringNullableFilter<"SuccessStory"> | string | null
     country?: StringNullableFilter<"SuccessStory"> | string | null
     visaType?: StringNullableFilter<"SuccessStory"> | string | null
     degree?: StringNullableFilter<"SuccessStory"> | string | null
@@ -11293,6 +11307,7 @@ export namespace Prisma {
     name?: SortOrder
     feedback?: SortOrder
     image?: SortOrder
+    flag?: SortOrderInput | SortOrder
     country?: SortOrderInput | SortOrder
     visaType?: SortOrderInput | SortOrder
     degree?: SortOrderInput | SortOrder
@@ -11309,6 +11324,7 @@ export namespace Prisma {
     name?: StringFilter<"SuccessStory"> | string
     feedback?: StringFilter<"SuccessStory"> | string
     image?: StringFilter<"SuccessStory"> | string
+    flag?: StringNullableFilter<"SuccessStory"> | string | null
     country?: StringNullableFilter<"SuccessStory"> | string | null
     visaType?: StringNullableFilter<"SuccessStory"> | string | null
     degree?: StringNullableFilter<"SuccessStory"> | string | null
@@ -11322,6 +11338,7 @@ export namespace Prisma {
     name?: SortOrder
     feedback?: SortOrder
     image?: SortOrder
+    flag?: SortOrderInput | SortOrder
     country?: SortOrderInput | SortOrder
     visaType?: SortOrderInput | SortOrder
     degree?: SortOrderInput | SortOrder
@@ -11341,6 +11358,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"SuccessStory"> | string
     feedback?: StringWithAggregatesFilter<"SuccessStory"> | string
     image?: StringWithAggregatesFilter<"SuccessStory"> | string
+    flag?: StringNullableWithAggregatesFilter<"SuccessStory"> | string | null
     country?: StringNullableWithAggregatesFilter<"SuccessStory"> | string | null
     visaType?: StringNullableWithAggregatesFilter<"SuccessStory"> | string | null
     degree?: StringNullableWithAggregatesFilter<"SuccessStory"> | string | null
@@ -11976,6 +11994,7 @@ export namespace Prisma {
     name: string
     feedback: string
     image: string
+    flag?: string | null
     country?: string | null
     visaType?: string | null
     degree?: string | null
@@ -11989,6 +12008,7 @@ export namespace Prisma {
     name: string
     feedback: string
     image: string
+    flag?: string | null
     country?: string | null
     visaType?: string | null
     degree?: string | null
@@ -12002,6 +12022,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     feedback?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     degree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12015,6 +12036,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     feedback?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     degree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12028,6 +12050,7 @@ export namespace Prisma {
     name: string
     feedback: string
     image: string
+    flag?: string | null
     country?: string | null
     visaType?: string | null
     degree?: string | null
@@ -12041,6 +12064,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     feedback?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     degree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12054,6 +12078,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     feedback?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    flag?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     degree?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12592,6 +12617,7 @@ export namespace Prisma {
     name?: SortOrder
     feedback?: SortOrder
     image?: SortOrder
+    flag?: SortOrder
     country?: SortOrder
     visaType?: SortOrder
     degree?: SortOrder
@@ -12605,6 +12631,7 @@ export namespace Prisma {
     name?: SortOrder
     feedback?: SortOrder
     image?: SortOrder
+    flag?: SortOrder
     country?: SortOrder
     visaType?: SortOrder
     degree?: SortOrder
@@ -12618,6 +12645,7 @@ export namespace Prisma {
     name?: SortOrder
     feedback?: SortOrder
     image?: SortOrder
+    flag?: SortOrder
     country?: SortOrder
     visaType?: SortOrder
     degree?: SortOrder

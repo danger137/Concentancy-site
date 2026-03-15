@@ -7,12 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface SuccessStory {
     id: string;
     name: string;
-    feedback: string;
     image: string;
+    flag?: string | null;
     country?: string | null;
     visaType?: string | null;
     degree?: string | null;
-    date?: string | null;
 }
 
 interface TestimonialGridProps {
@@ -46,6 +45,7 @@ const countryConfigs: Record<string, CountryConfig> = {
     GEORGIA: { flag: '/img/5.png', bgColor: 'linear-gradient(135deg, #FF0000 0%, #cc0000 100%)', accentColor: '#FF0000' },
     DUBAI: { flag: '/img/1.png', bgColor: 'linear-gradient(135deg, #00732F 0%, #005524 100%)', accentColor: '#00732F' },
     UAE: { flag: '/img/1.png', bgColor: 'linear-gradient(135deg, #00732F 0%, #005524 100%)', accentColor: '#00732F' },
+    'UNITED ARAB EMIRATES': { flag: '/img/1.png', bgColor: 'linear-gradient(135deg, #00732F 0%, #005524 100%)', accentColor: '#00732F' },
     CANADA: { flag: '/img/study_canada.png', bgColor: 'linear-gradient(135deg, #FF0000 0%, #cc0000 100%)', accentColor: '#FF0000' },
     USA: { flag: '/img/study_usa.png', bgColor: 'linear-gradient(135deg, #3C3B6E 0%, #2a2950 100%)', accentColor: '#3C3B6E' },
     AUSTRALIA: { flag: '/img/study_australia.png', bgColor: 'linear-gradient(135deg, #00008B 0%, #000066 100%)', accentColor: '#00008B' },
@@ -54,6 +54,8 @@ const countryConfigs: Record<string, CountryConfig> = {
     POLAND: { flag: '/img/15.jpg', bgColor: 'linear-gradient(135deg, #DC143C 0%, #b31030 100%)', accentColor: '#DC143C' },
     CHINA: { flag: '/img/8.png', bgColor: 'linear-gradient(135deg, #DE2910 0%, #b2210d 100%)', accentColor: '#DE2910' },
     MALAYSIA: { flag: '/img/3.png', bgColor: 'linear-gradient(135deg, #010066 0%, #000044 100%)', accentColor: '#010066' },
+    THAILAND: { flag: 'https://flagcdn.com/w160/th.png', bgColor: 'linear-gradient(135deg, #A51931 0%, #2D2A4A 100%)', accentColor: '#A51931' },
+    LATVIA: { flag: 'https://flagcdn.com/w320/lv.png', bgColor: 'linear-gradient(135deg, #9E1B34 0%, #7d1529 100%)', accentColor: '#9E1B34' },
 };
 
 const defaultConfig: CountryConfig = {
@@ -114,13 +116,14 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
             className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
             style={{ zIndex: 9999, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)' }}
         >
-            <div className="position-absolute top-0 end-0 m-4 z-3">
+            <div className="position-fixed" style={{ top: '40px', right: '40px', zIndex: 10000 }}>
                 <button 
                     onClick={onClose} 
-                    className="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center p-0"
-                    style={{ width: '50px', height: '50px', fontSize: '1.5rem', outline: 'none', border: 'none' }}
+                    className="btn btn-danger d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-2xl border border-2 border-white hover-up transition"
+                    style={{ fontSize: '1.1rem', fontWeight: 'bold', outline: 'none' }}
                 >
                     <i className="fa fa-times"></i>
+                    <span>CLOSE</span>
                 </button>
             </div>
 
@@ -150,7 +153,7 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
 
                                     <div className="position-absolute top-0 end-0 m-4 z-2">
                                         <img 
-                                            src={config.flag} alt={`${country} Flag`} 
+                                            src={currentStory.flag || config.flag} alt={`${country} Flag`} 
                                             width={70} height={45} className="rounded shadow-sm"
                                         />
                                     </div>
@@ -216,7 +219,7 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                                         <div className="position-absolute end-0 top-50 translate-middle-y me-4 d-none d-lg-block z-3">
                                             <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative" 
                                                  style={{ width: '280px', height: '170px', border: '5px solid #111' }}>
-                                                <img src={currentStory.image || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
+                                                <img src={currentStory.image || config.flag || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
                                                 <div className="position-absolute bottom-0 start-0 w-100 p-2 bg-white bg-opacity-95 d-flex justify-content-between">
                                                     <span className="fw-black xx-small text-dark mt-1">OFFICIAL VISA GRANTED</span>
                                                     <i className="fa fa-check-circle text-success fs-5"></i>
@@ -289,7 +292,12 @@ const TestimonialGrid: React.FC<TestimonialGridProps> = ({ stories }) => {
     // Group stories by country
     const storiesByCountry: Record<string, SuccessStory[]> = {};
     displayStories.forEach(story => {
-        const countryKey = (story.country || "GLOBAL").toUpperCase().trim();
+        let rawCountry = story.country || "GLOBAL";
+        // Normalize "UNITED KINGDOM" and "UK"
+        let countryKey = rawCountry.toUpperCase().trim();
+        if (countryKey === "UNITED KINGDOM") countryKey = "UK";
+        if (countryKey === "UNITED ARAB EMIRATES" || countryKey === "DUBAI") countryKey = "UAE";
+
         if (!storiesByCountry[countryKey]) {
             storiesByCountry[countryKey] = [];
         }
@@ -328,7 +336,7 @@ const TestimonialGrid: React.FC<TestimonialGridProps> = ({ stories }) => {
                                     
                                     <div className="flag-container shadow-lg rounded mb-3 position-relative z-1 overflow-hidden d-flex align-items-center justify-content-center bg-white bg-opacity-10" style={{ border: '2px solid rgba(255,255,255,0.2)', width: '80px', height: '50px' }}>
                                         <img 
-                                            src={config.flag} width={80} height={50} alt={country} 
+                                            src={storiesByCountry[country][0]?.flag || config.flag} width={80} height={50} alt={country} 
                                             className="w-100 h-100 object-fit-cover"
                                             onError={(e) => {
                                                 (e.target as HTMLImageElement).src = 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/un.svg';
@@ -340,11 +348,8 @@ const TestimonialGrid: React.FC<TestimonialGridProps> = ({ stories }) => {
                                     
                                     <div className="mt-auto position-relative z-1 w-100">
                                         <div className="d-flex align-items-center justify-content-center gap-2">
-                                            <span className="badge bg-white text-dark py-2 px-3 rounded-pill fw-bold shadow-sm">
-                                                {count} Success Stor{count > 1 ? 'ies' : 'y'}
-                                            </span>
-                                            <span className="btn btn-warning btn-sm rounded-circle d-flex align-items-center justify-content-center shadow-sm" style={{ width: '32px', height: '32px' }}>
-                                                <i className="fa fa-arrow-right text-dark"></i>
+                                            <span className="btn btn-warning px-4 py-2 rounded-pill fw-bold shadow-sm d-flex align-items-center gap-2 hvr-grow">
+                                                Explore <i className="fa fa-arrow-right small"></i>
                                             </span>
                                         </div>
                                     </div>

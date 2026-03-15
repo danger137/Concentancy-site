@@ -12,6 +12,7 @@ export interface Country {
     isAsian: boolean;
     isEuropean: boolean;
     isSchengen: boolean;
+    code: string;
     note?: string;
 }
 
@@ -37,6 +38,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: false,
+        code: 'UK',
     },
     {
         id: 'ireland',
@@ -58,6 +60,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: false,
+        code: 'IE',
     },
     {
         id: 'france',
@@ -80,6 +83,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'FR',
     },
     {
         id: 'germany',
@@ -101,6 +105,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'DE',
     },
     {
         id: 'italy',
@@ -122,6 +127,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'IT',
     },
     {
         id: 'spain',
@@ -143,6 +149,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'ES',
     },
     {
         id: 'turkey',
@@ -164,6 +171,7 @@ export const countries: Country[] = [
         isAsian: true,
         isEuropean: false,
         isSchengen: false,
+        code: 'TR',
     },
     {
         id: 'malaysia',
@@ -185,6 +193,7 @@ export const countries: Country[] = [
         isAsian: true,
         isEuropean: false,
         isSchengen: false,
+        code: 'MY',
     },
     {
         id: 'thailand',
@@ -205,6 +214,7 @@ export const countries: Country[] = [
         isAsian: true,
         isEuropean: false,
         isSchengen: false,
+        code: 'TH',
     },
     {
         id: 'malta',
@@ -226,6 +236,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'MT',
     },
     {
         id: 'netherlands',
@@ -246,6 +257,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'NL',
     },
     {
         id: 'sweden',
@@ -267,6 +279,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'SE',
     },
     {
         id: 'lithuania',
@@ -288,6 +301,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'LT',
     },
     {
         id: 'latvia',
@@ -308,6 +322,7 @@ export const countries: Country[] = [
         isAsian: false,
         isEuropean: true,
         isSchengen: true,
+        code: 'LV',
     },
     {
         id: 'dubai',
@@ -329,6 +344,7 @@ export const countries: Country[] = [
         isAsian: true,
         isEuropean: false,
         isSchengen: false,
+        code: 'UAE',
     },
     {
         id: 'georgia',
@@ -350,5 +366,6 @@ export const countries: Country[] = [
         isAsian: true,
         isEuropean: true,
         isSchengen: false,
+        code: 'GE',
     },
 ];
