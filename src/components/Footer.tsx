@@ -210,10 +210,10 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
                                 <div className="col-md-3">
                                     <div className="footer_3r text-end">
                                         <ul className="social-network social-circle mb-0">
-                                            <li className="mx-1"><Magnetic><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="icoFacebook" title="Facebook"><i className="fa fa-facebook"></i></a></Magnetic></li>
-                                            <li className="mx-1"><Magnetic><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="icoYoutube" title="Youtube"><i className="fa fa-youtube-play"></i></a></Magnetic></li>
-                                            <li className="mx-1"><Magnetic><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="icoInstagram" title="Instagram"><i className="fa fa-instagram"></i></a></Magnetic></li>
-                                            <li className="mx-1"><Magnetic><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="icoTiktok" title="Tiktok"><i className="fa fa-music"></i></a></Magnetic></li>
+                                            <li className="mx-1"><Magnetic><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="icoFacebook" title="Facebook" aria-label="Follow us on Facebook"><i className="fa fa-facebook"></i></a></Magnetic></li>
+                                            <li className="mx-1"><Magnetic><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="icoYoutube" title="Youtube" aria-label="Subscribe to our Youtube channel"><i className="fa fa-youtube-play"></i></a></Magnetic></li>
+                                            <li className="mx-1"><Magnetic><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="icoInstagram" title="Instagram" aria-label="Follow us on Instagram"><i className="fa fa-instagram"></i></a></Magnetic></li>
+                                            <li className="mx-1"><Magnetic><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="icoTiktok" title="Tiktok" aria-label="Follow us on Tiktok"><i className="fa fa-music"></i></a></Magnetic></li>
                                         </ul>
                                     </div>
                                 </div>

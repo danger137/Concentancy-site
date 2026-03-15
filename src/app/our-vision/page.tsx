@@ -50,11 +50,14 @@ export default function OurVision() {
                         <div className="col-md-6">
                             <Reveal animation="fade-right">
                                 <div className="position-relative overflow-hidden rounded-4 shadow-lg" style={{ minHeight: '500px', backgroundColor: '#07294D' }}>
-                                    <img
-                                        src="/img/vision_page_main.png?v=3"
+                                    <Image
+                                        src="/img/vision_page_main.png"
                                         alt="Envisioning a Borderless Future"
+                                        width={600}
+                                        height={500}
                                         className="w-100 d-block"
                                         style={{ height: '500px', objectFit: 'cover' }}
+                                        priority
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4" style={{ background: 'linear-gradient(transparent, rgba(7, 41, 77, 0.95))' }}>
                                         <h3 className="text-white fw-bold mb-1">Envisioning a <span className="col_oran">Borderless</span> Future</h3>

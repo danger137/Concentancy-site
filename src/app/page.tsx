@@ -10,7 +10,14 @@ import SuccessStorySlider from '@/components/SuccessStorySlider';
 
 import { prisma } from '@/lib/prisma';
 import { unstable_cache } from 'next/cache';
+import { Metadata } from 'next';
 import "../styles/index.css";
+
+export const metadata: Metadata = {
+    title: "Infinity Overseas Consultants | Top Study Abroad & Immigration Experts",
+    description: "Expert study abroad and immigration consultancy in Faisalabad. Specialized in student visas for UK, USA, Canada, and Europe.",
+    alternates: { canonical: 'https://infinityconsultants.pk' },
+};
 
 export const revalidate = 10; // Cache homepage for 10 seconds (faster updates)
 
@@ -161,7 +168,7 @@ export default async function Home() {
                   <div className="center_1r position-relative">
                     <div className="grid clearfix">
                       <figure className="effect-jazz mb-0 overflow-hidden rounded-4 shadow-2xl">
-                        <Image src="/img/hero_main.png" width={600} height={900} className="w-100 hero-main-img hover-zoom transition" alt="Infinity Overseas Consultants - Best Study Abroad Experts in Faisalabad" priority />
+                        <Image src="/img/hero_main.png" width={600} height={900} className="w-100 hero-main-img hover-zoom transition" alt="Infinity Overseas Consultants - Best Study Abroad Experts in Faisalabad" priority sizes="(max-width: 768px) 100vw, 50vw" />
                       </figure>
                     </div>
                     <div className="position-absolute top-100 start-0 translate-middle mt-n5 ms-4 bg-white p-3 rounded-4 shadow-lg d-none d-lg-block">

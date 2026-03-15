@@ -46,9 +46,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/Infinity-Logo-new.jpg",
   },
-  alternates: {
-    canonical: "https://infinityconsultants.pk",
-  },
   openGraph: {
     title: "Infinity Overseas Consultants | Study Abroad & Immigration Experts",
     description: "Expert guidance for study abroad and immigration. 100% success rate in major visa categories.",
@@ -167,12 +164,31 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         
+        {/* Apple Touch Icon for better mobile SEO */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/Infinity-Logo-new.jpg" />
+        
         {/* Preload critical font early */}
         <link rel="dns-prefetch" href="//embed.tawk.to" />
         
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Breadcrumb Schema — helps Google show site hierarchy in results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ 
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://infinityconsultants.pk" },
+                { "@type": "ListItem", "position": 2, "name": "About", "item": "https://infinityconsultants.pk/about" },
+                { "@type": "ListItem", "position": 3, "name": "Services", "item": "https://infinityconsultants.pk/services" },
+                { "@type": "ListItem", "position": 4, "name": "Blog", "item": "https://infinityconsultants.pk/blog" }
+              ]
+            }) 
+          }}
         />
         {/* Fallback for CSS animations if JS is disabled */}
         <noscript>

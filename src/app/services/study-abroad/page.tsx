@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     title: "Best Study Abroad Consultants | Infinity Overseas",
     description: "Expert guidance for student visas, university admissions, and scholarships in UK, USA, Canada, and Europe. Partner with Faisalabad's top study abroad consultant.",
     keywords: ["study abroad consultant Faisalabad", "student visa UK Pakistan", "study in Europe from Pakistan", "Infinity Overseas study abroad"],
+    alternates: { canonical: 'https://infinityconsultants.pk/services/study-abroad' },
 };
 
 export default function StudyAbroad() {

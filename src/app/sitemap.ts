@@ -1,9 +1,20 @@
 import { MetadataRoute } from "next";
+import { prisma } from "@/lib/prisma";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://infinityconsultants.pk";
 
-    const pages: { url: string; priority: number; changeFrequency: "daily" | "weekly" | "monthly" }[] = [
+    // Fetch dynamic content
+    let blogPosts: any[] = [];
+    try {
+        blogPosts = await prisma.blog.findMany({
+            select: { id: true, updatedAt: true },
+        });
+    } catch (e) {
+        console.error("Error fetching blogs for sitemap:", e);
+    }
+
+    const staticPages: { url: string; priority: number; changeFrequency: "daily" | "weekly" | "monthly" }[] = [
         // Core pages
         { url: "", priority: 1.0, changeFrequency: "daily" },
         { url: "/about", priority: 0.8, changeFrequency: "monthly" },
@@ -41,10 +52,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: "/consultation", priority: 0.9, changeFrequency: "monthly" },
     ];
 
-    return pages.map((page) => ({
-        url: `${baseUrl}${page.url}`,
-        lastModified: new Date(),
-        changeFrequency: page.changeFrequency,
-        priority: page.priority,
-    }));
+    const sitemapEntries: MetadataRoute.Sitemap = [
+        ...staticPages.map((page) => ({
+            url: `${baseUrl}${page.url}`,
+            lastModified: new Date(),
+            changeFrequency: page.changeFrequency,
+            priority: page.priority,
+        })),
+        ...blogPosts.map((blog) => ({
+            url: `${baseUrl}/blog/detail?id=${blog.id}`,
+            lastModified: blog.updatedAt,
+            changeFrequency: "weekly" as const,
+            priority: 0.7,
+        })),
+    ];
+
+    return sitemapEntries;
 }

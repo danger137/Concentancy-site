@@ -1,7 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { prisma } from '@/lib/prisma';
 import "../../../styles/blog.css";
+
+export const revalidate = 600; // Revalidate every 10 minutes
 
 interface Blog {
     id: string;
@@ -14,11 +18,11 @@ interface Blog {
 }
 
 async function getBlog(id: string): Promise<Blog | null> {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://infinityconsultants.pk';
     try {
-        const res = await fetch(`${baseUrl}/api/blogs?id=${id}`, { cache: 'no-store' });
-        if (!res.ok) return null;
-        return await res.json();
+        const blog = await prisma.blog.findUnique({
+            where: { id }
+        });
+        return blog as Blog | null;
     } catch (error) {
         console.error("Error fetching blog on server:", error);
         return null;
@@ -26,15 +30,15 @@ async function getBlog(id: string): Promise<Blog | null> {
 }
 
 async function getRecentPosts(currentId: string) {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://infinityconsultants.pk';
     try {
-        const res = await fetch(`${baseUrl}/api/blogs`, { cache: 'no-store' });
-        if (!res.ok) return [];
-        const data = await res.json();
-        if (Array.isArray(data)) {
-            return data.filter((post: any) => post.id !== currentId).slice(0, 3);
-        }
-        return [];
+        const blogs = await prisma.blog.findMany({
+            where: {
+                NOT: { id: currentId }
+            },
+            take: 3,
+            orderBy: { createdAt: 'desc' }
+        });
+        return blogs;
     } catch (e) {
         return [];
     }
@@ -62,11 +66,15 @@ export async function generateMetadata({ searchParams }: { searchParams: { id?: 
             title: blog.title,
             description: blog.description.substring(0, 160),
             images: [blog.image],
+        },
+        alternates: { 
+            canonical: `https://infinityconsultants.pk/blog/detail?id=${blog.id}` 
         }
     };
 }
 
 export default async function BlogDetail({ searchParams }: { searchParams: { id?: string } }) {
+    // ... (rest of the component)
     const id = searchParams.id;
     if (!id) return notFound();
 
@@ -85,6 +93,7 @@ export default async function BlogDetail({ searchParams }: { searchParams: { id?
     return (
         <>
             <section id="center" className="center_o p_3 bg_blue">
+                {/* ... (breadcrumb section) ... */}
                 <div className="container-xl">
                     <div className="row center_o1">
                         <div className="col-md-12">
@@ -105,8 +114,15 @@ export default async function BlogDetail({ searchParams }: { searchParams: { id?
                             <article className="blog_1dt">
                                 <div className="blog_1dt1">
                                     <div className="grid clearfix">
-                                        <figure className="effect-jazz mb-0">
-                                            <img src={blog.image} className="w-100 rounded-3 shadow-sm" alt={blog.title} />
+                                        <figure className="effect-jazz mb-0 overflow-hidden rounded-3 shadow-sm position-relative" style={{ height: '400px' }}>
+                                            <Image 
+                                                src={blog.image} 
+                                                fill
+                                                className="w-100 h-100" 
+                                                alt={blog.title} 
+                                                style={{ objectFit: 'cover' }}
+                                                priority
+                                            />
                                         </figure>
                                     </div>
                                     <ul className="font_14 mt-3 p-0" style={{ listStyle: 'none' }}>
@@ -114,6 +130,7 @@ export default async function BlogDetail({ searchParams }: { searchParams: { id?
                                         <li className="d-inline-block mx-2"><span><i className="fa fa-calendar me-1 col_oran"></i> {blog.date}</span></li>
                                     </ul>
                                     <h2 className="mt-3 mb-3 fw-bold">{blog.title}</h2>
+                                    {/* ... (sanitized content) ... */}
                                     {(() => {
                                         const rawHtml = blog.content || blog.description;
                                         const sanitized = rawHtml
@@ -127,6 +144,7 @@ export default async function BlogDetail({ searchParams }: { searchParams: { id?
                                     })()}
 
                                     <div className="blog_1dt1i row mt-4">
+                                        {/* ... (share links) ... */}
                                         <div className="col-md-6 mb-2">
                                             <h6 className="mt-2"><span className="fw-bold me-3">Category:</span>
                                                 <Link href={`/blog?cat=${encodeURIComponent(blog.category)}`} className="badge bg_oran text-white border-0 me-1 underline-0">{blog.category}</Link>
@@ -149,6 +167,7 @@ export default async function BlogDetail({ searchParams }: { searchParams: { id?
                         <div className="col-md-4">
                             <aside className="blog_1r">
                                 <div className="blog_1r1 border_1 rounded-3 p-3 shadow_box position-sticky" style={{ top: '100px' }}>
+                                    {/* ... (search form) ... */}
                                     <h4>Search</h4>
                                     <hr className="line mb-4" />
                                     <div className="input-group px-1 pt-2 pb-2 border_1 bg-white rounded-3 mb-4">
@@ -167,13 +186,21 @@ export default async function BlogDetail({ searchParams }: { searchParams: { id?
 
                                     <h4>Recent Posts</h4>
                                     <hr className="line mb-4" />
-                                    {recentPosts.map((post, i) => (
+                                    {recentPosts.map((post: any, i: number) => (
                                         <div key={post.id}>
                                             <div className="blog_1r1i row align-items-center">
                                                 <div className="col-md-3 col-3 pe-0">
                                                     <div className="grid clearfix">
-                                                        <figure className="effect-jazz mb-0">
-                                                            <Link href={`/blog/detail?id=${post.id}`}><img src={post.image} className="w-100 rounded" alt="" /></Link>
+                                                        <figure className="effect-jazz mb-0 position-relative" style={{ height: '60px' }}>
+                                                            <Link href={`/blog/detail?id=${post.id}`}>
+                                                                <Image 
+                                                                    src={post.image} 
+                                                                    fill
+                                                                    className="w-100 rounded" 
+                                                                    alt={post.title} 
+                                                                    style={{ objectFit: 'cover' }}
+                                                                />
+                                                            </Link>
                                                         </figure>
                                                     </div>
                                                 </div>
