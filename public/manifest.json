@@ -1,0 +1,21 @@
+{
+  "name": "Infinity Overseas Consultants",
+  "short_name": "Infinity",
+  "description": "Expert guidance for study abroad, student visas, and immigration.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07294d",
+  "theme_color": "#FF7700",
+  "icons": [
+    {
+      "src": "/Infinity-Logo-new.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/Infinity-Logo-new.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+/*
+Template Name: Educto
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+/*********************about****************/
+.member_1il span{
+width:45px;
+height:45px;
+line-height:45px; 
+ }
+
+.popular_1i3 span{
+border:2px solid  #FF7700;
+width:60px;
+height:60px;
+line-height:60px;
+font-size:26px;
+ }
+
+.popular_1i3{
+background:rgba(7, 41, 77, 0.6);
+padding-top:70px;
+display:none;
+ }
+.popular_1i:hover .popular_1i3{
+display:block;
+ }
+/*********************about_end****************/
+
+
+@media screen and (max-width : 767px){
+.member_1i {
+text-align:center;
+margin-top:8px;
+margin-bottom:8px; 
+ }
+.member_1ir {
+margin-top:15px;
+ }
+.member_1ir p{
+text-align:left;
+ }
+.popular_1i2 {
+margin-bottom:15px;
+text-align:center; 
+ }
+ }
+
+@media (min-width:576px) and (max-width:767px) {
+
+
+ }
+@media (min-width:768px) and (max-width:991px) {
+.member_1il span {
+width: 35px;
+height: 35px;
+line-height: 35px;
+font-size:18px!important;
+}
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+.member_1il span {
+width: 35px;
+height: 35px;
+line-height: 35px;
+font-size:18px!important;
+}
+ }
+
+
+

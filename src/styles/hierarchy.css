@@ -1,0 +1,190 @@
+/* hierarchy.css */
+.hierarchy-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.hierarchy-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 1.5rem 0.5rem 0;
+}
+
+.hierarchy-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    min-width: 220px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.hierarchy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255, 119, 0, 0.15);
+}
+
+/* Lines connecting nodes */
+.hierarchy-children {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-top: 1.5rem;
+    margin-top: -1px; /* collapse gaps */
+}
+
+/* Vertical line from parent to horizontal line */
+.hierarchy-children::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1.5rem;
+    background-color: #cbd5e1;
+}
+
+/* Vertical line from horizontal line to child */
+.hierarchy-children .hierarchy-node::before {
+    content: '';
+    position: absolute;
+    top: 0; /* Changed to 0 so it meets the horizontal line exactly */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1.5rem;
+    background-color: #cbd5e1;
+}
+
+/* Horizontal line for siblings */
+.hierarchy-children .hierarchy-node::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #cbd5e1;
+}
+
+/* First child horizontal line */
+.hierarchy-children .hierarchy-node:first-child::after {
+    left: 50%;
+    width: 50%;
+}
+
+/* Last child horizontal line */
+.hierarchy-children .hierarchy-node:last-child::after {
+    right: 50%;
+    width: 50%;
+}
+
+/* Only child has no horizontal line */
+.hierarchy-children .hierarchy-node:only-child::after {
+    display: none;
+}
+
+/* Colors and typography */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: #07294d;
+}
+
+.card-role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff7700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Top Level Cards (CEO) */
+.hierarchy-node.level-0 > :first-child .hierarchy-card {
+    background: linear-gradient(135deg, #07294d, #1a4b82);
+}
+.hierarchy-node.level-0 > :first-child .hierarchy-card .card-title,
+.hierarchy-node.level-0 > :first-child .hierarchy-card .card-role {
+    color: white;
+}
+
+/* Second Level Cards (Director) */
+.hierarchy-node.level-1 > :first-child .hierarchy-card {
+    background: linear-gradient(135deg, #1f4068, #2a5585);
+}
+.hierarchy-node.level-1 > :first-child .hierarchy-card .card-title,
+.hierarchy-node.level-1 > :first-child .hierarchy-card .card-role {
+    color: white;
+}
+
+/* Leaf nodes */
+.leaf-node {
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #ff7700;
+    text-align: left;
+    min-width: 180px;
+    transition: background-color 0.2s;
+}
+.leaf-node:hover {
+    background: #f1f3f5;
+}
+.leaf-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #07294d;
+    margin-bottom: 0px;
+}
+.leaf-role {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+@media (max-width: 991px) {
+    .hierarchy-container {
+        align-items: flex-start;
+        padding-bottom: 2rem;
+    }
+    .hierarchy-node.level-1 .hierarchy-children {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hierarchy-node.level-1 .hierarchy-children::before {
+        display: none; /* In vertical mode we might need different connecting lines */
+    }
+    .hierarchy-children {
+        flex-wrap: wrap; /* On smaller screens, wrap items instead of making horizontal scroll? Or keep scroll. */
+    }
+}
+
+/* Better mobile structure */
+@media (max-width: 1199px) {
+    /* To prevent overflow crushing things, allow wrapping on smaller screens */
+    .hierarchy-node.level-1 .hierarchy-children {
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 1rem;
+    }
+    /* Disable connecting lines if wrapping to avoid mess */
+    .hierarchy-node.level-1 .hierarchy-children::before,
+    .hierarchy-node.level-1 .hierarchy-children .hierarchy-node::before,
+    .hierarchy-node.level-1 .hierarchy-children .hierarchy-node::after {
+        display: none !important;
+    }
+    .hierarchy-node.level-1 .hierarchy-node {
+        padding-top: 0;
+    }
+}

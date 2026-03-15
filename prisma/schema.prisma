@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider   = "prisma-client-js"
+  output     = "../src/lib/generated/client_v2"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+}
+
+model Blog {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  content     String?  @db.Text
+  image       String   // URL from Cloudinary
+  category    String
+  date        String   // Display date (e.g. "16 Jun")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  image       String   // URL from Cloudinary
+  time        String   // e.g. "11:00 AM - 05:00 PM"
+  location    String   // e.g. "Serena Hotel, Faisalabad"
+  date        String   // e.g. "15 March, 2025"
+  dayLabel    String   // e.g. "DAY 1"
+  dayId       String   // e.g. "day1"
+  color       String?  // e.g. "bg_green"
+  textWhite   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  description String   @db.Text
+  image       String   // URL from Cloudinary
+  isCeo       Boolean  @default(false)
+  twitter     String?
+  instagram   String?
+  linkedin    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  image       String   // URL from Cloudinary
+  icon        String   // FontAwesome icon name (e.g. "globe")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SuccessStory {
+  id        String   @id @default(cuid())
+  name      String
+  feedback  String   @db.Text
+  image     String   // URL from Cloudinary
+  country   String?  // e.g. "FRANCE"
+  visaType  String?  // e.g. "Study Visa"
+  degree    String?  // e.g. "Master's in Telecommunications & Networks"
+  date      String?  // Display date
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSetting {
+  id        String   @id @default("default")
+  email     String   @default("Infinityconsultantsfsd@gmail.com")
+  phone     String   @default("+92 326 4571906")
+  location  String   @default("Faisalabad, Pakistan")
+  updatedAt DateTime @updatedAt
+}
+
+model AdminUser {
+  id        String    @id @default("admin")
+  email     String    @unique
+  password  String    // hashed password
+  otp       String?   // 6-digit OTP for password reset
+  otpExpiry DateTime? // OTP expiry time
+  updatedAt DateTime  @updatedAt
+}
+
+model Video {
+  id        String   @id @default(cuid())
+  title     String
+  url       String // YouTube or Cloudinary URL
+  thumbnail String // Flag image URL
+  country   String? // e.g. "UK", "FRANCE"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

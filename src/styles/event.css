@@ -1,0 +1,82 @@
+/*
+Template Name: Educto
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+/*********************event****************/
+.event_1 .nav-tabs .nav-link {
+border-radius:0;
+border:none;
+color: #000;
+margin: 0px 10px 0px 10px;
+padding: 16px 30px;
+font-weight:bold;
+text-transform:uppercase;
+font-size:22px;
+border-radius:50px;
+border:2px solid #f9ebdf;
+background:#fff;
+}
+.event_1 .nav-tabs .nav-link:hover {
+color: #FF7700;
+background:#fff;
+}
+.event_1 .nav-tabs .nav-link.active {
+color: #fff;
+background:#FF7700;
+border:2px solid #FF7700;
+}
+.event_1{
+top:-40px; 
+ }
+.event_2 .tab-content{
+padding-top:70px!important; 
+border:2px solid #f9ebdf;
+ }
+/*********************event_end****************/
+
+
+
+@media screen and (max-width : 767px){
+.event_1 {
+ position:static!important;
+ text-align:center;
+ }
+.event_1 .nav-tabs .nav-link {
+margin: 5px 5px 5px 5px;
+padding: 10px 15px;
+}
+.event_2 .tab-content {
+padding-top:30px!important;
+}
+.home_ir{
+margin-top:15px; 
+ }
+.home_ir .button{
+text-align:center;
+width:90%;
+margin-left:auto;
+margin-right:auto;
+display:block;
+ }
+ }
+
+@media (min-width:576px) and (max-width:767px) {
+
+
+ }
+@media (min-width:768px) and (max-width:991px) {
+.event_1 .nav-tabs .nav-link {
+padding: 16px 20px;
+margin: 0px 5px 0px 5px;
+}
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+
+ }
+
+
+

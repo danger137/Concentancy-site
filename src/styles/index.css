@@ -1,0 +1,319 @@
+/*
+Template Name: Educto
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+/*********************center_home****************/
+.center_m {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.center_1l h1 {
+    font-size: 80px;
+}
+
+.center_1l {
+    padding-top: 100px;
+}
+
+.center_h {
+    background-position: center;
+}
+
+/*********************center_home_end****************/
+.hero-main-img {
+    height: 650px;
+    object-fit: cover;
+}
+
+@media screen and (max-width : 768px) {
+    .hero-main-img {
+        height: 400px;
+    }
+}
+
+
+/*********************feature****************/
+.feature_2i span {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 30px;
+}
+
+.feature_2i .line {
+    width: 30px;
+    height: 3px !important;
+}
+
+.feature_2i:hover {
+    box-shadow: 0px 4px 20px -3px rgb(22 36 62 / 15%);
+}
+
+.feature_2i1 .line {
+    background-color: #2ECA7F;
+}
+
+.feature_2i1 span {
+    color: #2ECA7F;
+    background: rgba(46, 202, 127, 0.12);
+}
+
+.feature_2i1:hover span {
+    background-color: #2ECA7F;
+    color: #fff;
+}
+
+.feature_2i2 .line {
+    background-color: #3B34FF;
+}
+
+.feature_2i2 span {
+    color: #3B34FF;
+    background: rgba(59, 52, 255, 0.12);
+}
+
+.feature_2i2:hover span {
+    background-color: #3B34FF;
+    color: #fff;
+}
+
+.feature_2i3 .line {
+    background-color: #FF7700;
+}
+
+.feature_2i3 span {
+    color: #FF7700;
+    background: rgba(255, 119, 0, 0.12);
+}
+
+.feature_2i3:hover span {
+    background-color: #FF7700;
+    color: #fff;
+}
+
+.feature_2i4 .line {
+    background-color: #FF2C7B;
+}
+
+.feature_2i4 span {
+    color: #FF2C7B;
+    background: rgba(255, 44, 123, 0.12);
+}
+
+.feature_2i4:hover span {
+    background-color: #FF2C7B;
+    color: #fff;
+}
+
+/*********************feature_end****************/
+
+/*********************apply****************/
+#apply {
+    background-image: url(/img/9.jpg);
+    background-position: center;
+}
+
+.apply_1l1i {
+    border: 3px solid #516e99;
+}
+
+#apply .center_m {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/*********************apply_end****************/
+
+/*********************event****************/
+.event_2l {
+    border-right: 1px solid #f9ebdf;
+}
+
+/*********************event_end****************/
+
+
+
+@media screen and (max-width : 767px) {
+    .center_1l h1 {
+        font-size: 40px;
+    }
+
+    .center_1l {
+        padding-top: 0;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .center_1l p {
+        text-align: left;
+    }
+
+    .center_1l .button {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        font-size: 14px;
+    }
+
+    .center_1l .button_1 {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        font-size: 13px;
+    }
+
+    .center_1l ul li {
+        margin: 0 !important;
+    }
+
+    .center_1 {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .feature_2i {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .feature_2i p {
+        text-align: left;
+    }
+
+    #apply .center_m {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .apply_1l1i {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .apply_1r {
+        margin-top: 10px;
+    }
+
+    .event_2l {
+        border: none;
+    }
+
+    .event_2m {
+        text-align: center;
+    }
+
+    .blog_h1i {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .blog_h1i .button {
+        display: block;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+}
+
+@media (min-width:576px) and (max-width:767px) {
+    .center_1l .button {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .center_1l .button_1 {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+}
+
+
+@media (min-width:992px) and (max-width:1200px) {
+    .center_1r img {
+        min-height: 530px;
+    }
+
+    .center_1l h1 {
+        font-size: 60px;
+    }
+}
+
+@media (min-width:1201px) and (max-width:1300px) {
+    .center_1r img {
+        min-height: 650px;
+    }
+
+    .center_1l h1 {
+        font-size: 60px;
+    }
+}
+
+@media screen and (max-width : 768px) {
+    .center_1 div[class*="col-md-"] {
+        width: 100% !important;
+    }
+
+    .center_1l {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .center_1l h1 {
+        font-size: 28px;
+    }
+
+    .center_1l h2 {
+        font-size: 18px;
+    }
+
+    .center_1l ul li {
+        display: block !important;
+        width: 100%;
+        margin: 10px 0 !important;
+    }
+
+    .center_1l ul li.ms-3 {
+        margin-left: 0 !important;
+    }
+
+    .center_1l .button,
+    .center_1l .button_1 {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Stats in Our Story section */
+    #our-story .col-6 {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+
+    .center_m {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .feature_2i {
+        padding: 20px 10px !important;
+    }
+}
+
+/*********************premium_poster_styles****************/
+.premium-poster-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.premium-poster-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.3) !important;
+}
+.fw-black { font-weight: 900; }
+.ls-3 { letter-spacing: 3px; }
+.xx-small { font-size: 0.55rem; }
+.x-small { font-size: 0.65rem; }
+.ls-1 { letter-spacing: 1px; }
+.xx-small { font-size: 0.5rem; }
