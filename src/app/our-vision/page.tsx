@@ -5,6 +5,7 @@ import StudyAbroadAnimation from '@/components/StudyAbroadAnimation';
 import { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
 import StatCounter from '@/components/StatCounter';
+import '@/styles/vision.css';
 
 export const metadata: Metadata = {
     title: "Our Vision | Infinity Overseas Consultants",
@@ -68,10 +69,10 @@ export default function OurVision() {
                         </div>
                         <div className="col-md-6 ps-md-5">
                             <Reveal animation="fade-left">
-                                <h4 className="col_green text-uppercase">OUR VISION</h4>
-                                <h2 className="fw-bold mt-2">Empowering Dreams Across Borders</h2>
-                                <p className="mt-4">At Infinity Overseas Consultants, our vision is to become the most trusted and result-driven overseas education and immigration consultancy in the region — bridging the gap between ambition and opportunity on a global scale.</p>
-                                <p>We envision a future where no student is held back by geography, finances, or previous rejections. Through personalized guidance, ethical practices, and relentless pursuit of excellence, we aim to transform how people access international education.</p>
+                                <h4 className="col_green text-uppercase mt-4 mt-lg-0 letter-spacing-2 fw-bold">OUR VISION</h4>
+                                <h2 className="fw-bold mt-2 display-5">Empowering Dreams Across Borders</h2>
+                                <p className="mt-4 fs-5 text-muted">At Infinity Overseas Consultants, our vision is to become the most trusted and result-driven overseas education and immigration consultancy in the region — bridging the gap between ambition and opportunity on a global scale.</p>
+                                <p className="fs-6 text-muted">We envision a future where no student is held back by geography, finances, or previous rejections. Through personalized guidance, ethical practices, and relentless pursuit of excellence, we aim to transform how people access international education.</p>
                                 <div className="mt-4">
                                     <div className="d-flex align-items-start mb-3">
                                         <Magnetic>
@@ -80,8 +81,8 @@ export default function OurVision() {
                                             </span>
                                         </Magnetic>
                                         <div>
-                                            <h5 className="mb-1">Global Access</h5>
-                                            <p className="mb-0 font_14">Making world-class education accessible to students from every background.</p>
+                                            <h5 className="mb-1 fw-bold">Global Access</h5>
+                                            <p className="mb-0 font_14 text-muted">Making world-class education accessible to students from every background.</p>
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-start mb-3">
@@ -91,8 +92,8 @@ export default function OurVision() {
                                             </span>
                                         </Magnetic>
                                         <div>
-                                            <h5 className="mb-1">Trusted Partnership</h5>
-                                            <p className="mb-0 font_14">Building lifelong relationships based on transparency and real results.</p>
+                                            <h5 className="mb-1 fw-bold">Trusted Partnership</h5>
+                                            <p className="mb-0 font_14 text-muted">Building lifelong relationships based on transparency and real results.</p>
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-start">
@@ -102,8 +103,8 @@ export default function OurVision() {
                                             </span>
                                         </Magnetic>
                                         <div>
-                                            <h5 className="mb-1">Innovation First</h5>
-                                            <p className="mb-0 font_14">Using modern technology and processes to simplify the study-abroad journey.</p>
+                                            <h5 className="mb-1 fw-bold">Innovation First</h5>
+                                            <p className="mb-0 font_14 text-muted">Using modern technology and processes to simplify the study-abroad journey.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -114,13 +115,13 @@ export default function OurVision() {
             </section>
 
             {/* Vision Pillars */}
-            <section className="p_3 bg-light">
+            <section className="py-5" style={{ background: '#f8f9fa' }}>
                 <div className="container-xl">
                     <div className="row text-center mb-5">
                         <div className="col-md-12">
                             <Reveal animation="fade-up">
-                                <h4 className="col_green">WHAT DRIVES US</h4>
-                                <h1 className="mb-0"><span className="col_oran fw-normal">Our Vision</span> Pillars</h1>
+                                <h2 className="col_green fw-bold text-uppercase mb-3 letter-spacing-2">WHAT DRIVES US</h2>
+                                <h1 className="display-3 mb-0 fw-bold"><span className="col_oran">Our Vision</span> Pillars</h1>
                             </Reveal>
                         </div>
                     </div>
@@ -130,17 +131,19 @@ export default function OurVision() {
                             { icon: 'fa-trophy', end: 100, suffix: '%', title: ' Success Commitment', desc: 'We are committed to maintaining our track record of success even in the most challenging visa and admission cases.' },
                             { icon: 'fa-heart', title: 'Student-First Approach', desc: 'Every decision, every process, and every strategy is designed with the student at the center of it all.' },
                         ].map((pillar: any, i) => (
-                            <div key={i} className="col-md-4 mb-4">
+                            <div key={i} className="col-md-4 mb-5">
                                 <Reveal animation="fade-up" delay={i * 0.1} className="h-100">
-                                    <div className="card border-0 shadow-sm p-4 h-100 text-center hover-lift d-flex flex-column align-items-center">
+                                    <div className="card vision-card p-5 h-100 text-center d-flex flex-column align-items-center mx-auto rounded-4" style={{ maxWidth: '420px', minHeight: '500px', justifyContent: 'center' }}>
                                         <Magnetic>
-                                            <i className={`fa ${pillar.icon} fa-3x col_oran mb-3`}></i>
+                                            <div className="vision-pillar-icon bg-light rounded-circle d-flex align-items-center justify-content-center mb-4 shadow-sm" style={{ width: '120px', height: '120px' }}>
+                                                <i className={`fa ${pillar.icon} col_oran`} style={{ fontSize: '4rem' }}></i>
+                                            </div>
                                         </Magnetic>
-                                        <h4>
+                                        <h3 className="fw-bold mb-3">
                                             {pillar.end ? <StatCounter end={pillar.end} suffix={pillar.suffix} /> : null}
                                             {pillar.title}
-                                        </h4>
-                                        <p className="text-muted">{pillar.desc}</p>
+                                        </h3>
+                                        <p className="text-muted fs-5 lh-base">{pillar.desc}</p>
                                     </div>
                                 </Reveal>
                             </div>
@@ -149,17 +152,17 @@ export default function OurVision() {
                 </div>
             </section>
 
-
-
             {/* CTA */}
-            <section className="p_3 cta_bg text-white text-center">
-                <div className="container-xl">
+            <section className="py-5 vision-cta-section text-white text-center">
+                <div className="container-xl py-4">
                     <Reveal animation="scale-in">
-                        <h2 className="fw-bold">Be Part of Our Vision</h2>
-                        <p className="mt-3 fs-5 cta_desc">Join thousands of students who have turned their dreams into reality with Infinity Overseas Consultants.</p>
-                        <Magnetic>
-                            <Link className="button bg-white text-black border-white mt-4 d-inline-block px-5 py-3 fs-5 pulse-button" href="/consultation">Book Free Consultation</Link>
-                        </Magnetic>
+                        <h2 className="display-4 fw-bold mb-4">Be Part of Our Vision</h2>
+                        <p className="mt-3 fs-5 cta_desc max-w-2xl mx-auto mb-5">Join thousands of students who have turned their dreams into reality with Infinity Overseas Consultants.</p>
+                        <div className="text-center">
+                            <Magnetic>
+                                <Link className="btn btn-light text-dark border-0 px-5 py-3 fs-5 fw-bold rounded-pill shadow-lg hover-up transition pulse-button" href="/consultation">Book Free Consultation Now</Link>
+                            </Magnetic>
+                        </div>
                     </Reveal>
                 </div>
             </section>

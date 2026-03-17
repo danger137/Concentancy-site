@@ -19,15 +19,15 @@ const WhatsAppButton = () => {
             <style jsx>{`
                 .whatsapp-float {
                     position: fixed;
-                    bottom: 30px;
-                    left: 30px;
+                    bottom: 40px;
+                    left: 40px;
                     width: 60px;
                     height: 60px;
                     background-color: #25d366;
                     color: white;
                     border-radius: 50%;
                     font-size: 34px;
-                    z-index: 999;
+                    z-index: 9999;
                     transition: all 0.3s ease;
                     text-decoration: none;
                 }
@@ -41,7 +41,7 @@ const WhatsAppButton = () => {
                         width: 50px;
                         height: 50px;
                         font-size: 28px;
-                        bottom: 20px;
+                        bottom: 100px;
                         left: 20px;
                     }
                 }

@@ -122,7 +122,7 @@ const Header = ({ initialSettings }: { initialSettings?: any }) => {
               width={160}
               height={60}
               priority
-              style={{ objectFit: 'contain', height: 'auto' }}
+              style={{ width: '160px', height: 'auto' }}
             />
           </Link>
 
@@ -145,21 +145,29 @@ const Header = ({ initialSettings }: { initialSettings?: any }) => {
                 onMouseEnter={() => setHomeDropdownOpen(true)}
                 onMouseLeave={() => setHomeDropdownOpen(false)}
               >
-                <Link
-                  href="/"
-                  className={`site-navbar__nav-link ${isHomeActive ? 'site-navbar__nav-link--active' : ''}`}
-                  onClick={(e) => {
-                    // On mobile, toggle dropdown instead of navigating
-                    if (window.innerWidth < 1200) {
+                <div className="d-flex align-items-center justify-content-between">
+                  <Link
+                    href="/"
+                    className={`site-navbar__nav-link ${isHomeActive ? 'site-navbar__nav-link--active' : ''} flex-grow-1`}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setHomeDropdownOpen(false);
+                    }}
+                  >
+                    Home
+                  </Link>
+                  <div 
+                    className="site-navbar__dropdown-toggle ms-auto p-3 d-xl-none"
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => {
                       e.preventDefault();
                       setHomeDropdownOpen(!homeDropdownOpen);
-                    } else {
-                      setMenuOpen(false);
-                    }
-                  }}
-                >
-                  Home <i className={`fa fa-chevron-down site-navbar__dropdown-arrow ${homeDropdownOpen ? 'site-navbar__dropdown-arrow--open' : ''}`}></i>
-                </Link>
+                    }}
+                  >
+                    <i className={`fa fa-chevron-down site-navbar__dropdown-arrow ${homeDropdownOpen ? 'site-navbar__dropdown-arrow--open' : ''}`}></i>
+                  </div>
+                  <i className={`fa fa-chevron-down site-navbar__dropdown-arrow d-none d-xl-inline-block ${homeDropdownOpen ? 'site-navbar__dropdown-arrow--open' : ''}`}></i>
+                </div>
                 <ul className={`site-navbar__dropdown-menu ${homeDropdownOpen ? 'site-navbar__dropdown-menu--open' : ''}`}>
                   {homeDropdownLinks.map((link, i) => (
                     <li key={i} className="site-navbar__dropdown-item">
@@ -182,20 +190,34 @@ const Header = ({ initialSettings }: { initialSettings?: any }) => {
                 onMouseEnter={() => setServicesDropdownOpen(true)}
                 onMouseLeave={() => setServicesDropdownOpen(false)}
               >
-                <Link
-                  href="#"
-                  className={`site-navbar__nav-link ${isServicesActive ? 'site-navbar__nav-link--active' : ''}`}
-                  onClick={(e) => {
-                    if (window.innerWidth < 1200) {
+                <div className="d-flex align-items-center justify-content-between">
+                  <Link
+                    href="#"
+                    className={`site-navbar__nav-link ${isServicesActive ? 'site-navbar__nav-link--active' : ''} flex-grow-1`}
+                    onClick={(e) => {
+                      if (window.innerWidth >= 1200) {
+                        setMenuOpen(false);
+                      } else {
+                        // For services, since # it should just toggle on mobile
+                        e.preventDefault();
+                        setServicesDropdownOpen(!servicesDropdownOpen);
+                      }
+                    }}
+                  >
+                    Services
+                  </Link>
+                  <div 
+                    className="site-navbar__dropdown-toggle ms-auto p-3 d-xl-none"
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => {
                       e.preventDefault();
                       setServicesDropdownOpen(!servicesDropdownOpen);
-                    } else {
-                      setMenuOpen(false);
-                    }
-                  }}
-                >
-                  Services <i className={`fa fa-chevron-down site-navbar__dropdown-arrow ${servicesDropdownOpen ? 'site-navbar__dropdown-arrow--open' : ''}`}></i>
-                </Link>
+                    }}
+                  >
+                    <i className={`fa fa-chevron-down site-navbar__dropdown-arrow ${servicesDropdownOpen ? 'site-navbar__dropdown-arrow--open' : ''}`}></i>
+                  </div>
+                  <i className={`fa fa-chevron-down site-navbar__dropdown-arrow d-none d-xl-inline-block ${servicesDropdownOpen ? 'site-navbar__dropdown-arrow--open' : ''}`}></i>
+                </div>
                 <ul className={`site-navbar__dropdown-menu ${servicesDropdownOpen ? 'site-navbar__dropdown-menu--open' : ''}`}>
                   {servicesDropdownLinks.map((link, i) => (
                     <li key={i} className="site-navbar__dropdown-item">

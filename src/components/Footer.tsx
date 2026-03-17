@@ -54,7 +54,7 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
                     <section id="subs">
                         <div className="container-xl">
                             <div className="row subs_1 g-4">
-                                <div className="col-md-4">
+                                <div className="col-lg-4 col-md-12">
                                     <Reveal animation="fade-up" delay={0.1}>
                                         <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i1">
                                             <Magnetic><span className="radius_10 d-inline-block col_green text-center span_1 me-3"><i className="fa fa-phone"></i></span></Magnetic>
@@ -62,7 +62,7 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
                                         </div>
                                     </Reveal>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-lg-4 col-md-12">
                                     <Reveal animation="fade-up" delay={0.2}>
                                         <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i2">
                                             <Magnetic><span className="radius_10 d-inline-block col_oran text-center span_1 me-3"><i className="fa fa-headphones"></i></span></Magnetic>
@@ -70,7 +70,7 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
                                         </div>
                                     </Reveal>
                                 </div>
-                                <div className="col-md-4">
+                                <div className="col-lg-4 col-md-12">
                                     <Reveal animation="fade-up" delay={0.3}>
                                         <div className="subs_1i p-4 shadow_box bg-white rounded-3 subs_1i3">
                                             <Magnetic><span className="radius_10 d-inline-block col_blue text-center span_1 me-3"><i className="fa fa-tv"></i></span></Magnetic>

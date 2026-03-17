@@ -106,7 +106,7 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
     const name = currentStory.name || "Student Name";
 
     return (
-        <div className="slider-viewport position-relative w-100" style={{ height: '70vh', minHeight: '500px', maxHeight: '650px' }}>
+        <div className="slider-viewport position-relative w-100 mobile-success-viewport" style={{ minHeight: '500px' }}>
             <AnimatePresence initial={false} custom={direction} mode="wait">
                 <motion.div
                     key={currentIndex + country}
@@ -148,17 +148,17 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                                 />
                             </div>
 
-                            <div className="position-relative z-2 text-center p-4">
-                                <h1 className="text-white fw-black mb-0 text-uppercase drop-shadow-lg"
+                            <div className="position-relative z-2 text-center p-4 py-5 py-md-4">
+                                <h1 className="text-white fw-black mb-0 text-uppercase drop-shadow-lg country-title-responsive"
                                     style={{ 
-                                        fontFamily: 'var(--font-heading)', fontSize: country.length > 8 ? '4rem' : '5.5rem',
-                                        letterSpacing: '-2px', textShadow: '0 15px 40px rgba(0,0,0,0.5)', lineHeight: 0.9
+                                        fontFamily: 'var(--font-heading)',
+                                        textShadow: '0 15px 40px rgba(0,0,0,0.5)', lineHeight: 0.9
                                     }}
                                 >
                                     {country}
                                 </h1>
                                 {stories.length > 1 && (
-                                    <div className="badge bg-white text-dark mt-3 fs-6 px-3 py-2 rounded-pill shadow-lg position-relative" style={{ transform: 'translate(45px, 20px)' }}>
+                                    <div className="badge bg-white text-dark mt-3 fs-6 px-3 py-2 rounded-pill shadow-lg position-relative story-counter-badge">
                                         Story {currentIndex + 1} of {stories.length}
                                     </div>
                                 )}
@@ -173,14 +173,13 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                             </div>
 
                             <div className="position-relative z-1 h-100 p-4 p-md-5 d-flex flex-column">
-                                <div className="d-flex justify-content-between align-items-start mb-2">
+                                <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center align-items-sm-start gap-3 mb-2">
                                     <div className="logo-box bg-white p-2 px-3 rounded shadow-lg" style={{ width: '110px' }}>
                                         <div className="bg-danger text-white fw-black px-1 py-1 rounded-1 x-small mb-1 text-center">TOP 7</div>
                                         <div className="text-black fw-bold xx-small ls-1 text-center">CONSULTANTS</div>
                                     </div>
-
-                                    <div className="uni-badge bg-warning rounded-4 p-3 px-4 text-center shadow-lg" style={{ minWidth: '220px' }}>
-                                        <div className="fw-black text-dark fs-3 mb-0" style={{ lineHeight: 1 }}>{country}</div>
+                                    <div className="uni-badge bg-warning rounded-4 p-2 p-md-3 px-3 px-md-4 text-center shadow-lg w-100 w-sm-auto" style={{ maxWidth: '280px' }}>
+                                        <div className="fw-black text-dark fs-4 fs-md-3 mb-0" style={{ lineHeight: 1 }}>{country}</div>
                                         <div className="xx-small text-dark opacity-75 mt-1 fw-bold" style={{ lineHeight: 1.2 }}>{visaType}</div>
                                     </div>
                                 </div>
@@ -197,8 +196,8 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                                     </div>
                                 </div>
 
-                                    <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative" 
-                                            style={{ width: '280px', height: '170px', border: '4px solid #111' }}>
+                                    <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative mx-auto mx-md-0" 
+                                            style={{ width: '240px', height: '150px', border: '4px solid #111' }}>
                                         <img src={currentStory.image || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
                                         <div className="position-absolute bottom-0 start-0 w-100 p-2 bg-white bg-opacity-95 d-flex justify-content-between">
                                             <span className="fw-black xx-small text-dark mt-1">OFFICIAL VISA GRANTED</span>
@@ -206,18 +205,18 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                                         </div>
                                     </div>
 
-                                <div className="footer-links d-flex gap-3 justify-content-start align-items-center mt-auto pt-4 border-top border-white border-opacity-10">
+                                <div className="footer-links d-flex flex-wrap gap-2 justify-content-center justify-content-md-start align-items-center mt-auto pt-4 border-top border-white border-opacity-10">
                                     <div className="d-flex align-items-center gap-2 px-3 py-2 bg-warning rounded-pill shadow-lg">
-                                        <div className="bg-white rounded-circle d-flex align-items-center justify-content-center" style={{ width: '24px', height: '24px' }}>
-                                            <i className="fa fa-whatsapp text-dark small"></i>
+                                        <div className="bg-white rounded-circle d-flex align-items-center justify-content-center" style={{ width: '20px', height: '20px' }}>
+                                            <i className="fa fa-whatsapp text-dark x-small"></i>
                                         </div>
-                                        <span className="text-dark fw-black small">0312 6522076</span>
+                                        <span className="text-dark fw-black x-small">0312 6522076</span>
                                     </div>
                                     <div className="d-flex align-items-center gap-2 px-3 py-2 bg-warning rounded-pill shadow-lg">
-                                        <div className="bg-white rounded-circle d-flex align-items-center justify-content-center" style={{ width: '24px', height: '24px' }}>
-                                            <i className="fa fa-globe text-dark small"></i>
+                                        <div className="bg-white rounded-circle d-flex align-items-center justify-content-center" style={{ width: '20px', height: '20px' }}>
+                                            <i className="fa fa-globe text-dark x-small"></i>
                                         </div>
-                                        <span className="text-dark fw-black small">Top7Consultant.com</span>
+                                        <span className="text-dark fw-black x-small">Top7Consultant.com</span>
                                     </div>
                                 </div>
                             </div>
@@ -240,10 +239,27 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                 .xx-small { font-size: 0.5rem; }
                 .fw-black { font-weight: 900; }
                 .nav-arrow-btn {
-                    background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255,255,255,0.3); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(10px);
+                    background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(5px);
                 }
                 .nav-arrow-btn:hover { background: var(--col_oran); transform: scale(1.1); border-color: transparent; }
                 .shadow-2xl { box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5); }
+                .country-title-responsive { font-size: 5.5rem; letter-spacing: -2px; }
+                .mobile-success-viewport { height: 70vh; maxHeight: 650px; }
+
+                @media (max-width: 768px) {
+                    .mobile-success-viewport { height: auto; min-height: 900px; max-height: none; }
+                    .country-title-responsive { font-size: 3rem !important; letter-spacing: -1px; }
+                    .story-counter-badge { transform: none !important; margin-top: 1rem !important; }
+                    .slider-viewport { height: auto !important; max-height: none !important; }
+                    .premium-success-card { height: auto !important; }
+                    .dark-info-section { padding-bottom: 3rem !important; }
+                }
+                @media (max-width: 480px) {
+                    .mobile-success-viewport { min-height: 1000px; }
+                    .country-title-responsive { font-size: 2.2rem !important; }
+                    .congrats-wrapper h3 { font-size: 1.8rem !important; }
+                    .congrats-wrapper h1 { font-size: 2rem !important; }
+                }
             `}</style>
         </div>
     );

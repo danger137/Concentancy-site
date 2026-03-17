@@ -29,6 +29,48 @@ display:none;
 display:block;
  }
 /*********************about_end****************/
+.center_o1 h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+@media screen and (max-width: 767px) {
+    .center_o1 h1 {
+        font-size: 2.25rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .center_o1 h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Story section heading responsiveness */
+#story h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+@media screen and (max-width: 767px) {
+    #story h2 {
+        font-size: 2.75rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #story h2 {
+        font-size: 1.8rem; 
+    }
+}
+
+/* Balance paragraph lines to be equal length */
+#story p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    word-break: break-word; /* Helps on very narrow screens */
+}
 
 
 @media screen and (max-width : 767px){

@@ -150,9 +150,9 @@ export default async function Home() {
                 <Reveal animation="fade-up">
                   <div className="center_1l">
 
-                    <h1 className="text-white mt-1 display-3 fw-bold lh-sm mb-4" style={{ fontSize: '2.5rem' }}>Your Gateway to World-Class Education / Visits / Immigration in UK, Ireland, Scandinavian, Mediterranean Europe & Beyond<br /><span className="col_oran fs-4 mt-2 d-block">Expert Student Visa Services in Faisalabad, Pakistan</span></h1>
-                    <p className="mt-4 mb-5 text-light opacity-75" style={{ fontSize: '1.05rem', lineHeight: '1.6' }}>Infinity Overseas Consultants is Pakistan's premier Europe-focused education consultancy, headquartered in Faisalabad. We specialize in placing Pakistani students in top universities across the United Kingdom, Ireland, Sweden, Denmark, Finland, France, Italy, Spain, Malta, Cyprus, Romania, Hungary, Lithuania, Turkey, Georgia, and Dubai (UAE).<br /><br />From affordable European degrees to prestigious UK institutions, we provide end-to-end guidance for your international education journey &ndash; including visa processing, university admissions, and scholarship applications for both Schengen and non-Schengen European destinations.</p>
-                    <div className="d-flex flex-wrap gap-3">
+                    <h1 className="text-white mt-1 fw-bold lh-sm mb-4 hero-main-title">Your Gateway to World-Class Education / Visits / Immigration in UK, Ireland, Scandinavian, Mediterranean Europe & Beyond<br /><span className="col_oran mt-2 d-block hero-sub-title">Expert Student Visa Services in Faisalabad, Pakistan</span></h1>
+                    <p className="mt-4 mb-5 text-light opacity-75 hero-desc">Infinity Overseas Consultants is Pakistan's premier Europe-focused education consultancy, headquartered in Faisalabad. We specialize in placing Pakistani students in top universities across the United Kingdom, Ireland, Sweden, Denmark, Finland, France, Italy, Spain, Malta, Cyprus, Romania, Hungary, Lithuania, Turkey, Georgia, and Dubai (UAE).<br /><br />From affordable European degrees to prestigious UK institutions, we provide end-to-end guidance for your international education journey &ndash; including visa processing, university admissions, and scholarship applications for both Schengen and non-Schengen European destinations.</p>
+                    <div className="d-flex flex-column flex-md-row gap-3 hero-buttons">
                       <Magnetic>
                         <a className="button pulse-button bg_oran border-0 px-4 py-3 rounded-pill text-decoration-none text-white fw-bold shadow-lg" href="#consultation">Book Free Consultation <i className="fa fa-calendar ms-2"></i></a>
                       </Magnetic>
@@ -168,7 +168,7 @@ export default async function Home() {
                   <div className="center_1r position-relative">
                     <div className="grid clearfix">
                       <figure className="effect-jazz mb-0 overflow-hidden rounded-4 shadow-2xl">
-                        <Image src="/img/hero_main.png" width={600} height={900} className="w-100 hero-main-img hover-zoom transition" alt="Infinity Overseas Consultants - Best Study Abroad Experts in Faisalabad" priority sizes="(max-width: 768px) 100vw, 50vw" />
+                        <Image src="/img/hero_main.png" width={600} height={900} className="w-100 hero-main-img hover-zoom transition" alt="Infinity Overseas Consultants - Best Study Abroad Experts in Faisalabad" priority sizes="(max-width: 1199px) 100vw, 50vw" />
                       </figure>
                     </div>
                     <div className="position-absolute top-100 start-0 translate-middle mt-n5 ms-4 bg-white p-3 rounded-4 shadow-lg d-none d-lg-block">
@@ -194,81 +194,81 @@ export default async function Home() {
             <div className="col-md-12">
               <Reveal animation="fade-up">
                 <h4 className="col_green uppercase fw-bold">WHY EUROPE & UK?</h4>
-                <h1 className="display-6 fw-bold mb-0 lh-sm">Why Pakistani Students Choose <br /><span className="col_oran">European & UK Education Through Infinity</span></h1>
-                <p className="mt-4 lead text-muted mx-auto" style={{ maxWidth: '800px', lineHeight: '1.8' }}>Welcome to Infinity Overseas Consultants &ndash; your dedicated partner for European and UK education. While many consultants focus on traditional destinations, we specialize in the diverse, high-quality, and affordable education opportunities available across Europe and the UK specifically for Pakistani students.</p>
+                <h1 className="display-6 fw-bold mb-0 lh-sm section-main-title">Why Pakistani Students Choose <br className="d-none d-md-block" /><span className="col_oran d-block section-sub-title mt-2 mt-md-0">European & UK Education Through Infinity</span></h1>
+                <p className="mt-4 lead text-muted mx-auto section-desc" style={{ maxWidth: '800px' }}>Welcome to Infinity Overseas Consultants &ndash; your dedicated partner for European and UK education. While many consultants focus on traditional destinations, we specialize in the diverse, high-quality, and affordable education opportunities available across Europe and the UK specifically for Pakistani students.</p>
               </Reveal>
             </div>
           </div>
-          <div className="row feature_2 g-4">
-            <div className="col-md-4">
-              <Reveal animation="fade-up" delay={0.1}>
-                <div className="feature_2i feature_2i1 text-center border p-5 rounded-4 shadow-sm transition h-100 bg-white hover-lift">
+          <div className="row feature_2 g-4 justify-content-center">
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <Reveal animation="fade-up" delay={0.1} className="h-100">
+                <div className="feature_2i feature_2i1 text-center border p-5 py-max rounded-4 shadow-sm transition h-100 bg-white hover-lift mx-auto" style={{ maxWidth: '650px', padding: '3rem 2rem' }}>
                   <Magnetic>
                     <span className="radius_10 d-inline-flex align-items-center justify-content-center mb-4 transition shadow-sm rounded-circle"><i className="fa fa-money"></i></span>
                   </Magnetic>
-                  <h4 className="fw-bold mt-2">Affordable Excellence</h4>
+                  <h4 className="fw-bold mt-2 fs-3">Affordable Excellence</h4>
                   <hr className="line mx-auto mb-4 opacity-20" />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>Study in Romania, Georgia, Hungary, or Lithuania for under €3,000/year.</p>
+                  <p className="mb-0 text-muted fs-5" style={{ lineHeight: '1.6' }}>Study in Romania, Georgia, Hungary, or Lithuania for under €3,000/year.</p>
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-4">
-              <Reveal animation="fade-up" delay={0.2}>
-                <div className="feature_2i feature_2i2 text-center border p-5 rounded-4 shadow-sm transition h-100 bg-white hover-lift">
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <Reveal animation="fade-up" delay={0.2} className="h-100">
+                <div className="feature_2i feature_2i2 text-center border p-5 py-max rounded-4 shadow-sm transition h-100 bg-white hover-lift mx-auto" style={{ maxWidth: '650px', padding: '3rem 2rem' }}>
                   <Magnetic>
                     <span className="radius_10 d-inline-flex align-items-center justify-content-center mb-4 transition shadow-sm rounded-circle"><i className="fa fa-university"></i></span>
                   </Magnetic>
-                  <h4 className="fw-bold mt-2">Prestigious UK Degrees</h4>
+                  <h4 className="fw-bold mt-2 fs-3">Prestigious UK Degrees</h4>
                   <hr className="line mx-auto mb-4 opacity-20" />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>Access world-ranked British universities without breaking the bank.</p>
+                  <p className="mb-0 text-muted fs-5" style={{ lineHeight: '1.6' }}>Access world-ranked British universities without breaking the bank.</p>
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-4">
-              <Reveal animation="fade-up" delay={0.3}>
-                <div className="feature_2i feature_2i3 text-center border p-5 rounded-4 shadow-sm transition h-100 bg-white hover-lift">
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <Reveal animation="fade-up" delay={0.3} className="h-100">
+                <div className="feature_2i feature_2i3 text-center border p-5 py-max rounded-4 shadow-sm transition h-100 bg-white hover-lift mx-auto" style={{ maxWidth: '650px', padding: '3rem 2rem' }}>
                   <Magnetic>
                     <span className="radius_10 d-inline-flex align-items-center justify-content-center mb-4 transition shadow-sm rounded-circle"><i className="fa fa-map-o"></i></span>
                   </Magnetic>
-                  <h4 className="fw-bold mt-2">Schengen Advantage</h4>
+                  <h4 className="fw-bold mt-2 fs-3">Schengen Advantage</h4>
                   <hr className="line mx-auto mb-4 opacity-20" />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>Study in Sweden, Denmark, or Finland and travel across 27 European countries.</p>
+                  <p className="mb-0 text-muted fs-5" style={{ lineHeight: '1.6' }}>Study in Sweden, Denmark, or Finland and travel across 27 European countries.</p>
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-4">
-              <Reveal animation="fade-up" delay={0.4}>
-                <div className="feature_2i feature_2i4 text-center border p-5 rounded-4 shadow-sm transition h-100 bg-white hover-lift">
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <Reveal animation="fade-up" delay={0.4} className="h-100">
+                <div className="feature_2i feature_2i4 text-center border p-5 py-max rounded-4 shadow-sm transition h-100 bg-white hover-lift mx-auto" style={{ maxWidth: '650px', padding: '3rem 2rem' }}>
                   <Magnetic>
                     <span className="radius_10 d-inline-flex align-items-center justify-content-center mb-4 transition shadow-sm rounded-circle"><i className="fa fa-building"></i></span>
                   </Magnetic>
-                  <h4 className="fw-bold mt-2">Strategic Hubs</h4>
+                  <h4 className="fw-bold mt-2 fs-3">Strategic Hubs</h4>
                   <hr className="line mx-auto mb-4 opacity-20" />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>Build your career in Dubai or Turkey &ndash; bridges between East and West.</p>
+                  <p className="mb-0 text-muted fs-5" style={{ lineHeight: '1.6' }}>Build your career in Dubai or Turkey &ndash; bridges between East and West.</p>
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-4">
+            <div className="col-xl-4 col-lg-6 col-md-6">
               <Reveal animation="fade-up" delay={0.5} className="h-100">
-                <div className="feature_2i feature_2i1 text-center border p-5 rounded-4 shadow-sm transition h-100 bg-white hover-lift">
+                <div className="feature_2i feature_2i1 text-center border p-5 py-max rounded-4 shadow-sm transition h-100 bg-white hover-lift mx-auto" style={{ maxWidth: '650px', padding: '3rem 2rem' }}>
                   <Magnetic>
                     <span className="radius_10 d-inline-flex align-items-center justify-content-center mb-4 transition shadow-sm rounded-circle"><i className="fa fa-language"></i></span>
                   </Magnetic>
-                  <h4 className="fw-bold mt-2">English-Taught Programs</h4>
+                  <h4 className="fw-bold mt-2 fs-3">English-Taught Programs</h4>
                   <hr className="line mx-auto mb-4 opacity-20" />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>Study in English across Malta, Cyprus, Spain, Italy, and Scandinavia.</p>
+                  <p className="mb-0 text-muted fs-5" style={{ lineHeight: '1.6' }}>Study in English across Malta, Cyprus, Spain, Italy, and Scandinavia.</p>
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-4">
+            <div className="col-xl-4 col-lg-6 col-md-6">
               <Reveal animation="fade-up" delay={0.6} className="h-100">
-                <div className="feature_2i feature_2i3 text-center border p-5 rounded-4 shadow-sm transition h-100 bg-white hover-lift">
+                <div className="feature_2i feature_2i3 text-center border p-5 py-max rounded-4 shadow-sm transition h-100 bg-white hover-lift mx-auto" style={{ maxWidth: '650px', padding: '3rem 2rem' }}>
                   <Magnetic>
                     <span className="radius_10 d-inline-flex align-items-center justify-content-center mb-4 transition shadow-sm rounded-circle"><i className="fa fa-suitcase"></i></span>
                   </Magnetic>
-                  <h4 className="fw-bold mt-2">Post-Study Work Rights</h4>
+                  <h4 className="fw-bold mt-2 fs-3">Post-Study Work Rights</h4>
                   <hr className="line mx-auto mb-4 opacity-20" />
-                  <p className="mb-0 text-muted" style={{ fontSize: '0.95rem' }}>2-year graduate visas in UK, 1-2 year stays across Europe.</p>
+                  <p className="mb-0 text-muted fs-5" style={{ lineHeight: '1.6' }}>2-year graduate visas in UK, 1-2 year stays across Europe.</p>
                 </div>
               </Reveal>
             </div>
@@ -276,9 +276,9 @@ export default async function Home() {
           <div className="row mt-5">
             <div className="col-12 text-center">
               <Reveal animation="fade-up" delay={0.7}>
-                <div className="p-4 p-md-5 bg-white rounded-4 border shadow-sm mx-auto position-relative" style={{ maxWidth: '900px' }}>
-                  <i className="fa fa-quote-left display-3 col_oran opacity-10 position-absolute top-0 start-0 mt-3 ms-4"></i>
-                  <p className="lead text-dark mb-0 fw-medium position-relative" style={{ fontSize: '1.15rem', lineHeight: '1.7', zIndex: 1 }}>With partnerships across <strong>200+ universities in 16 countries</strong> and specialized expertise in European student visas, Infinity Overseas ensures your pathway to Europe is smooth, affordable, and successful.</p>
+                <div className="p-5 py-max bg-white rounded-4 border shadow-sm mx-auto position-relative" style={{ maxWidth: '650px', padding: '4rem 2rem !important' }}>
+                  <i className="fa fa-quote-left display-3 col_oran opacity-10 position-absolute top-0 start-0 mt-3 ms-4 quote-icon-mobile"></i>
+                  <p className="lead text-dark mb-0 fw-medium position-relative section-desc" style={{ fontSize: '1.2rem', lineHeight: '1.7', zIndex: 1 }}>With partnerships across <strong>200+ universities in 16 countries</strong> and specialized expertise in European student visas, Infinity Overseas ensures your pathway to Europe is smooth, affordable, and successful.</p>
                 </div>
               </Reveal>
             </div>
@@ -290,7 +290,7 @@ export default async function Home() {
       <section id="our-mission" className="p_5 bg-light overflow-hidden">
         <div className="container-xl">
           <div className="row align-items-center g-5 mt_5">
-            <div className="col-md-6">
+            <div className="col-xl-6 col-lg-12 col-md-12">
               <Reveal animation="scale-in">
                 <div className="position-relative">
                   <Image src="/img/global_campus.png" width={600} height={600} className="w-100 rounded-4 shadow-lg hover-zoom transition" alt="Global Education Campus" style={{ height: '550px', objectFit: 'cover' }} />
@@ -300,24 +300,24 @@ export default async function Home() {
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-6 ps-md-5">
+            <div className="col-xl-6 col-lg-12 col-md-12 ps-xl-5">
               <Reveal animation="fade-left">
                 <h4 className="col_green uppercase fw-bold">GLOBAL EXPERTISE</h4>
                 <h2 className="fw-bold mt-2 display-4">Bridging The Gap To World-Class Education</h2>
-                <p className="mt-4 lead text-muted" style={{ lineHeight: '1.8' }}>At Infinity Overseas Consultant, we specialize in bridging the gap between ambitious students and the world's most prestigious universities. Our legacy is built on a decade of trust, ensuring that every student who walks through our doors is given a clear path to their international academic dreams.</p>
-                <div className="row mt-5 g-4">
+                <p className="mt-4 lead text-muted section-desc" style={{ lineHeight: '1.8' }}>At Infinity Overseas Consultant, we specialize in bridging the gap between ambitious students and the world's most prestigious universities. Our legacy is built on a decade of trust, ensuring that every student who walks through our doors is given a clear path to their international academic dreams.</p>
+                <div className="row mt-5 g-4 justify-content-center">
                   {[
                     { end: 99, suffix: "%", label: "Satisfaction", color: "success" },
                     { end: 500, suffix: "+", label: "Partners", color: "warning" },
                     { end: 10, suffix: "k+", label: "Students", color: "info" }
                   ].map((stat, i) => (
-                    <div key={i} className="col-4">
+                    <div key={i} className="col-6 col-md-4">
                       <Reveal animation="fade-up" delay={i * 0.1} className="h-100">
-                        <div className={`p-4 bg-white rounded-4 shadow-sm border-bottom border-4 border-${stat.color} hover-lift transition h-100`}>
+                        <div className={`p-5 py-5 bg-white rounded-4 shadow-sm border-bottom border-4 border-${stat.color} hover-lift transition h-100 mobile-stat-box text-center mx-auto d-flex flex-column align-items-center justify-content-center`} style={{ maxWidth: '650px', padding: '4rem 2rem !important' }}>
                           <h3 className="fw-bold col_oran mb-1">
                             <StatCounter end={stat.end} suffix={stat.suffix} />
                           </h3>
-                          <p className="text-muted mb-0 small text-uppercase fw-bold ls-1">{stat.label}</p>
+                          <p className="text-muted mb-0 small text-uppercase fw-bold ls-1 mobile-stat-label">{stat.label}</p>
                         </div>
                       </Reveal>
                     </div>
@@ -333,7 +333,7 @@ export default async function Home() {
       <section id="our-vision" className="p_5 bg-white overflow-hidden">
         <div className="container-xl">
           <div className="row align-items-center flex-row-reverse g-5 mt_5">
-            <div className="col-md-6">
+            <div className="col-xl-6 col-lg-12 col-md-12">
               <Reveal animation="scale-in">
                 <div className="position-relative">
                   <Image src="/img/our_vision_main.png" width={600} height={600} className="w-100 rounded-4 shadow-lg hover-zoom transition" alt="Our Vision" style={{ height: '600px', objectFit: 'cover' }} />
@@ -343,12 +343,12 @@ export default async function Home() {
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-6 pe-md-5">
+            <div className="col-xl-6 col-lg-12 col-md-12 pe-xl-5">
               <Reveal animation="fade-right">
                 <h4 className="col_oran uppercase fw-bold">OUR VISION</h4>
                 <h2 className="fw-bold mt-2 display-4">A Future Where Education Knows No Borders</h2>
                 <div className="line bg_green mb-4" style={{ width: '80px', height: '4px' }}></div>
-                <p className="mt-4 lead text-muted" style={{ lineHeight: '1.8' }}>Our vision is to become the most trusted global gateway for education and immigration services. We foresee a world where every talented individual has the opportunity to study at the world's finest institutions.</p>
+                <p className="mt-4 lead text-muted section-desc" style={{ lineHeight: '1.8' }}>Our vision is to become the most trusted global gateway for education and immigration services. We foresee a world where every talented individual has the opportunity to study at the world's finest institutions.</p>
                 <div className="space-y-4 mt-5">
                   {[
                     "Establishing global education hubs in Every Region",
@@ -373,7 +373,7 @@ export default async function Home() {
       <section id="dedicated-mission" className="p_5 bg-light overflow-hidden">
         <div className="container-xl">
           <div className="row align-items-center g-5 mt_5">
-            <div className="col-md-6">
+            <div className="col-xl-6 col-lg-12 col-md-12">
               <Reveal animation="scale-in">
                 <div className="position-relative">
                   <Image src="/img/our_mission_main.png" width={600} height={600} className="w-100 rounded-4 shadow-lg hover-zoom transition" alt="Our Mission" style={{ height: '550px', objectFit: 'cover' }} />
@@ -387,20 +387,20 @@ export default async function Home() {
                 </div>
               </Reveal>
             </div>
-            <div className="col-md-6 ps-md-5">
+            <div className="col-xl-6 col-lg-12 col-md-12 ps-xl-5">
               <Reveal animation="fade-left">
                 <h4 className="col_green uppercase fw-bold">OUR MISSION</h4>
                 <h2 className="fw-bold mt-2 display-4">Commitment to Integrity & Student Success</h2>
-                <p className="mt-4 lead text-muted" style={{ lineHeight: '1.8' }}>Our mission at Infinity is to provide accurate, ethical, and personalized international consultancy services that empower students to achieve their academic and professional goals.</p>
-                <div className="row mt-5 g-5">
+                <p className="mt-4 lead text-muted section-desc" style={{ lineHeight: '1.8' }}>Our mission at Infinity is to provide accurate, ethical, and personalized international consultancy services that empower students to achieve their academic and professional goals.</p>
+                <div className="row mt-5 g-5 justify-content-center">
                   {[
                     { icon: "shield", color: "oran", title: "Ethical Excellence", desc: "We maintain the highest standards of transparency in every visa and admission application." },
                     { icon: "users", color: "green", title: "Personalized Guidance", desc: "We tailor our strategy to each individual's academic history, budget, and future career aspirations." }
                   ].map((item, i) => (
                     <div key={i} className="col-md-12">
-                      <div className="d-flex p-4 rounded-4 bg-white shadow-sm hover-lift transition">
+                      <div className="d-flex flex-column flex-md-row align-items-center align-items-md-start text-center text-md-start p-5 py-5 rounded-4 bg-white shadow-sm hover-lift transition mx-auto" style={{ maxWidth: '950px', padding: '4rem !important' }}>
                         <Magnetic>
-                          <div className={`flex-shrink-0 bg_${item.color} text-white rounded-circle p-4 me-4 d-flex align-items-center justify-content-center shadow-lg`} style={{ width: '70px', height: '70px' }}>
+                          <div className={`flex-shrink-0 bg_${item.color} text-white rounded-circle p-4 mb-4 mb-md-0 me-md-4 d-flex align-items-center justify-content-center shadow-lg`} style={{ width: '70px', height: '70px' }}>
                             <i className={`fa fa-${item.icon} fs-3`}></i>
                           </div>
                         </Magnetic>
@@ -412,10 +412,12 @@ export default async function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5">
-                  <Magnetic>
-                    <Link href="/consultation" className="btn bg_oran text-white px-5 py-3 rounded-pill fw-bold shadow-lg hover-up transition pulse-button">Partner With Us Today <i className="fa fa-arrow-right ms-2"></i></Link>
-                  </Magnetic>
+                <div className="mt-5 text-center text-xl-start">
+                  <div className="mx-auto mx-xl-0" style={{ maxWidth: '350px' }}>
+                    <Magnetic>
+                      <Link href="/consultation" className="btn bg_oran text-white px-4 px-md-5 py-3 rounded-pill fw-bold shadow-lg hover-up transition pulse-button d-inline-flex align-items-center justify-content-center text-nowrap w-100">Partner With Us Today <i className="fa fa-arrow-right ms-2 flex-shrink-0"></i></Link>
+                    </Magnetic>
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -430,15 +432,15 @@ export default async function Home() {
             <div className="col-md-12">
               <Reveal animation="fade-up">
                 <h4 className="col_green uppercase fw-bold">OUR SERVICES</h4>
-                <h1 className="display-4 fw-bold mb-0">Expert Immigration & <span className="col_oran">Study Abroad</span></h1>
+                <h1 className="display-4 fw-bold mb-0 section-main-title">Expert Immigration & <span className="col_oran">Study Abroad</span></h1>
               </Reveal>
             </div>
           </div>
-          <div className="row g-4">
+          <div className="row g-4 justify-content-center">
             {services.map((service, i) => (
-              <div key={i} className="col-md-4">
+              <div key={i} className="col-xl-4 col-lg-6 col-md-6">
                 <Reveal animation="fade-up" delay={(i % 3) * 0.1} className="h-100">
-                  <div className="card border p-5 shadow-sm h-100 text-center hover-lift transition bg-light rounded-4 d-flex flex-column">
+                  <div className="card border p-4 py-4 shadow-sm h-100 text-center hover-lift transition bg-light rounded-4 d-flex flex-column mx-auto" style={{ maxWidth: '650px', minHeight: '420px', padding: '3.5rem 2rem !important' }}>
                     <Magnetic>
                       <div className="mb-4 d-inline-block p-4 rounded-circle bg-white shadow-sm mx-auto">
                         <i className={`fa fa-${service.icon || 'globe'} fa-3x col_oran`} aria-hidden="true"></i>
@@ -461,40 +463,39 @@ export default async function Home() {
       <section id="study-anywhere" className="p_5 study_abroad_bg text-white overflow-hidden">
         <div className="container-xl py-5">
           <div className="row align-items-center g-5">
-            <div className="col-lg-6 text-center text-lg-start">
+            <div className="col-xl-6 text-center text-xl-start">
               <Reveal animation="fade-left">
                 <h4 className="col_oran uppercase fw-bold ls-1">STUDY ABROAD</h4>
-                <h1 className="display-3 fw-bold mt-2">Study Anywhere, <span className="text-white">Start Here</span></h1>
-                <p className="mt-4 lead opacity-75" style={{ lineHeight: '1.8' }}>Infinity Overseas Consultants helps students study in top countries like the UK, Canada, USA, and Australia. We offer trusted support with university selection, visa applications, and scholarship guidance — making your study abroad journey easy and successful.</p>
-                <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                <h1 className="display-3 fw-bold mt-2 section-main-title">Study Anywhere, <span className="text-white section-sub-title">Start Here</span></h1>
+                <p className="mt-4 lead opacity-75 hero-desc text-mobile-center">Infinity Overseas Consultants helps students study in top countries like the UK, Canada, USA, and Australia. We offer trusted support with university selection, visa applications, and scholarship guidance — making your study abroad journey easy and successful.</p>
+                <div className="mt-5 d-flex flex-column flex-xl-row align-items-center justify-content-xl-start gap-3 w-100">
                   {["100% Admission Success", "Scholarship Support", "Visa Guidance"].map((badge, i) => (
-                    <Magnetic key={i}>
-                      <span className="badge bg-white text-dark px-4 py-3 rounded-pill shadow-sm border-0 fs-6 fw-bold">{badge}</span>
-                    </Magnetic>
+                    <div key={i} className="w-100 w-xl-auto badge-magnetic text-center" style={{ maxWidth: '350px' }}>
+                      <Magnetic>
+                        <span className="badge bg-white text-dark px-4 py-3 rounded-pill shadow-sm border-0 fs-6 fw-bold w-100 d-block d-xl-inline-block text-center">{badge}</span>
+                      </Magnetic>
+                    </div>
                   ))}
                 </div>
-                <div className="mt-5">
-                  <Magnetic>
-                    <Link href="/destinations" className="btn bg_oran text-white px-5 py-3 rounded-pill fw-bold shadow-lg hover-up transition pulse-button">Explore Destinations <i className="fa fa-globe ms-2"></i></Link>
-                  </Magnetic>
+                <div className="mt-5 text-center text-xl-start">
+                  <div className="mx-auto mx-xl-0" style={{ maxWidth: '350px' }}>
+                    <Magnetic>
+                      <Link href="/destinations" className="btn bg_oran text-white px-3 px-md-5 py-3 rounded-pill fw-bold shadow-lg hover-up transition pulse-button d-inline-flex align-items-center justify-content-center flex-nowrap w-100">Explore Destinations <i className="fa fa-globe ms-2 flex-shrink-0"></i></Link>
+                    </Magnetic>
+                  </div>
                 </div>
               </Reveal>
             </div>
-            <div className="col-lg-6">
+            <div className="col-xl-6">
               <Reveal animation="scale-in">
                 <div className="row g-4 destination-grid">
-                  {[
-                    { img: "study_uk.png", name: "UK", href: "/services/study-abroad" },
-                    { img: "study_canada.png", name: "Canada", href: "/services/study-abroad" },
-                    { img: "study_usa.png", name: "USA", href: "/services/study-abroad" },
-                    { img: "study_australia.png", name: "Australia", href: "/services/study-abroad" }
-                  ].map((dest, i) => (
-                    <div key={i} className="col-6">
-                      <Link href={dest.href} className="text-decoration-none">
+                  {["UK", "Canada", "USA", "Australia"].map((name, i) => (
+                    <div key={i} className="col-12 col-sm-6">
+                      <Link href="/services/study-abroad" className="text-decoration-none">
                         <div className="position-relative overflow-hidden rounded-4 shadow-lg hover-lift transition h-100 group">
-                          <Image src={`/img/${dest.img}`} width={300} height={400} className="w-100 group-hover-zoom transition" alt={`Study in ${dest.name}`} style={{ height: '250px', objectFit: 'cover' }} />
+                          <Image src={`/img/study_${name.toLowerCase()}.png`} width={300} height={400} className="w-100 group-hover-zoom transition" alt={`Study in ${name}`} style={{ height: '220px', objectFit: 'cover' }} />
                           <div className="position-absolute bottom-0 start-0 w-100 p-3" style={{ background: 'linear-gradient(transparent, rgba(0,0,0,0.8))' }}>
-                            <h6 className="mb-0 fw-bold text-white" style={{ fontSize: '1.1rem' }}>{dest.name}</h6>
+                            <h6 className="mb-0 fw-bold text-white" style={{ fontSize: '1.1rem' }}>{name}</h6>
                           </div>
                         </div>
                       </Link>
@@ -516,7 +517,7 @@ export default async function Home() {
             <div className="col-md-12">
               <Reveal animation="fade-up">
                 <h4 className="col_green uppercase fw-bold">SUCCESS STORIES</h4>
-                <h1 className="display-4 fw-bold mb-0">Our Students <span className="col_oran">Success Stories</span></h1>
+                <h1 className="display-4 fw-bold mb-0 section-main-title">Our Students <span className="col_oran">Success Stories</span></h1>
               </Reveal>
             </div>
           </div>
@@ -530,7 +531,7 @@ export default async function Home() {
           <div className="text-center mt-5">
             <Reveal animation="fade-up">
               <Magnetic>
-                <Link href="/testimonials" className="btn btn-outline-success px-5 py-3 rounded-pill fw-bold hover-up transition">View More Success Stories <i className="fa fa-chevron-right ms-2"></i></Link>
+                <Link href="/testimonials" className="btn btn-outline-success px-3 px-md-5 py-3 rounded-pill fw-bold hover-up transition d-inline-flex align-items-center flex-nowrap">View More Success Stories <i className="fa fa-chevron-right ms-2 flex-shrink-0"></i></Link>
               </Magnetic>
             </Reveal>
           </div>
@@ -544,7 +545,7 @@ export default async function Home() {
             <div className="col-md-12">
               <Reveal animation="fade-up">
                 <h4 className="col_green uppercase fw-bold">ELIGIBILITY CHECKER</h4>
-                <h1 className="display-4 fw-bold mb-0">Check Your Admission <span className="col_oran">Chances</span></h1>
+                <h1 className="display-4 fw-bold mb-0 section-main-title">Check Your Admission <span className="col_oran">Chances</span></h1>
                 <p className="mt-3 lead text-muted max-w-2xl mx-auto">A quick assessment to see if you qualify for study abroad in your dream destination.</p>
               </Reveal>
             </div>
@@ -565,14 +566,24 @@ export default async function Home() {
 
 
       {/* CTA */}
-      <section id="consultation" className="p_5 cta_bg text-white text-center py-5">
-        <div className="container-xl py-5">
+      <section id="consultation" className="cta_bg text-white text-center py-4">
+        <div className="container-xl py-4">
           <Reveal animation="scale-in">
-            <h1 className="display-4 fw-bold mb-4">Ready to Take the First Step?</h1>
-            <p className="mt-4 lead opacity-90 max-w-2xl mx-auto mb-5" style={{ fontSize: '1.25rem' }}>Let Infinity Overseas Consultant help you study, work, or settle abroad with expert career counseling and visa guidance.</p>
-            <Magnetic>
-              <Link className="btn btn-light text-dark border-0 px-5 py-3 fs-4 fw-bold rounded-pill shadow-2xl pulse-button hover-up transition" href="/consultation">Book Free Consultation Now <i className="fa fa-calendar ms-2"></i></Link>
-            </Magnetic>
+            <h1 className="display-4 fw-bold mb-4 section-main-title">Ready to Take the <span className="col_oran">First Step?</span></h1>
+            <p className="mt-4 lead text-white max-w-2xl mx-auto mb-5 text-mobile-center hero-desc">
+              Let Infinity Overseas Consultant help you <br className="d-block d-sm-none" />
+              study, work, or settle abroad with <br className="d-block d-sm-none" />
+              expert career counseling and visa guidance.
+            </p>
+            <div className="text-center">
+              <Magnetic>
+                <div className="d-inline-block w-100 w-md-auto badge-magnetic" style={{ maxWidth: '500px' }}>
+                  <Link className="btn btn-light text-dark border-0 px-4 py-3 fs-6 fw-bold rounded-pill shadow-2xl hover-up transition d-inline-flex align-items-center justify-content-center w-100" style={{ letterSpacing: '0.1px', whiteSpace: 'nowrap' }} href="/consultation">
+                    Book Free Consultation Now <i className="fa fa-calendar ms-2 flex-shrink-0"></i>
+                  </Link>
+                </div>
+              </Magnetic>
+            </div>
           </Reveal>
         </div>
       </section>

@@ -172,8 +172,12 @@ export default function OurMission() {
             <section className="p_3 cta_bg text-white text-center">
                 <div className="container-xl">
                     <Reveal animation="scale-in">
-                        <h2 className="fw-bold">Ready to Start Your Journey?</h2>
-                        <p className="mt-3 fs-5 cta_desc">Our mission is your success. Let us help you take the first step toward your international future.</p>
+                        <h2 className="fw-bold">Ready to Start <br />Your Journey?</h2>
+                        <p className="mt-3 fs-5 cta_desc">
+                            Our mission is your success. <br className="d-block d-sm-none" /> 
+                            We help you take the first step <br className="d-block d-sm-none" /> 
+                            toward your international future.
+                        </p>
                         <Magnetic>
                             <Link className="button bg-white text-black border-white mt-4 d-inline-block px-5 py-3 fs-5 pulse-button" href="/consultation">Book Free Consultation</Link>
                         </Magnetic>

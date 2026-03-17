@@ -12,7 +12,7 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
 }
 
 .center_1l h1 {
-    font-size: 80px;
+    font-size: 55px;
 }
 
 .center_1l {
@@ -29,7 +29,7 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
     object-fit: cover;
 }
 
-@media screen and (max-width : 768px) {
+@media screen and (max-width : 1199px) {
     .hero-main-img {
         height: 400px;
     }
@@ -238,7 +238,7 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
     }
 
     .center_1l h1 {
-        font-size: 60px;
+        font-size: 45px;
     }
 }
 
@@ -248,11 +248,11 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
     }
 
     .center_1l h1 {
-        font-size: 60px;
+        font-size: 50px;
     }
 }
 
-@media screen and (max-width : 768px) {
+@media screen and (max-width : 1199px) {
     .center_1 div[class*="col-md-"] {
         width: 100% !important;
     }
@@ -317,3 +317,117 @@ Licence: <a href="https://www.templateonweb.com/license">Website Template Licenc
 .x-small { font-size: 0.65rem; }
 .ls-1 { letter-spacing: 1px; }
 .xx-small { font-size: 0.5rem; }
+
+/* Hero section text styles */
+.hero-main-title {
+    font-size: 2.5rem;
+}
+.hero-sub-title {
+    font-size: 1.5rem;
+}
+.hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 1199px) {
+    .hero-main-title {
+        font-size: 1.25rem !important;
+        line-height: 1.3 !important;
+    }
+    .hero-sub-title {
+        font-size: 0.95rem !important;
+        margin-top: 10px !important;
+    }
+    .hero-desc {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .hero-buttons > div {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-main-title {
+        font-size: 1.35rem !important;
+        line-height: 1.3 !important;
+    }
+    .hero-sub-title {
+        font-size: 0.95rem !important;
+    }
+    .hero-desc {
+        text-align: left !important;
+        font-size: 0.95rem !important;
+        line-height: 1.6;
+        color: rgba(255,255,255, 0.9) !important;
+    }
+    .section-main-title {
+        font-size: 1.15rem !important;
+        line-height: 1.3 !important;
+        letter-spacing: -0.5px;
+    }
+    .section-sub-title {
+        font-size: 1.45rem !important;
+        line-height: 1.3 !important;
+    }
+    .section-desc {
+        text-align: left !important;
+        font-size: 1rem !important;
+        line-height: 1.6;
+        color: #4a5568 !important; /* Tailwind gray-600 */
+    }
+    .quote-icon-mobile {
+        position: relative !important;
+        display: inline-block !important;
+        left: auto !important;
+        top: auto !important;
+        margin: 0 0 10px 0 !important;
+    }
+    .badge-magnetic > div {
+        width: 100% !important;
+    }
+    .mobile-stat-label {
+        font-size: 0.65rem !important;
+        letter-spacing: 0px !important;
+    }
+    .text-mobile-center {
+        text-align: center !important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .hero-main-title {
+        font-size: 1.05rem !important;
+        line-height: 1.3 !important;
+    }
+    .hero-sub-title {
+        font-size: 0.75rem !important;
+    }
+    .hero-desc {
+        text-align: left !important;
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+    }
+    .section-main-title {
+        font-size: 1rem !important;
+    }
+    .section-sub-title {
+        font-size: 1.25rem !important;
+    }
+    .section-desc {
+        text-align: left !important;
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+    .mobile-stat-label {
+        font-size: 0.55rem !important;
+        letter-spacing: 0px !important;
+    }
+    .badge-magnetic > div {
+        width: 100% !important;
+    }
+    .text-mobile-center {
+        text-align: center !important;
+    }
+}

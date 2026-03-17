@@ -5,6 +5,7 @@ import Magnetic from '@/components/Magnetic';
 import LazyVideo from '@/components/LazyVideo';
 import { Metadata } from 'next';
 import StudyAbroadAnimation from '@/components/StudyAbroadAnimation';
+import '@/styles/visit-visa.css';
 
 export const metadata: Metadata = {
     title: "Visit & Tourist Visa Services in Faisalabad | Infinity Overseas",
@@ -267,12 +268,12 @@ export default function VisitVisa() {
                                     <p className="opacity-75 mb-4">Get a professional opinion on your travel plans. Our visa experts provide a 1-on-1 consultation to evaluate your documents.</p>
                                     <div className="d-flex flex-wrap gap-3">
                                         <Magnetic>
-                                            <Link href="/consultation" className="btn bg_oran text-white px-4 py-3 rounded-pill fw-bold shadow pulse-button">
+                                            <Link href="/consultation" className="btn bg_oran text-white px-4 py-3 rounded-pill fw-bold shadow pulse-button border-2 border-transparent">
                                                 Book Consultation <i className="fa fa-arrow-right ms-2"></i>
                                             </Link>
                                         </Magnetic>
                                         <Magnetic>
-                                            <a href="tel:+923264571906" className="btn btn-outline-light px-4 py-3 rounded-pill fw-bold">
+                                            <a href="tel:+923264571906" className="btn btn-outline-light px-4 py-3 rounded-pill fw-bold border-2">
                                                 <i className="fa fa-phone me-2"></i> Get Expert Help
                                             </a>
                                         </Magnetic>

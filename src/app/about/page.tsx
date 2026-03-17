@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 
 import { Reveal } from '@/components/RevealAnimations';
 import Magnetic from '@/components/Magnetic';
+import TeamHierarchyWrapper from '@/components/TeamHierarchyWrapper';
+
 import "../../styles/about.css";
 
 export const metadata: Metadata = {
@@ -41,7 +43,7 @@ export default async function About() {
                         <div className="col-md-6 pe-md-5 pt-4 text-center text-md-start">
                             <Reveal animation="fade-right">
                                 <h4 className="col_oran uppercase fw-bold mb-3 ls-1">OUR FOUNDER'S VISION</h4>
-                                <h2 className="display-4 fw-bold mt-2 lh-sm mb-4">Where Experience Meets <br /><span className="col_oran">Excellence</span></h2>
+                                <h2 className="display-4 fw-bold mt-2 lh-sm mb-4">Where Experience <br />Meets <span className="col_oran">Excellence</span></h2>
                                 <p className="mt-4 lead text-muted" style={{ lineHeight: '1.8' }}> The Founder & CEO of Infinity Overseas Consultant, has led the organization with a clear vision and a passion for helping people achieve their dreams abroad. Backed by years of experience and a 100% success rate in major visa categories, he has helped thousands navigate their path to international success.</p>
                                 <p className="text-muted" style={{ fontSize: '1.05rem', lineHeight: '1.7' }}>Driven by purpose and defined by results, we simplify your journey to studying abroad. With expert guidance, personalized support, and a deep understanding of global immigration trends, we make the transition smooth and successful.</p>
                             </Reveal>
@@ -107,6 +109,9 @@ export default async function About() {
                     </div>
                 </div>
             </section>
+
+            {/* Team Hierarchy Section */}
+            <TeamHierarchyWrapper />
 
         </>
     );

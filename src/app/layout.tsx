@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import "../styles/bootstrap.min.css";
-// import "../styles/font-awesome.min.css";
+import "../styles/font-awesome.min.css";
 import "../styles/global.css";
 import SiteShell from "@/components/SiteShell";
 import Script from "next/script";
@@ -159,7 +159,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
@@ -210,6 +210,20 @@ export default async function RootLayout({
         <Script id="tawk-to" strategy="lazyOnload">
           {`
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            Tawk_API.customStyle = {
+                visibility : {
+                    desktop : {
+                        position : 'br',
+                        xOffset : 40,
+                        yOffset : 40
+                    },
+                    mobile : {
+                        position : 'br',
+                        xOffset : 20,
+                        yOffset : 100
+                    }
+                }
+            };
             (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;

@@ -58,8 +58,8 @@ export default function MouseFollower() {
                 translateY: "-50%",
             }}
             animate={{
-                scale: isHovered ? 2.5 : 1,
-                backgroundColor: isHovered ? "rgba(255, 119, 0, 0.3)" : "rgba(46, 202, 127, 0.3)",
+                scale: isHovered ? 1.8 : 1,
+                backgroundColor: isHovered ? "rgba(255, 119, 0, 0.4)" : "rgba(7, 41, 77, 0.3)",
             }}
         />
     );

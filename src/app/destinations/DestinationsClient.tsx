@@ -211,28 +211,34 @@ export default function DestinationsClient() {
 
             {/* CTA Section */}
             <section className="p_5 bg-white">
-                <div className="container-xl">
+                <div className="container-xl px-3">
                     <Reveal animation="scale-in">
-                        <div className="bg_blue p-5 rounded-4 text-white text-center shadow-2xl position-relative overflow-hidden transition hover-lift">
-                            <div className="position-absolute end-0 top-0 opacity-10 me-n4 mt-n4">
-                                <i className="fa fa-globe" style={{ fontSize: '200px' }}></i>
+                        <div className="dest-cta-box bg_blue rounded-4 text-white text-center position-relative overflow-hidden">
+                            {/* Desktop only globe */}
+                            <div className="dest-globe position-absolute end-0 top-0 me-n4 mt-n4" style={{ opacity: 0.05 }}>
+                                <i className="fa fa-globe" style={{ fontSize: '250px' }}></i>
                             </div>
-                            <div className="position-relative" style={{ zIndex: 1 }}>
+                            
+                            <div className="position-relative py-5 px-3 px-md-4" style={{ zIndex: 10 }}>
                                 <h2 className="display-4 fw-bold mb-3 text-white">Ready to Study Abroad?</h2>
-                                <p className="lead opacity-75 mb-5 mx-auto" style={{ maxWidth: '700px', fontSize: '1.15rem' }}>
+                                <p className="cta-para text-white mx-auto mb-5">
                                     With partnerships across 200+ universities globally and specialized expertise in student visas, your pathway to success starts here.
                                 </p>
-                                <div className="d-flex flex-wrap justify-content-center gap-3">
-                                    <Magnetic>
-                                        <Link href="/consultation" className="btn bg_oran text-white px-5 py-4 rounded-pill fw-bold fs-5 shadow pulse-button border-0">
-                                            Book Free Consultation <i className="fa fa-calendar ms-2"></i>
-                                        </Link>
-                                    </Magnetic>
-                                    <Magnetic>
-                                        <Link href="/contact" className="btn btn-outline-light px-5 py-4 rounded-pill fw-bold fs-5 border-2">
-                                            Contact Us <i className="fa fa-phone ms-2"></i>
-                                        </Link>
-                                    </Magnetic>
+                                <div className="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4 w-100" style={{ gap: '1.25rem' }}>
+                                    <div className="cta-magnetic-wrapper">
+                                        <Magnetic>
+                                            <Link href="/consultation" className="btn btn-dest-cta bg_oran text-white rounded-pill fw-bold shadow-lg pulse-button transition-all">
+                                                Book Free Consultation <i className="fa fa-calendar ms-2"></i>
+                                            </Link>
+                                        </Magnetic>
+                                    </div>
+                                    <div className="cta-magnetic-wrapper">
+                                        <Magnetic>
+                                            <Link href="/contact" className="btn btn-dest-cta btn-outline-light rounded-pill fw-bold transition-all">
+                                                Contact Us <i className="fa fa-phone ms-2"></i>
+                                            </Link>
+                                        </Magnetic>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -241,16 +247,75 @@ export default function DestinationsClient() {
             </section>
 
             <style jsx>{`
-                .hover-scale { transition: transform 0.5s ease; }
-                .hover-scale:hover { transform: scale(1.1); }
-                .cursor-pointer { cursor: pointer; }
-                .animation-fade-in { animation: fadeIn 0.5s ease-out; }
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
+                .dest-cta-box {
+                    box-shadow: 0 30px 60px -12px rgba(7, 41, 77, 0.35);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
                 }
-                .ring-oran {
-                    box-shadow: 0 0 0 4px rgba(255, 119, 0, 0.3);
+                .cta-para {
+                    max-width: 680px;
+                    font-size: 1.15rem;
+                    line-height: 1.7;
+                    opacity: 0.95;
+                }
+                :global(.btn-dest-cta) {
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    height: 64px !important;
+                    width: 330px !important;
+                    max-width: 100% !important;
+                    padding: 0 1.5rem !important;
+                    border-radius: 50px !important;
+                    font-weight: 700 !important;
+                    font-size: 1.15rem !important;
+                    text-decoration: none !important;
+                    transition: all 0.3s ease !important;
+                    border: 2px solid transparent !important;
+                    white-space: nowrap !important;
+                    flex-shrink: 0 !important;
+                }
+                :global(.btn-dest-cta.btn-outline-light) {
+                    border-color: rgba(255, 255, 255, 0.8) !important;
+                }
+                :global(.btn-dest-cta.bg_oran) {
+                    background-color: #FF7700 !important;
+                    border-color: #FF7700 !important;
+                }
+                :global(.cta-magnetic-wrapper) {
+                    width: 330px;
+                    max-width: 100%;
+                }
+                :global(.cta-magnetic-wrapper > div) {
+                    width: 100% !important;
+                }
+                :global(.btn-dest-cta:hover) {
+                    transform: translateY(-3px);
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                }
+                @media (max-width: 768px) {
+                    .display-4 { font-size: 1.95rem !important; }
+                    .cta-para { 
+                        font-size: 1rem !important; 
+                        padding: 0 10px;
+                        margin-bottom: 2.5rem !important;
+                    }
+                    :global(.btn-dest-cta) { 
+                        width: 100% !important; 
+                        height: 60px !important;
+                        font-size: 1.05rem !important;
+                    }
+                    :global(.cta-magnetic-wrapper) {
+                        width: 100% !important;
+                    }
+                    .py-5 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+                }
+                @media (max-width: 1024px) {
+                    .dest-globe { display: none !important; }
+                }
+                @media (max-width: 350px) {
+                    .display-4 { font-size: 1.7rem !important; }
+                    .px-3 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+                    .position-relative.py-5 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
                 }
             `}</style>
         </>
