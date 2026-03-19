@@ -188,14 +188,15 @@ const TeamHierarchy = () => {
                 .org-tree-container li::before, 
                 .org-tree-container li::after,
                 .org-tree-container ul::before {
-                    border-top: 2px solid #cbd5e0 !important;
-                    border-left: 2px solid #cbd5e0 !important;
-                    background-color: transparent !important;
-                    background-image: linear-gradient(90deg, #FF7700 50%, transparent 50%) !important;
+                    border-top: 2px solid transparent !important;
+                    border-left: 2px solid transparent !important;
+                    background-color: #cbd5e0 !important;
+                    background-image: linear-gradient(90deg, transparent 0%, #FF7700 50%, transparent 100%) !important;
                     background-size: 200% 100% !important;
                     background-position: 100% 0% !important;
-                    animation: pipeFillHorizontal 3s forwards ease-in-out !important;
-                    animation-delay: 0.8s;
+                    background-origin: border-box !important;
+                    background-clip: border-box !important;
+                    animation: lineFlowHorizontal 3s infinite linear !important;
                     width: 50% !important;
                     height: 2px !important;
                     box-sizing: border-box !important;
@@ -205,10 +206,10 @@ const TeamHierarchy = () => {
                     width: 2px !important;
                     height: 40px !important;
                     left: 50% !important;
-                    background-image: linear-gradient(180deg, #FF7700 50%, transparent 50%) !important;
+                    background-image: linear-gradient(180deg, transparent 0%, #FF7700 50%, transparent 100%) !important;
                     background-size: 100% 200% !important;
                     background-position: 0% 100% !important;
-                    animation: pipeFillVertical 2s forwards ease-in-out !important;
+                    animation: lineFlowVertical 2s infinite linear !important;
                 }
 
                 .org-tree-container li::before, 
@@ -216,14 +217,14 @@ const TeamHierarchy = () => {
                     top: 0 !important;
                 }
 
-                @keyframes pipeFillHorizontal {
+                @keyframes lineFlowHorizontal {
                     0% { background-position: 100% 0%; }
-                    100% { background-position: 0% 0%; }
+                    100% { background-position: -100% 0%; }
                 }
 
-                @keyframes pipeFillVertical {
+                @keyframes lineFlowVertical {
                     0% { background-position: 0% 100%; }
-                    100% { background-position: 0% 0%; }
+                    100% { background-position: 0% -100%; }
                 }
 
                 .vertical-connector-line {
@@ -231,10 +232,10 @@ const TeamHierarchy = () => {
                     width: 3px !important;
                     border-radius: 10px;
                     background-color: #cbd5e0 !important;
-                    background-image: linear-gradient(180deg, #FF7700 50%, #cbd5e0 50%) !important;
+                    background-image: linear-gradient(180deg, transparent 0%, #FF7700 50%, transparent 100%) !important;
                     background-size: 100% 200% !important;
                     background-position: 0% 100% !important;
-                    animation: pipeFillVertical 1.5s forwards ease-in-out !important;
+                    animation: lineFlowVertical 1s infinite linear !important;
                 }
 
                 .org-tree-container li:hover > .horizontal::before,
