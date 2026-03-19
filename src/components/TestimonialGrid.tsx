@@ -226,7 +226,7 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
 
                                         <div className="visa-sticker-wrapper z-3">
                                             <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative">
-                                                <img src={currentStory.image || config.flag || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
+                                                <img src={currentStory.image || config.flag || "/img/hero_main.png"} alt="Visa" width={280} height={170} loading="lazy" className="w-100 h-100 object-fit-cover" />
                                                 <div className="position-absolute bottom-0 start-0 w-100 p-2 bg-white bg-opacity-95 d-flex justify-content-between">
                                                     <span className="fw-black xx-small text-dark mt-1">OFFICIAL VISA GRANTED</span>
                                                     <i className="fa fa-check-circle text-success fs-5"></i>

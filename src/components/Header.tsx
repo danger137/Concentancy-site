@@ -126,14 +126,21 @@ const Header = ({ initialSettings }: { initialSettings?: any }) => {
             />
           </Link>
 
-          {/* Mobile Toggle */}
-          <button
-            className="site-navbar__toggler"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle navigation"
-          >
-            <i className={`fa ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-          </button>
+          {/* Mobile Actions */}
+          <div className="d-flex align-items-center gap-3">
+            <Link href="/login" className="text-dark hover-oran d-lg-none" aria-label="Login">
+              <i className="fa fa-user fs-4"></i>
+            </Link>
+
+            {/* Mobile Toggle */}
+            <button
+              className="site-navbar__toggler"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle navigation"
+            >
+              <i className={`fa ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+            </button>
+          </div>
 
           {/* Navigation */}
           <div className={`site-navbar__menu ${menuOpen ? 'site-navbar__menu--open' : ''}`}>

@@ -167,7 +167,8 @@ const TeamHierarchy = () => {
                 </div>
             </div>
             
-            <style jsx global>{`
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .team-hierarchy-section {
                     position: relative;
                     background-image: radial-gradient(#dee2e6 1px, transparent 1px);
@@ -185,65 +186,98 @@ const TeamHierarchy = () => {
                     padding-top: 40px !important;
                 }
                 
+                /* Completely disable rigid CSS borders to use flowing backgrounds */
                 .org-tree-container li::before, 
                 .org-tree-container li::after,
                 .org-tree-container ul::before {
-                    border-top: 2px solid transparent !important;
-                    border-left: 2px solid transparent !important;
-                    background-color: #e2e8f0 !important;
-                    background-image: linear-gradient(90deg, transparent 0%, rgba(255, 119, 0, 0.1) 20%, #FF7700 50%, rgba(255, 119, 0, 0.1) 80%, transparent 100%) !important;
-                    background-size: 200% 100% !important;
-                    background-position: 100% 0% !important;
-                    background-origin: border-box !important;
-                    background-clip: border-box !important;
-                    animation: lineFlowHorizontal 1.5s infinite linear !important;
-                    width: 50% !important;
-                    height: 2px !important;
-                    box-sizing: border-box !important;
-                    box-shadow: 0 0 4px rgba(255,119,0,0.2);
+                    border: none !important;
                 }
 
+                /* 1) Vertical drop from Parent */
                 .org-tree-container ul::before {
                     width: 2px !important;
                     height: 40px !important;
                     left: 50% !important;
-                    background-image: linear-gradient(180deg, transparent 0%, rgba(255, 119, 0, 0.1) 20%, #FF7700 50%, rgba(255, 119, 0, 0.1) 80%, transparent 100%) !important;
+                    transform: translateX(-50%);
+                    background-image: linear-gradient(180deg, #e2e8f0 30%, #FF7700 50%, #e2e8f0 70%) !important;
                     background-size: 100% 200% !important;
-                    background-position: 0% 100% !important;
-                    animation: lineFlowVertical 1.5s infinite linear !important;
+                    background-repeat: no-repeat !important;
+                    animation: flowVert 1s infinite linear !important;
                 }
 
-                .org-tree-container li::before, 
+                /* 2) Middle and First Children: Right-flowing top + Left drop down */
                 .org-tree-container li::after {
-                    top: 0 !important;
+                    background-image: 
+                        linear-gradient(90deg, #e2e8f0 30%, #FF7700 50%, #e2e8f0 70%), 
+                        linear-gradient(180deg, #e2e8f0 30%, #FF7700 50%, #e2e8f0 70%) !important;
+                    background-size: 200% 2px, 2px 200% !important;
+                    background-position: 0% 0%, 0% 0% !important;
+                    background-repeat: no-repeat !important;
+                    animation: flowRightAndDown 1.5s infinite linear !important;
+                    height: 20px !important;
                 }
 
-                @keyframes lineFlowHorizontal {
-                    0% { background-position: 200% 0%; }
-                    100% { background-position: -200% 0%; }
+                /* 3) Middle and Last Children: Left-flowing top (No drop down here) */
+                .org-tree-container li::before {
+                    background-image: linear-gradient(270deg, #e2e8f0 30%, #FF7700 50%, #e2e8f0 70%) !important;
+                    background-size: 200% 2px !important;
+                    background-position: 100% 0% !important;
+                    background-repeat: no-repeat !important;
+                    animation: flowLeft 1.5s infinite linear !important;
+                    height: 20px !important;
                 }
 
-                @keyframes lineFlowVertical {
-                    0% { background-position: 0% 200%; }
-                    100% { background-position: 0% -200%; }
+                /* 4) Last Child Special Case: Left-flowing top + Right drop down */
+                .org-tree-container li:last-child::before {
+                    background-image: 
+                        linear-gradient(270deg, #e2e8f0 30%, #FF7700 50%, #e2e8f0 70%),
+                        linear-gradient(180deg, #e2e8f0 30%, #FF7700 50%, #e2e8f0 70%) !important;
+                    background-size: 200% 2px, 2px 200% !important;
+                    background-position: 100% 0%, 100% 0% !important;
+                    background-repeat: no-repeat !important;
+                    animation: flowLeftAndDown 1.5s infinite linear !important;
                 }
 
+                /* Erase overflowing extensions on ends */
+                .org-tree-container li:first-child::before,
+                .org-tree-container li:last-child::after {
+                    background-image: none !important;
+                }
+
+                /* Flow Animations */
+                @keyframes flowVert {
+                    0%   { background-position: 0% 150%; }
+                    100% { background-position: 0% -50%; }
+                }
+                @keyframes flowRightAndDown {
+                    0%   { background-position: 150% 0%, 0% 150%; }
+                    100% { background-position: -50% 0%, 0% -50%; }
+                }
+                @keyframes flowLeftAndDown {
+                    0%   { background-position: -50% 0%, 100% 150%; }
+                    100% { background-position: 150% 0%, 100% -50%; }
+                }
+                @keyframes flowLeft {
+                    0%   { background-position: -50% 0%; }
+                    100% { background-position: 150% 0%; }
+                }
+
+                /* Mobile Vertical connector */
                 .vertical-connector-line {
                     height: 35px !important;
-                    width: 3px !important;
+                    width: 4px !important;
                     border-radius: 10px;
                     background-color: #e2e8f0 !important;
                     background-image: linear-gradient(180deg, transparent 0%, rgba(255, 119, 0, 0.1) 20%, #FF7700 50%, rgba(255, 119, 0, 0.1) 80%, transparent 100%) !important;
                     background-size: 100% 200% !important;
                     background-position: 0% 100% !important;
-                    animation: lineFlowVertical 0.8s infinite linear !important;
+                    animation: lineFlowVertical 1.5s infinite linear !important;
                     box-shadow: 0 0 4px rgba(255,119,0,0.2);
                 }
 
-                .org-tree-container li:hover > .horizontal::before,
-                .org-tree-container li:hover > .horizontal::after,
-                .org-tree-container li:hover > .vertical::before {
-                    border-color: #FF7700 !important;
+                @keyframes lineFlowVertical {
+                    0% { background-position: 0% -200%; }
+                    100% { background-position: 0% 200%; }
                 }
 
                 .ceo-node {
@@ -316,7 +350,8 @@ const TeamHierarchy = () => {
                         font-size: 0.8rem !important;
                     }
                 }
-            `}</style>
+                `
+            }} />
         </section>
     );
 };

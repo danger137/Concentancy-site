@@ -86,7 +86,7 @@ export default function CourseTabsWrapper() {
                             <div className="profile_1i text-center">
                                 <div className="team_1i clearfix position-relative">
                                     <div className="team_1i1 clearfix text-center">
-                                        <img src="/img/student_1.png" alt="Instructor" className="rounded-circle" style={{ width: '150px' }} />
+                                        <img src="/img/student_1.png" alt="Instructor" loading="lazy" width={150} height={150} className="rounded-circle" style={{ width: '150px' }} />
                                     </div>
                                     <div className="team_1i2 position-absolute w-50 text-center p-3 bg-white rounded-3 shadow" style={{ left: '25%', bottom: '-30px' }}>
                                         <h5 className="text-uppercase"><a href="#">Eget Porta</a></h5>
@@ -124,7 +124,7 @@ export default function CourseTabsWrapper() {
                                         <div className="profile2i1 row mx-0 align-items-center">
                                             <div className="col-md-2 col-4">
                                                 <div className="profile2i1l">
-                                                    <img src={review.img} alt="abc" className="rounded-circle w-100" />
+                                                    <img src={review.img} alt="review avatar" loading="lazy" width={80} height={80} className="rounded-circle w-100" />
                                                 </div>
                                             </div>
                                             <div className="col-md-10 col-8">

@@ -93,6 +93,8 @@ export default function VideoSection({ videos = DEFAULT_VIDEOS }: { videos?: Vid
                                         <img 
                                             src={video.thumbnail} 
                                             alt={video.country || ""}
+                                            width={450} height={280}
+                                            loading="lazy"
                                             className="w-100 h-100 object-fit-cover"
                                             style={{ position: 'absolute', top: 0, left: 0 }}
                                         />

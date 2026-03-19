@@ -81,7 +81,7 @@ export default function EventTabsWrapper({ initialDay, initialEvents }: { initia
                                             <div className="grid clearfix">
                                                 <figure className="effect-jazz mb-0">
                                                     <a href="#">
-                                                        <img src={event.image || '/assets/images/placeholder.jpg'} className="w-100 rounded-3 shadow-sm" alt={event.title} />
+                                                        <img src={event.image || '/assets/images/placeholder.jpg'} loading="lazy" width={400} height={250} style={{ objectFit: 'cover' }} className="w-100 rounded-3 shadow-sm" alt={event.title} />
                                                     </a>
                                                 </figure>
                                             </div>
