@@ -1,9 +1,9 @@
 // Use a singleton for the Prisma Client to avoid exhausting the database connection pool.
-import { PrismaClient } from "./generated/client_v2";
+import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = global as unknown as { prismaV2: PrismaClient };
 
-const url = process.env.DIRECT_URL || process.env.DATABASE_URL;
+const url = process.env.DATABASE_URL || process.env.DIRECT_URL;
 
 export const prisma =
     globalForPrisma.prismaV2 ||

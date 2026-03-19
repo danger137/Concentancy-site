@@ -6,7 +6,6 @@ import "../styles/font-awesome.min.css";
 import "../styles/global.css";
 import SiteShell from "@/components/SiteShell";
 import Script from "next/script";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ 
   subsets: ["latin"], 
@@ -133,6 +132,7 @@ const jsonLd = {
 
 import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 import { prisma } from "@/lib/prisma";
+import ClientWidgets from "@/components/ClientWidgets";
 
 async function getSettings() {
   try {
@@ -201,7 +201,7 @@ export default async function RootLayout({
         <SmoothScrollWrapper>
           <SiteShell settings={await getSettings()}>{children}</SiteShell>
         </SmoothScrollWrapper>
-        <WhatsAppButton />
+        <ClientWidgets />
         <Script
           src="/js/bootstrap.bundle.min.js"
           strategy="lazyOnload"
@@ -215,12 +215,12 @@ export default async function RootLayout({
                     desktop : {
                         position : 'br',
                         xOffset : 40,
-                        yOffset : 40
+                        yOffset : 85
                     },
                     mobile : {
                         position : 'br',
-                        xOffset : 20,
-                        yOffset : 100
+                        xOffset : 15,
+                        yOffset : 85
                     }
                 }
             };

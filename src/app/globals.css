@@ -328,6 +328,17 @@ body {
   }
 }
 
+/* Hide floating elements when story modal is open */
+body.story-modal-open .whatsapp-float,
+body.story-modal-open #tawk-to,
+body.story-modal-open iframe[src*="tawk.to"] {
+  display: none !important;
+}
+
+body.story-modal-open {
+  overflow: hidden !important;
+}
+
 /* Hide on small screens for performance */
 @media (max-width: 768px) {
   .flying-plane-wrapper {

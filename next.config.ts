@@ -14,6 +14,7 @@ const cacheHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   poweredByHeader: false,  // don't leak "X-Powered-By: Next.js"
   reactStrictMode: true,   // catch bugs early
   images: {

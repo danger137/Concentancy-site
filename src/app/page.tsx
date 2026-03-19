@@ -338,7 +338,7 @@ export default async function Home() {
                 <div className="position-relative">
                   <Image src="/img/our_vision_main.png" width={600} height={600} className="w-100 rounded-4 shadow-lg hover-zoom transition" alt="Our Vision" style={{ height: '600px', objectFit: 'cover' }} />
                   <div className="position-absolute bottom-0 end-0 m-4 bg_oran text-white p-4 shadow-2xl rounded-4" style={{ maxWidth: '280px' }}>
-                    <p className="mb-0 italic lead" style={{ fontSize: '0.9rem' }}>"Empowering the next generation of global leaders through accessible, world-class education."</p>
+                    <p className="mb-0 italic lead text-white" style={{ fontSize: '0.9rem' }}>"Empowering the next generation of global leaders through accessible, world-class education."</p>
                   </div>
                 </div>
               </Reveal>

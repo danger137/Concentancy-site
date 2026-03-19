@@ -37,11 +37,11 @@ export default async function Contact() {
             {/* Hero Section */}
             <section id="center" className="center_o p_3 bg_blue" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.9), rgba(7, 41, 77, 0.9)), url("/img/study_abroad_service.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="container-xl">
-                    <div className="row center_o1 text-center py-5">
+                    <div className="row center_o1 py-5">
                         <div className="col-md-12">
                             <Reveal animation="fade-down">
                                 <h1 className="text-white display-3 fw-bold mb-3">Contact Best Education Consultants</h1>
-                                <p className="text-light fs-5 mx-auto mb-4" style={{ maxWidth: '700px' }}>
+                                <p className="mt-3 lead text-white section-desc">
                                     Have questions about studying abroad? Our expert consultants at Infinity Overseas (IOC) are here to help you navigate your journey to success.
                                 </p>
                                 <nav aria-label="breadcrumb">

@@ -77,7 +77,7 @@ export default async function Testimonials() {
                         <div className="col-md-10">
                             <Reveal animation="fade-up">
                                 <h1 className="mb-3"><span className="col_oran fw-normal">Pakistani Students'</span> Success Stories</h1>
-                                <p className="fs-5 text-muted" style={{ lineHeight: 1.8 }}>
+                                <p className="mt-3 lead text-muted max-w-3xl mx-auto section-desc" style={{ lineHeight: 1.8 }}>
                                     At Infinity Overseas Consultant, we are proud to share our students' success stories. Each tale demonstrates our students and team's hard work and dedication. These stories highlight the extraordinary journeys of students we've assisted, from entrance to prominent institutions worldwide to great academic performance.
                                 </p>
                             </Reveal>
@@ -92,7 +92,7 @@ export default async function Testimonials() {
                         <div className="col-md-12">
                             <Reveal animation="fade-up">
                                 <h4 className="col_green text-uppercase">Student Success Stories</h4>
-                                <p className="mt-3 mx-auto text-muted" style={{ maxWidth: 800 }}>
+                                <p className="mt-3 lead text-muted max-w-2xl mx-auto section-desc">
                                     Our students come from diverse backgrounds and have varying ambitions. Read to learn directly from them about their experiences with Infinity Overseas Consultant. Their stories, from scholarship wins to academic success, are fascinating and motivating. Discover how we helped them every step of the way.
                                 </p>
                             </Reveal>
@@ -113,7 +113,7 @@ export default async function Testimonials() {
                         <div className="col-md-8 mb-4">
                                 <Reveal animation="fade-up">
                                 <h2 className="mb-3 fw-bold">Our Commitment</h2>
-                                <p className="text-muted fs-5" style={{ lineHeight: 1.8 }}>
+                                <p className="mt-3 lead text-muted max-w-2xl mx-auto section-desc" style={{ lineHeight: 1.8 }}>
                                     At Infinity Overseas Consultant, we are dedicated to providing personalised support and guidance to every student. Our team of experts works hard to ensure each student finds the best educational path to reach their goals. We believe in every student’s potential and are committed to helping them succeed.
                                 </p>
                             </Reveal>
@@ -128,7 +128,7 @@ export default async function Testimonials() {
                         <div className="row align-items-center bg_blue p-5 rounded-4 shadow-lg text-white">
                             <div className="col-md-7">
                                 <h2 className="mb-3">Join Our Success Stories</h2>
-                                <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: 1.8, opacity: 0.9 }}>
+                                <p className="mb-4 lead text-white max-w-2xl" style={{ fontSize: '1.1rem', lineHeight: 1.8, opacity: 0.9 }}>
                                     We warmly invite you to join our growing group of successful students. Whether you're just beginning to look at your options or are ready to take the next step in your academic journey, Infinity Overseas Consultant is here to help. Come with us, and together we will build your success story.
                                 </p>
                                 <Magnetic>
@@ -139,17 +139,17 @@ export default async function Testimonials() {
                             </div>
                             <div className="col-md-5 mt-4 mt-md-0">
                                 <div className="row text-center g-4">
-                                    <div className="col-6">
-                                        <Reveal animation="fade-up" delay={0.2}>
-                                            <div className="p-4 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-25 h-100">
+                                    <div className="col-6 d-flex flex-column">
+                                        <Reveal animation="fade-up" delay={0.2} className="h-100 w-100">
+                                            <div className="p-4 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-25 h-100 d-flex flex-column align-items-center justify-content-center">
                                                 <h1 className="display-4 fw-bold col_oran mb-0"><StatCounter end={140} suffix="+" /></h1>
                                                 <p className="mb-0 text-uppercase small fw-bold mt-2" style={{ letterSpacing: '1px' }}>Partnered Universities</p>
                                             </div>
                                         </Reveal>
                                     </div>
-                                    <div className="col-6 mb-4 d-flex flex-column">
-                                <Reveal animation="fade-up" delay={0.4} className="h-100 w-100">
-                                <div className="p-4 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-25 h-100 d-flex flex-column">
+                                    <div className="col-6 d-flex flex-column">
+                                        <Reveal animation="fade-up" delay={0.4} className="h-100 w-100">
+                                            <div className="p-4 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-25 h-100 d-flex flex-column align-items-center justify-content-center">
                                                 <h1 className="display-4 fw-bold col_oran mb-0"><StatCounter end={750} suffix="+" /></h1>
                                                 <p className="mb-0 text-uppercase small fw-bold mt-2" style={{ letterSpacing: '1px' }}>Global Counsellors</p>
                                             </div>

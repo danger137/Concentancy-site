@@ -3,9 +3,16 @@
 import React from 'react';
 
 const WhatsAppButton = () => {
+    const [mounted, setMounted] = React.useState(false);
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const phoneNumber = "923264571906"; // WhatsApp number
     const message = encodeURIComponent("Hello! I'm interested in your services. Can you help me?");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    if (!mounted) return null;
 
     return (
         <a
@@ -19,7 +26,7 @@ const WhatsAppButton = () => {
             <style jsx>{`
                 .whatsapp-float {
                     position: fixed;
-                    bottom: 40px;
+                    bottom: 80px;
                     left: 40px;
                     width: 60px;
                     height: 60px;
@@ -38,13 +45,13 @@ const WhatsAppButton = () => {
                 }
                 @media (max-width: 768px) {
                     .whatsapp-float {
-                        width: 50px;
-                        height: 50px;
-                        font-size: 28px;
-                        bottom: 100px;
-                        left: 20px;
-                    }
+                        width: 60px;
+                        height: 60px;
+                        font-size: 34px;
+                    bottom: 85px;
+                    left: 15px;
                 }
+            }
             `}</style>
         </a>
     );

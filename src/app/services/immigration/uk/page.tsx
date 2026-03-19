@@ -28,9 +28,9 @@ export default function UKImmigration() {
             <section id="center" className="center_o p_3 bg_blue" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.8), rgba(7, 41, 77, 0.8)), url("/img/uk_hero.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="container-xl">
                     <div className="row center_o1">
-                        <div className="col-md-12 text-center text-white py-4">
+                        <div className="col-md-12 text-white py-4 d-flex flex-column mb-4">
                             <h1 className="display-4 fw-bold text-white">UK Immigration Consultants</h1>
-                            <p className="lead text-white-50">Authorized Guidance for UK Work & Business Visas</p>
+                            <p className="lead text-white">Authorized Guidance for UK Work & Business Visas</p>
                             <h4 className="opacity-75 mb-0 fw-bold">
                                 <Link className="text-white text-decoration-none" href="/">Home</Link> <span className="mx-2">/</span> <Link className="text-white text-decoration-none" href="/services/immigration">Immigration</Link> <span className="mx-2">/</span> UK
                             </h4>

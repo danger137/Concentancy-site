@@ -27,12 +27,12 @@ export default function Assessment() {
     return (
         <>
             {/* Page Header */}
-            <section className="assessment-hero text-center text-white position-relative">
+            <section className="assessment-hero text-white position-relative">
                 <div className="container-xl position-relative z-index-1">
                     <Reveal animation="fade-down">
                         <h4 className="col_oran fw-bold text-uppercase letter-spacing-2 mb-3">Instant Eligibility Check</h4>
                         <h1 className="display-3 fw-bold mb-4">Assess Your Study Abroad Chances</h1>
-                        <p className="fs-5 mx-auto opacity-75 mb-0" style={{ maxWidth: '750px' }}>
+                        <p className="fs-5 text-white mb-0" style={{ maxWidth: '750px' }}>
                             Take the first step towards your international future. Our AI-driven assessment provides instant feedback on your profile's strength for global universities.
                         </p>
                     </Reveal>
@@ -98,7 +98,7 @@ export default function Assessment() {
                         <p className="mt-3 fs-5 opacity-75 max-w-2xl mx-auto mb-5">Join thousands of successful students and get a personalized evaluation from our certified counselors.</p>
                         <div className="d-flex flex-wrap justify-content-center gap-3">
                             <Magnetic>
-                                <Link className="btn btn-light text-dark border-0 px-5 py-3 fs-5 fw-bold rounded-pill shadow-lg hover-up transition" href="/consultation">Book Free Personalized Consultation</Link>
+                                <Link className="btn btn-light text-dark border-0 px-4 px-md-5 py-3 fs-6 fw-bold rounded-pill shadow-lg hover-up transition" href="/consultation">Book Free Personalized Consultation</Link>
                             </Magnetic>
                         </div>
                     </Reveal>

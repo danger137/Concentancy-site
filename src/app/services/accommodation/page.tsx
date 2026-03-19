@@ -32,7 +32,7 @@ export default function Accommodation() {
             <section id="center" className="center_o p_3 bg_blue" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.8), rgba(7, 41, 77, 0.8)), url("/img/accommodation_service.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="container-xl">
                     <div className="row center_o1">
-                        <div className="col-md-12 text-center text-white py-4 mb-4 d-flex flex-column">
+                        <div className="col-md-12 text-white py-4 mb-4 d-flex flex-column">
                             <Reveal animation="fade-down">
                                 <h1 className="display-4 fw-bold text-white h-100 w-100">Student Accommodation Services</h1>
                                 <h2 className="fs-4 opacity-75 mb-0 fw-medium">

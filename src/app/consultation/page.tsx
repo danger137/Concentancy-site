@@ -33,11 +33,11 @@ export default async function Consultation() {
             <section id="center" className="consultation_hero" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.85), rgba(7, 41, 77, 0.85)), url("/img/study_abroad_service.png")', backgroundSize: 'cover', backgroundPosition: 'center', padding: '120px 0 160px' }}>
                 <div className="container-xl">
                     <div className="row center_o1">
-                        <div className="col-md-12 text-center text-white">
+                        <div className="col-md-12 text-white">
                             <h1 className="display-3 fw-bold text-white mb-3">Begin Your Global Journey</h1>
-                            <p className="fs-5 opacity-75 mb-5 max-w-600 mx-auto">Connect with our senior consultants for a tailored strategy that turns your global ambitions into reality.</p>
+                            <p className="fs-5 text-white mb-5 max-w-600">Connect with our senior consultants for a tailored strategy that turns your global ambitions into reality.</p>
                             <nav aria-label="breadcrumb">
-                                <ol className="breadcrumb justify-content-center mt-4 bg-transparent border-0 p-0 text-white">
+                                <ol className="breadcrumb mt-4 bg-transparent border-0 p-0 text-white">
                                     <li className="breadcrumb-item"><Link className="text-white text-decoration-none opacity-75 hvr-col" href="/">Home</Link></li>
                                     <li className="breadcrumb-item active text-white fw-bold" aria-current="page">Free Consultation</li>
                                 </ol>
@@ -63,7 +63,7 @@ export default async function Consultation() {
                                             <span className="badge bg-white text-dark mb-4 py-2 px-3 rounded-pill fw-bold shadow-sm" style={{ letterSpacing: '2px' }}>
                                                 <i className="fa fa-phone col_oran me-2"></i> DIRECT HELPLINE
                                             </span>
-                                            <h1 className="fw-bolder mb-4 text-nowrap display-4" style={{ letterSpacing: '-1px' }}>
+                                            <h1 className="fw-bolder mb-4 helpline-number">
                                                 <a href={`tel:${settings.phone.replace(/[^+\d]/g, '')}`} className="text-decoration-none col_oran transition-all d-inline-block hvr-grow" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.2)' }}>
                                                     {settings.phone}
                                                 </a>

@@ -92,13 +92,13 @@ export default function StudyAbroad() {
     return (
         <>
             {/* Hero Section */}
-            <section className="study-abroad-hero text-center text-white" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.8), rgba(7, 41, 77, 0.8)), url("/img/study_abroad_service.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <section className="study-abroad-hero text-white" style={{ background: 'linear-gradient(rgba(7, 41, 77, 0.8), rgba(7, 41, 77, 0.8)), url("/img/study_abroad_service.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="container-xl position-relative z-index-1">
                     <Reveal animation="fade-down">
                         <span className="col_oran fw-bold text-uppercase letter-spacing-2 mb-3 d-block">Global Opportunities await</span>
                         <h1 className="display-3 fw-bold mb-4">Unlock Your Potential with International Education</h1>
                         <nav aria-label="breadcrumb">
-                            <ol className="breadcrumb justify-content-center mb-0 opacity-75 fw-medium">
+                            <ol className="breadcrumb mb-0 opacity-75 fw-medium">
                                 <li className="breadcrumb-item"><Link className="text-white text-decoration-none" href="/">Home</Link></li>
                                 <li className="breadcrumb-item"><Link className="text-white text-decoration-none" href="/services">Services</Link></li>
                                 <li className="breadcrumb-item active text-white" aria-current="page">Study Abroad</li>

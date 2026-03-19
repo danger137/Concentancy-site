@@ -31,16 +31,24 @@ export default async function Blog({ searchParams }: BlogProps) {
     const { q = "", cat = "" } = await searchParams;
     const initialQuery = q || cat || "";
 
-    const blogs = await prisma.blog.findMany({
-        where: initialQuery ? {
-            OR: [
-                { title: { contains: initialQuery, mode: 'insensitive' } },
-                { category: { contains: initialQuery, mode: 'insensitive' } },
-                { description: { contains: initialQuery, mode: 'insensitive' } },
-            ],
-        } : {},
-        orderBy: { createdAt: 'desc' },
-    });
+    let blogs: BlogType[] = [];
+    let dbError = false;
+
+    try {
+        blogs = await prisma.blog.findMany({
+            where: initialQuery ? {
+                OR: [
+                    { title: { contains: initialQuery, mode: 'insensitive' } },
+                    { category: { contains: initialQuery, mode: 'insensitive' } },
+                    { description: { contains: initialQuery, mode: 'insensitive' } },
+                ],
+            } : {},
+            orderBy: { createdAt: 'desc' },
+        }) as unknown as BlogType[];
+    } catch (error) {
+        console.error("Database connection error in Blog page:", error);
+        dbError = true;
+    }
 
     return (
         <>
@@ -48,7 +56,7 @@ export default async function Blog({ searchParams }: BlogProps) {
                 <div className="container-xl">
                     <div className="row center_o1">
                         <div className="col-md-12 mb-4 d-flex flex-column">
-                                <Reveal animation="fade-down">
+                            <Reveal animation="fade-down">
                                 <h1 className="text-white h-100 w-100">Our Insights & Updates</h1>
                                 <h4 className="col_oran mb-0 fw-bold">
                                     <Link className="text-white" href="/">Home</Link> <span className="mx-2 text-muted">/</span> Blogs
@@ -60,12 +68,24 @@ export default async function Blog({ searchParams }: BlogProps) {
             </section>
 
             <section id="blog" className="p_5">
-                                <div className="container-xl d-flex flex-column">
+                <div className="container-xl d-flex flex-column">
                     <div className="blog_1 row g-4">
                         <div className="col-md-8">
                             <div className="blog_1l">
+                                {dbError && (
+                                    <div className="alert alert-warning border-0 rounded-4 p-4 mb-5 shadow-sm d-flex align-items-center gap-3">
+                                        <div className="bg-warning bg-opacity-25 p-3 rounded-circle" style={{ width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <i className="fa fa-database text-warning fs-4"></i>
+                                        </div>
+                                        <div>
+                                            <h5 className="fw-bold mb-1">Database Connection Issue</h5>
+                                            <p className="mb-0 text-muted small">We're having trouble reaching our database right now. Please try refreshing or check back in a few minutes.</p>
+                                        </div>
+                                    </div>
+                                )}
+
                                 {blogs.length > 0 ? (
-                                    (blogs as BlogType[]).map((blog: BlogType, index: number) => (
+                                    blogs.map((blog: BlogType, index: number) => (
                                         <Reveal key={blog.id} animation="fade-up" delay={(index % 3) * 0.1}>
                                             <div className="blog_1l1 border rounded-4 overflow-hidden mb-5 bg-white shadow-sm hover-lift transition">
                                                 <div className="grid clearfix position-relative overflow-hidden" style={{ height: '400px' }}>
@@ -105,19 +125,22 @@ export default async function Blog({ searchParams }: BlogProps) {
                                         </Reveal>
                                     ))
                                 ) : (
-                                    <Reveal animation="scale-in">
-                                        <div className="text-center p-5 border rounded-4 bg-light shadow-inner">
-                                            <i className="fa fa-search fa-3x col_oran mb-4 opacity-25"></i>
-                                            <h3 className="fw-bold">No results found</h3>
-                                            <p className="text-muted mb-4">We couldn't find any blogs matching your search "{initialQuery}"</p>
-                                            <Link href="/blog" className="btn bg_blue text-white rounded-pill px-5 py-3 fw-bold shadow-sm hover-up">
-                                                Clear Search & Show All
-                                            </Link>
-                                        </div>
-                                    </Reveal>
+                                    !dbError && (
+                                        <Reveal animation="scale-in">
+                                            <div className="text-center p-5 border rounded-4 bg-light shadow-inner">
+                                                <i className="fa fa-search fa-3x col_oran mb-4 opacity-25"></i>
+                                                <h3 className="fw-bold">No results found</h3>
+                                                <p className="text-muted mb-4">We couldn't find any blogs matching your search "{initialQuery}"</p>
+                                                <Link href="/blog" className="btn bg_blue text-white rounded-pill px-5 py-3 fw-bold shadow-sm hover-up">
+                                                    Clear Search & Show All
+                                                </Link>
+                                            </div>
+                                        </Reveal>
+                                    )
                                 )}
                             </div>
                         </div>
+
                         <div className="col-md-4">
                             <aside className="blog_1r sticky-top" style={{ top: '100px', zIndex: 1 }}>
                                 <Reveal animation="fade-left">

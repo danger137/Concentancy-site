@@ -167,6 +167,64 @@ a:focus {
   }
 }
 
+/* Mobile Typography Fixes */
+@media (max-width: 480px) {
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 24px !important; }
+  h3 { font-size: 20px !important; }
+  .display-4 { font-size: 24px !important; }
+  .display-6 { font-size: 20px !important; }
+  .hero-main-title { font-size: 22px !important; }
+  .hero-sub-title { font-size: 16px !important; }
+  .section-main-title { font-size: 22px !important; }
+  .section-sub-title { font-size: 16px !important; }
+  .section-desc { font-size: 14px !important; }
+  
+  .mt_5, .mt-5 { margin-top: 30px !important; }
+  .p_5 { padding-top: 40px !important; padding-bottom: 40px !important; }
+  
+  .container-xl, .container-fluid, .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 20px !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 16px !important; }
+  h4 { font-size: 14px !important; }
+  .display-4 { font-size: 15px !important; }
+  .mobile-title { font-size: 15px !important; }
+  .hero-main-title { font-size: 16px !important; }
+  .hero-desc { font-size: 12px !important; }
+  p, .section-desc, p.lead { 
+    font-family: var(--font-inter), sans-serif !important;
+    font-size: 13.5px !important; 
+    line-height: 1.8 !important; 
+    letter-spacing: -0.01em !important;
+    font-weight: 450 !important;
+    color: #374151; /* Default gray-700, No !important here so utilities work */
+    text-align: left !important;
+  }
+  .section-desc.text-white, p.lead.text-white, .text-white, p.text-white {
+    color: #fff !important;
+  }
+  .center_o1, .center_1l, .assessment-hero, .study-abroad-hero {
+    text-align: left !important;
+  }
+  .hero-main-title, .hero-sub-title, .assessment-hero h1, .assessment-hero h4, .assessment-hero p, .study-abroad-hero h1, .study-abroad-hero span, .study-abroad-hero p {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+  .breadcrumb {
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  .text-nowrap { font-size: 14px !important; }
+}
+
 .button:hover {
   background: none;
   color: #FF7700;
@@ -1549,4 +1607,55 @@ a.socialIcon:hover,
     padding: 0.8rem 1.2rem 0.7rem 1.2rem !important;
     font-size: 13px !important;
   }
+}
+/* Specific Refinements for 320px - 380px Screens */
+@media (max-width: 380px) {
+  .site-navbar__brand img {
+    width: 110px !important;
+  }
+  .site-navbar__inner {
+    padding: 10px 8px !important;
+  }
+  .footer_newsletter h3 {
+    font-size: 20px !important;
+  }
+  .footer_newsletter p {
+    font-size: 13px !important;
+  }
+  .subs_1i h4 {
+    font-size: 14px !important;
+    white-space: normal !important;
+  }
+}
+
+/* Force Tawk.to Full Screen on Mobile when Maximized */
+@media (max-width: 480px) {
+  body.tawk-full-view .tawk-maximized,
+  body.tawk-full-view #tawk-chat-container,
+  body.tawk-full-view iframe[title="chat widget"] {
+ width: 100% !important;
+ height: 100% !important;
+ max-height: 100dvh !important;
+ top: 0 !important;
+ left: 0 !important;
+ right: 0 !important;
+ bottom: 0 !important;
+ position: fixed !important;
+ z-index: 2000000000 !important;
+ margin: 0 !important;
+ border-radius: 0 !important;
+ }
+ body.tawk-full-view {
+ overflow: hidden !important;
+ }
+}
+
+/* Redundant Mobile Elevation for Tawk.to Bubble (Fallback) */
+@media (max-width: 480px) {
+  #tawk-chat-container,
+  .tawk-minimized,
+  iframe[title="chat widget"] {
+  bottom: 85px !important;
+  right: 15px !important;
+ }
 }

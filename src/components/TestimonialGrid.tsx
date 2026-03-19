@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -78,61 +78,69 @@ interface SuccessStoryModalProps {
 
 const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [direction, setDirection] = useState(0);
-    const config = getCountryConfig(country);
+    const direction = useRef(0);
 
-    // Prevent background scrolling when modal is open
     useEffect(() => {
+        document.body.classList.add('story-modal-open');
         document.body.style.overflow = 'hidden';
-        return () => { document.body.style.overflow = 'auto'; };
+        return () => {
+            document.body.classList.remove('story-modal-open');
+            document.body.style.overflow = 'auto';
+        };
     }, []);
 
     const nextSlide = () => {
-        setDirection(1);
+        direction.current = 1;
         setCurrentIndex((prev) => (prev + 1) % stories.length);
     };
 
     const prevSlide = () => {
-        setDirection(-1);
+        direction.current = -1;
         setCurrentIndex((prev) => (prev - 1 + stories.length) % stories.length);
     };
 
-    const slideVariants = {
-        enter: (direction: number) => ({ x: direction > 0 ? 500 : -500, opacity: 0, scale: 0.95 }),
-        center: { zIndex: 1, x: 0, opacity: 1, scale: 1 },
-        exit: (direction: number) => ({ zIndex: 0, x: direction < 0 ? 500 : -500, opacity: 0, scale: 0.95 })
-    };
-
     const currentStory = stories[currentIndex];
+    const config = getCountryConfig(country);
     const visaType = currentStory.visaType || "Study Visa";
     const degree = currentStory.degree || "Academic Program";
     const name = currentStory.name || "Student Name";
 
+    const slideVariants = {
+        enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
+        center: { x: 0, opacity: 1 },
+        exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 })
+    };
+
     return (
-        <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-            style={{ zIndex: 9999, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)' }}
+        <div 
+            className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center story-modal-overlay"
+            style={{ zIndex: 10001, background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(15px)' }}
         >
-            <div className="position-fixed" style={{ top: '40px', right: '40px', zIndex: 10000 }}>
+            {/* STICKY HEADER FOR MOBILE */}
+            <div className="mobile-only-header d-md-none position-fixed top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-center z-3 bg-black bg-opacity-80 border-bottom border-white border-opacity-10" style={{ backdropFilter: 'blur(10px)' }}>
+                <div className="d-flex align-items-center gap-2">
+                    <img src={currentStory.flag || config.flag} alt="flag" width={30} height={20} className="rounded-1" />
+                    <span className="text-white fw-black text-uppercase x-small ls-1">{country} Success</span>
+                </div>
+                <button onClick={onClose} className="btn btn-danger btn-sm rounded-pill px-3 fw-bold x-small">CLOSE</button>
+            </div>
+
+            <div className="position-fixed close-btn-container" style={{ zIndex: 10000 }}>
                 <button 
                     onClick={onClose} 
-                    className="btn btn-danger d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-2xl border border-2 border-white hover-up transition"
-                    style={{ fontSize: '1.1rem', fontWeight: 'bold', outline: 'none' }}
+                    className="btn btn-danger d-flex align-items-center gap-2 px-3 py-2 rounded-pill shadow-2xl border border-2 border-white hover-up transition close-btn"
                 >
                     <i className="fa fa-times"></i>
                     <span>CLOSE</span>
                 </button>
             </div>
 
-            <div className="container-xl position-relative">
-                <div className="slider-viewport position-relative" style={{ height: '80vh', minHeight: '550px', maxHeight: '700px' }}>
-                    <AnimatePresence initial={false} custom={direction} mode="wait">
+            <div className="container-xl position-relative modal-main-container">
+                <div className="slider-viewport position-relative">
+                    <AnimatePresence initial={false} custom={direction.current} mode="wait">
                         <motion.div
                             key={currentIndex}
-                            custom={direction}
+                            custom={direction.current}
                             variants={slideVariants}
                             initial="enter"
                             animate="center"
@@ -143,7 +151,7 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                             <div className="premium-success-card shadow-2xl rounded-5 overflow-hidden d-flex flex-column flex-md-row bg-white border h-100 position-relative">
                                 {/* Left Column: Country */}
                                 <div 
-                                    className="col-md-5 position-relative d-flex align-items-center justify-content-center overflow-hidden border-end border-white border-opacity-10"
+                                    className="col-md-5 position-relative d-flex align-items-center justify-content-center overflow-hidden border-end border-white border-opacity-10 country-section"
                                     style={{ background: config.bgColor }}
                                 >
                                     <div className="position-absolute w-100 h-100 opacity-50" style={{ 
@@ -151,7 +159,7 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                                         backgroundSize: '400px', filter: 'invert(1)'
                                     }}></div>
 
-                                    <div className="position-absolute top-0 end-0 m-4 z-2">
+                                    <div className="position-absolute top-0 end-0 m-4 z-2 flag-badge d-none d-md-block">
                                         <img 
                                             src={currentStory.flag || config.flag} alt={`${country} Flag`} 
                                             width={70} height={45} className="rounded shadow-sm"
@@ -168,16 +176,16 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                                     </div>
 
                                     <div className="position-relative z-2 text-center p-4">
-                                        <h1 className="text-white fw-black mb-0 text-uppercase drop-shadow-lg"
+                                        <h1 className="text-white fw-black mb-0 text-uppercase drop-shadow-lg country-bg-text"
                                             style={{ 
-                                                fontFamily: 'var(--font-heading)', fontSize: country.length > 8 ? '4rem' : '5.5rem',
+                                                fontFamily: 'var(--font-heading)',
                                                 letterSpacing: '-2px', textShadow: '0 15px 40px rgba(0,0,0,0.5)', lineHeight: 0.9
                                             }}
                                         >
                                             {country}
                                         </h1>
                                         {stories.length > 1 && (
-                                            <div className="badge bg-white text-dark mt-3 fs-6 px-3 py-2 rounded-pill shadow-lg position-relative" style={{ transform: 'translate(45px, 20px)' }}>
+                                            <div className="badge bg-white text-dark mt-3 fs-6 px-3 py-2 rounded-pill shadow-lg story-counter">
                                                 Story {currentIndex + 1} of {stories.length}
                                             </div>
                                         )}
@@ -185,40 +193,39 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                                 </div>
 
                                 {/* Right Column: Student Details */}
-                                <div className="col-md-7 position-relative dark-info-section overflow-hidden">
+                                <div className="col-md-7 position-relative dark-info-section overflow-hidden info-section">
                                     <div className="position-absolute w-100 h-100 top-0 start-0">
                                         <Image src="/img/hero_main.png" alt="Landmark" fill className="object-fit-cover opacity-60" />
                                         <div className="position-absolute w-100 h-100" style={{ background: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.4))' }}></div>
                                     </div>
 
-                                    <div className="position-relative z-1 h-100 p-4 p-md-5 d-flex flex-column">
-                                        <div className="d-flex justify-content-between align-items-start mb-2">
-                                            <div className="logo-box bg-white p-2 px-3 rounded shadow-lg" style={{ width: '110px' }}>
+                                    <div className="position-relative z-1 h-100 p-4 p-md-5 d-flex flex-column detail-content">
+                                        <div className="d-flex justify-content-between align-items-start mb-2 header-badges">
+                                            <div className="logo-box bg-white p-2 px-3 rounded shadow-lg">
                                                <div className="bg-danger text-white fw-black px-1 py-1 rounded-1 x-small mb-1 text-center">TOP 7</div>
                                                <div className="text-black fw-bold xx-small ls-1 text-center">CONSULTANTS</div>
                                             </div>
 
-                                            <div className="uni-badge bg-warning rounded-4 p-3 px-4 text-center shadow-lg" style={{ minWidth: '220px' }}>
-                                                <div className="fw-black text-dark fs-3 mb-0" style={{ lineHeight: 1 }}>{country}</div>
-                                                <div className="xx-small text-dark opacity-75 mt-1 fw-bold" style={{ lineHeight: 1.2 }}>{visaType}</div>
+                                            <div className="uni-badge bg-warning rounded-4 p-3 px-4 text-center shadow-lg visa-badge">
+                                                <div className="fw-black text-dark country-name-small" style={{ lineHeight: 1 }}>{country}</div>
+                                                <div className="xx-small text-dark opacity-75 mt-1 fw-bold visa-type-small" style={{ lineHeight: 1.2 }}>{visaType}</div>
                                             </div>
                                         </div>
 
-                                        <div className="flex-grow-1 d-flex flex-column justify-content-center mt-4">
-                                            <h1 className="text-white display-4 fw-black mb-1 text-capitalize">{country}</h1>
-                                            <h2 className="text-white display-6 fw-bold mb-3">{visaType}</h2>
+                                        <div className="flex-grow-1 d-flex flex-column justify-content-center mt-4 main-text-group">
+                                            <h1 className="text-white display-4 fw-black mb-1 text-capitalize mobile-hide">{country}</h1>
+                                            <h2 className="text-white display-6 fw-bold mb-3 mobile-hide">{visaType}</h2>
                                             
                                             <div className="congrats-wrapper position-relative ps-4 mt-4">
-                                                <div className="position-absolute start-0 top-0 h-100 bg-warning" style={{ width: '8px', borderRadius: '4px' }}></div>
-                                                <h3 className="text-white opacity-90 mb-1" style={{ fontFamily: "'Dancing Script', cursive", fontSize: '2.8rem' }}>Congratulations</h3>
-                                                <h1 className="display-4 fw-bold text-white mb-2" style={{ fontSize: '3rem', lineHeight: '1.1' }}>{name}</h1>
-                                                <p className="text-white opacity-90 fs-5 mb-0 fw-medium">{degree}</p>
+                                                <div className="position-absolute start-0 top-0 h-100 bg-warning line-decorator" style={{ width: '8px', borderRadius: '4px' }}></div>
+                                                <h3 className="text-white opacity-90 mb-1 congrats-text" style={{ fontFamily: "'Dancing Script', cursive" }}>Congratulations</h3>
+                                                <h1 className="display-4 fw-bold text-white mb-2 student-name-text" style={{ lineHeight: '1.1' }}>{name}</h1>
+                                                <p className="text-white opacity-90 fs-5 mb-0 fw-medium degree-text">{degree}</p>
                                             </div>
                                         </div>
 
-                                        <div className="position-absolute end-0 top-50 translate-middle-y me-4 d-none d-lg-block z-3">
-                                            <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative" 
-                                                 style={{ width: '280px', height: '170px', border: '5px solid #111' }}>
+                                        <div className="visa-sticker-wrapper z-3">
+                                            <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative">
                                                 <img src={currentStory.image || config.flag || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
                                                 <div className="position-absolute bottom-0 start-0 w-100 p-2 bg-white bg-opacity-95 d-flex justify-content-between">
                                                     <span className="fw-black xx-small text-dark mt-1">OFFICIAL VISA GRANTED</span>
@@ -227,18 +234,18 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                                             </div>
                                         </div>
 
-                                        <div className="footer-links d-flex gap-3 justify-content-start align-items-center mt-auto pt-4 border-top border-white border-opacity-10">
+                                        <div className="footer-links d-flex gap-3 justify-content-start align-items-center mt-auto pt-4 border-top border-white border-opacity-10 mobile-stack">
                                             <div className="d-flex align-items-center gap-2 px-3 py-2 bg-warning rounded-pill shadow-lg">
                                                 <div className="bg-white rounded-circle p-1 d-flex align-items-center justify-content-center" style={{ width: '24px', height: '24px' }}>
                                                     <i className="fa fa-whatsapp text-dark small"></i>
                                                 </div>
-                                                <span className="text-dark fw-black small">0312 6522076</span>
+                                                <span className="text-dark fw-black small text-nowrap">0312 6522076</span>
                                             </div>
                                             <div className="d-flex align-items-center gap-2 px-3 py-2 bg-warning rounded-pill shadow-lg">
                                                 <div className="bg-white rounded-circle p-1 d-flex align-items-center justify-content-center" style={{ width: '24px', height: '24px' }}>
                                                     <i className="fa fa-globe text-dark small"></i>
                                                 </div>
-                                                <span className="text-dark fw-black small">Top7Consultant.com</span>
+                                                <span className="text-dark fw-black small text-nowrap">Top7Consultant.com</span>
                                             </div>
                                         </div>
                                     </div>
@@ -267,8 +274,52 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
                 }
                 .nav-arrow-btn:hover { background: var(--col_oran); transform: scale(1.1); border-color: transparent; }
                 .shadow-2xl { box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8); }
+
+                .close-btn-container { top: 40px; right: 40px; }
+                .close-btn { font-size: 1.1rem; font-weight: bold; outline: none; }
+                .slider-viewport { height: 80vh; min-height: 550px; maxHeight: 700px; }
+                .country-bg-text { font-size: 5.5rem; }
+                .congrats-text { font-size: 2.8rem; }
+                .student-name-text { font-size: 3rem; }
+                .visa-sticker-wrapper { position: absolute; end: 0; top: 50%; transform: translateY(-50%); margin-right: 1.5rem; display: block; }
+                .visa-sticker { width: 280px; height: 170px; border: 5px solid #111; }
+                .uni-badge { min-width: 220px; }
+                .country-name-small { font-size: 1.75rem; }
+                .logo-box { width: 110px; }
+
+                @media (max-width: 767px) {
+                    .close-btn-container { display: none; }
+                    .modal-main-container { padding: 0; margin-top: 55px; height: calc(100vh - 55px); overflow-y: auto; width: 100%; max-width: 100%; border-radius: 0; }
+                    .slider-viewport { height: auto; min-height: 100%; max-height: none; padding-bottom: 0; }
+                    .premium-success-card { height: auto !important; border-radius: 0 !important; border: none !important; }
+                    .country-bg-text { font-size: 3.5rem !important; }
+                    .country-section { height: 200px; padding: 20px !important; border-bottom: 2px solid rgba(255,255,255,0.1); }
+                    .info-section { min-height: 100vh; }
+                    .detail-content { padding: 20px !important; padding-bottom: 80px !important; }
+                    .visa-badge { min-width: 120px !important; padding: 8px !important; border-radius: 12px !important; }
+                    .country-name-small { font-size: 1.1rem !important; }
+                    .congrats-text { font-size: 1.8rem !important; }
+                    .student-name-text { font-size: 1.8rem !important; }
+                    .degree-text { font-size: 0.9rem !important; }
+                    .visa-sticker-wrapper { position: relative; margin: 30px 0; top: 0; transform: none; display: flex; justify-content: center; width: 100%; }
+                    .visa-sticker { width: 100%; max-width: 300px; height: 180px; }
+                    .logo-box { width: 80px !important; padding: 5px !important; }
+                    .mobile-hide { display: none; }
+                    .mobile-stack { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
+                    .nav-arrow-btn { width: 45px; height: 45px; font-size: 1.1rem; }
+                    .story-counter { margin-top: 15px !important; font-size: 0.8rem !important; }
+                }
+
+                @media (max-width: 380px) {
+                    .country-bg-text { font-size: 2.5rem !important; }
+                    .congrats-text { font-size: 1.6rem !important; }
+                    .student-name-text { font-size: 1.6rem !important; }
+                    .visa-sticker { max-width: 240px; height: 140px; }
+                    .visa-badge { min-width: 100px !important; }
+                    .country-name-small { font-size: 1rem !important; }
+                }
             `}</style>
-        </motion.div>
+        </div>
     );
 }
 

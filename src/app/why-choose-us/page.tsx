@@ -26,10 +26,10 @@ export default function WhyChooseUs() {
                         <div className="col-md-12">
                             <Reveal animation="fade-up">
                                 <h4 className="col_green uppercase fw-bold">Why Us</h4>
-                                <h1 className="display-4 fw-bold mb-0 col_oran">Key Differentiators</h1>
+                                <h1 className="display-4 fw-bold mb-0 col_oran text-nowrap">Key Differentiators</h1>
                                 <div className="mt-5">
-                                    <h1 className="display-4 fw-bold mb-0">OUR TOP SERVICES FOR Studies</h1>
-                                    <p className="mt-3 lead text-muted max-w-2xl mx-auto">We don't just process applications; we architect your European educational journey with specialized expertise and dedicated support.</p>
+                                    <h1 className="display-4 fw-bold mb-0 mobile-title">OUR TOP SERVICES <br/> FOR Studies</h1>
+                                    <p className="mt-3 lead text-muted max-w-2xl mx-auto section-desc">We don't just process applications; we architect your European educational journey with specialized expertise and dedicated support.</p>
                                 </div>
                             </Reveal>
                         </div>
@@ -80,7 +80,7 @@ export default function WhyChooseUs() {
                         ].map((item, i) => (
                             <div key={i} className="col-md-6 col-lg-3">
                                 <Reveal animation="fade-up" delay={i * 0.1} className="h-100">
-                                    <div className="feature_2i text-center p-5 h-100 bg-white hover-lift d-flex flex-column align-items-center justify-content-center" 
+                                    <div className="feature_2i text-center p-4 p-md-5 h-100 bg-white hover-lift d-flex flex-column align-items-center justify-content-center" 
                                          style={{ 
                                              border: '4px solid #FF7700', 
                                              borderRadius: '30px',
@@ -102,7 +102,7 @@ export default function WhyChooseUs() {
                     <div className="row feature_1 text-center mb-5 mt-5">
                         <div className="col-md-12">
                             <Reveal animation="fade-up">
-                                <h1 className="display-4 fw-bold mb-0">OUR TOP SERVICES FOR VISITS</h1>
+                                <h1 className="display-4 fw-bold mb-0 mobile-title">OUR TOP SERVICES <br/> FOR VISITS</h1>
                                 <p className="mt-3 lead text-muted max-w-2xl mx-auto">Expert guidance for your visit visa applications, ensuring a smooth and successful process for your global travels.</p>
                             </Reveal>
                         </div>
@@ -133,7 +133,7 @@ export default function WhyChooseUs() {
                         ].map((item, i) => (
                             <div key={i} className="col-md-6 col-lg-3">
                                 <Reveal animation="fade-up" delay={i * 0.1} className="h-100">
-                                    <div className="feature_2i text-center p-5 h-100 bg-white hover-lift d-flex flex-column align-items-center justify-content-center" 
+                                    <div className="feature_2i text-center p-4 p-md-5 h-100 bg-white hover-lift d-flex flex-column align-items-center justify-content-center" 
                                          style={{ 
                                              border: '4px solid #FF7700', 
                                              borderRadius: '30px',
@@ -211,7 +211,7 @@ export default function WhyChooseUs() {
                         ].map((item, i) => (
                             <div key={i} className="col-md-6 col-lg-3">
                                 <Reveal animation="fade-up" delay={i * 0.1} className="h-100">
-                                    <div className="feature_2i text-center p-5 h-100 bg-white hover-lift d-flex flex-column align-items-center justify-content-center" 
+                                    <div className="feature_2i text-center p-4 p-md-5 h-100 bg-white hover-lift d-flex flex-column align-items-center justify-content-center" 
                                          style={{ 
                                              border: '4px solid #FF7700', 
                                              borderRadius: '30px',
