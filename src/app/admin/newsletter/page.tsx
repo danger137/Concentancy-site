@@ -635,8 +635,8 @@ export default function AdminNewsletter() {
                 }
 
                 @media (max-width: 400px) {
-                    .admin-body { padding: 16px 10px; }
-                    .card { padding: 15px; border-radius: 12px; }
+                    .admin-body { padding: 12px 6px; }
+                    .card { padding: 12px; border-radius: 12px; }
                     .stats-row { grid-template-columns: 1fr; gap: 8px; }
                     .stat-box { padding: 12px 14px; }
                     .stat-val { font-size: 18px; }
@@ -644,13 +644,29 @@ export default function AdminNewsletter() {
                     .nav-tabs-group { gap: 2px; padding: 4px; }
                     .logout-btn { width: 32px; height: 32px; font-size: 12px; }
                     .admin-nav > a img { height: 24px !important; }
-                    .card-top { gap: 8px; margin-bottom: 15px; }
+                    .card-top { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 15px; }
                     .card-title { font-size: 15px; }
-                    .btn-primary { padding: 8px 14px; font-size: 13px; }
+                    .btn-primary { padding: 6px 12px; font-size: 11px; white-space: nowrap; }
                     .table-wrap { margin: 0 -10px; padding: 0 10px; }
                     td { padding: 10px 8px; font-size: 13px; }
                     .field-input { padding: 10px; font-size: 13px; }
                     .field-label { font-size: 12px; }
+                    table { min-width: 100% !important; }
+                    .email-cell { font-size: 12px; word-break: break-all; }
+                    .chk { width: 16px; height: 16px; }
+                    .badge { font-size: 10px; padding: 3px 8px; }
+                }
+
+                .admin-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 30px;
+                }
+                @media (max-width: 850px) {
+                    .admin-grid {
+                        grid-template-columns: 1fr;
+                        gap: 20px;
+                    }
                 }
             `}</style>
 
@@ -730,7 +746,7 @@ export default function AdminNewsletter() {
                                 </div>
 
                                 <form onSubmit={handleSaveSettings}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label"><i className="fa fa-envelope" style={{ marginRight: 6, color: '#FF7700', fontSize: 12 }}></i>Contact Email</label>
                                             <input
@@ -793,8 +809,7 @@ export default function AdminNewsletter() {
                                     </button>
                                 </div>
                             </div>
-
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 30 }}>
+                            <div className="admin-grid">
                                 <div className="table-wrap">
                                     <table>
                                         <thead>
@@ -869,7 +884,7 @@ export default function AdminNewsletter() {
 
                             {isBlogFormOpen ? (
                                 <form onSubmit={handleSaveBlog} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Blog Title</label>
                                             <input className="field-input" value={blogForm.title} onChange={e => setBlogForm({ ...blogForm, title: e.target.value })} placeholder="Title of the blog..." required />
@@ -887,7 +902,7 @@ export default function AdminNewsletter() {
                                         <label className="field-label">Full Content (HTML allowed)</label>
                                         <textarea className="field-input" rows={12} value={blogForm.content} onChange={e => setBlogForm({ ...blogForm, content: e.target.value })} placeholder="The main body of the blog..." />
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 30 }}>
                                         <div>
                                             <label className="field-label">Blog Image</label>
                                             <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
@@ -986,7 +1001,7 @@ export default function AdminNewsletter() {
 
                             {showEventForm ? (
                                 <form onSubmit={handleSaveEvent} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Event Title</label>
                                             <input className="field-input" value={eventForm.title} onChange={e => setEventForm({ ...eventForm, title: e.target.value })} placeholder="Title of the event..." required />
@@ -996,7 +1011,7 @@ export default function AdminNewsletter() {
                                             <input className="field-input" value={eventForm.location} onChange={e => setEventForm({ ...eventForm, location: e.target.value })} placeholder="e.g. Serena Hotel, Faisalabad" required />
                                         </div>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Time Range</label>
                                             <input className="field-input" value={eventForm.time} onChange={e => setEventForm({ ...eventForm, time: e.target.value })} placeholder="e.g. 11:00 AM - 05:00 PM" required />
@@ -1006,7 +1021,7 @@ export default function AdminNewsletter() {
                                             <input className="field-input" value={eventForm.date} onChange={e => setEventForm({ ...eventForm, date: e.target.value })} placeholder="e.g. 15 March, 2025" required />
                                         </div>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Day Name (for tab filtering)</label>
                                             <input className="field-input" value={eventForm.dayId} onChange={e => setEventForm({ ...eventForm, dayId: e.target.value })} placeholder="e.g. day1, day2" required />
@@ -1020,7 +1035,7 @@ export default function AdminNewsletter() {
                                         <label className="field-label">Description</label>
                                         <textarea className="field-input" rows={4} value={eventForm.description} onChange={e => setEventForm({ ...eventForm, description: e.target.value })} placeholder="Details about the event..." required />
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 30 }}>
                                         <div>
                                             <label className="field-label">Event Image</label>
                                             <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
@@ -1132,7 +1147,7 @@ export default function AdminNewsletter() {
 
                             {showSuccessStoryForm ? (
                                 <form onSubmit={handleSaveSuccessStory} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Student Name</label>
                                             <input className="field-input" value={successStoryForm.name} onChange={e => setSuccessStoryForm({ ...successStoryForm, name: e.target.value })} placeholder="Student Name..." required />
@@ -1154,7 +1169,7 @@ export default function AdminNewsletter() {
                                             </datalist>
                                         </div>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Visa Type</label>
                                             <input className="field-input" value={successStoryForm.visaType || ''} onChange={e => setSuccessStoryForm({ ...successStoryForm, visaType: e.target.value })} placeholder="e.g. Study Visa, Visit Visa" required />
@@ -1165,7 +1180,7 @@ export default function AdminNewsletter() {
                                         </div>
                                     </div>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 30 }}>
                                         <div>
                                             <label className="field-label">Student Photo</label>
                                             <div style={{ display: 'flex', gap: 15, alignItems: 'center' }}>
@@ -1276,7 +1291,7 @@ export default function AdminNewsletter() {
 
                             {showVideoForm ? (
                                 <form onSubmit={handleSaveVideo} style={{ maxWidth: 800, margin: '0 auto' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 20 }}>
                                         <div>
                                             <label className="field-label">Video Title</label>
                                             <input className="field-input" value={videoForm.title} onChange={e => setVideoForm({ ...videoForm, title: e.target.value })} placeholder="Video Title..." required />
@@ -1286,7 +1301,7 @@ export default function AdminNewsletter() {
                                             <input className="field-input" value={videoForm.country} onChange={e => setVideoForm({ ...videoForm, country: e.target.value })} placeholder="e.g. FRANCE" />
                                         </div>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 30 }}>
+                                    <div className="admin-grid" style={{ gap: 20, marginBottom: 30 }}>
                                         <div>
                                             <label className="field-label">Video File</label>
                                             <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 18px', background: 'rgba(255,119,0,0.12)', border: '1px dashed rgba(255,119,0,0.4)', borderRadius: 10, color: '#FF9A00', fontWeight: 600, cursor: 'pointer', fontSize: 13 }}>

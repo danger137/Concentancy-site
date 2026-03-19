@@ -345,3 +345,39 @@ body.story-modal-open {
     display: none;
   }
 }
+
+/* === Align floating buttons on very small screens (320px) === */
+@media (max-width: 360px) {
+  /* WhatsApp button — left side */
+  .whatsapp-float {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 28px !important;
+    bottom: 80px !important;
+    left: 10px !important;
+  }
+
+  /* Tawk.to chat widget — force right side, same size as WhatsApp */
+  .tawk-min-container {
+    right: 10px !important;
+    bottom: 80px !important;
+    left: auto !important;
+  }
+
+  .tawk-button {
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+  }
+
+  .tawk-button .tawk-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* Hide the "We Are Here" bubble on tiny screens */
+  .tawk-bubble-container {
+    display: none !important;
+  }
+}

@@ -219,8 +219,27 @@ export default async function RootLayout({
                     },
                     mobile : {
                         position : 'br',
-                        xOffset : 15,
-                        yOffset : 85
+                        xOffset : 10,
+                        yOffset : 80
+                    }
+                }
+            };
+            Tawk_API.onLoad = function(){
+                if(window.innerWidth <= 360){
+                    var el = document.querySelector('iframe[title="chat widget"]');
+                    if(el && el.parentElement){
+                        var p = el.parentElement;
+                        p.style.setProperty('width','50px','important');
+                        p.style.setProperty('height','50px','important');
+                        p.style.setProperty('right','10px','important');
+                        p.style.setProperty('bottom','80px','important');
+                        p.style.setProperty('left','auto','important');
+                    }
+                    var container = document.querySelector('.tawk-min-container');
+                    if(container){
+                        container.style.setProperty('right','10px','important');
+                        container.style.setProperty('bottom','80px','important');
+                        container.style.setProperty('left','auto','important');
                     }
                 }
             };

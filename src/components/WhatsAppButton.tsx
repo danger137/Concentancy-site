@@ -48,10 +48,19 @@ const WhatsAppButton = () => {
                         width: 60px;
                         height: 60px;
                         font-size: 34px;
-                    bottom: 85px;
-                    left: 15px;
+                        bottom: 85px;
+                        left: 15px;
+                    }
                 }
-            }
+                @media (max-width: 360px) {
+                    .whatsapp-float {
+                        width: 50px;
+                        height: 50px;
+                        font-size: 28px;
+                        bottom: 80px;
+                        left: 10px;
+                    }
+                }
             `}</style>
         </a>
     );
