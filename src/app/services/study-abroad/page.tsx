@@ -152,7 +152,7 @@ export default function StudyAbroad() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white text-center">
                                         <h4 className="fw-bold mb-0 text-white">Faisalabad's #1 Consultants</h4>
-                                        <p className="small mb-0 opacity-75">Join thousand of successful students today.</p>
+                                        <p className="small text-white mb-0 opacity-75">Join thousand of successful students today.</p>
                                     </div>
                                 </div>
                             </Reveal>

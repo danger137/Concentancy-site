@@ -92,7 +92,7 @@ export default function VisitVisa() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white">
                                         <h4 className="fw-bold mb-0 text-white">Explore New Horizons</h4>
-                                        <p className="small mb-0 opacity-75">High approval rates for all major destinations.</p>
+                                        <p className="small text-white mb-0 opacity-75">High approval rates for all major destinations.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -139,7 +139,7 @@ export default function VisitVisa() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 text-white" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}>
                                         <h4 className="fw-bold mb-1 text-white">Travel Made Easy</h4>
-                                        <p className="small mb-0 opacity-100">Your gateway to exploring the world stress-free.</p>
+                                        <p className="small text-white mb-0 opacity-100">Your gateway to exploring the world stress-free.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -265,7 +265,7 @@ export default function VisitVisa() {
                             <Reveal animation="scale-in">
                                 <div className="p-5 rounded-4 bg_blue text-white shadow-lg">
                                     <h3 className="fw-bold mb-3 h2 text-white">Ready for your next adventure?</h3>
-                                    <p className="opacity-75 mb-4">Get a professional opinion on your travel plans. Our visa experts provide a 1-on-1 consultation to evaluate your documents.</p>
+                                    <p className="text-white opacity-75 mb-4">Get a professional opinion on your travel plans. Our visa experts provide a 1-on-1 consultation to evaluate your documents.</p>
                                     <div className="d-flex flex-wrap gap-3">
                                         <Magnetic>
                                             <Link href="/consultation" className="btn bg_oran text-white px-4 py-3 rounded-pill fw-bold shadow pulse-button border-2 border-transparent">

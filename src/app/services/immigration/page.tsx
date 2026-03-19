@@ -90,7 +90,7 @@ export default function Immigration() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white">
                                         <h4 className="fw-bold mb-0 text-white">99.8% Success Rate</h4>
-                                        <p className="small mb-0 opacity-75">Trust the experts with your family's future.</p>
+                                        <p className="small text-white mb-0 opacity-75">Trust the experts with your family's future.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -137,7 +137,7 @@ export default function Immigration() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 text-white" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}>
                                         <h4 className="fw-bold mb-1 text-white">A Future Without Limits</h4>
-                                        <p className="small mb-0 opacity-100">Step into your new destiny with absolute confidence.</p>
+                                        <p className="small text-white mb-0 opacity-100">Step into your new destiny with absolute confidence.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -266,7 +266,7 @@ export default function Immigration() {
                                     </div>
                                     <div className="position-relative z-index-1">
                                         <h3 className="fw-bold mb-3 h2 text-white">Check Your Eligibility Today</h3>
-                                        <p className="opacity-75 mb-4">Every case is unique. Get a personalized assessment from our senior immigration consultants and find the fastest pathway for you.</p>
+                                        <p className="text-white opacity-75 mb-4">Every case is unique. Get a personalized assessment from our senior immigration consultants and find the fastest pathway for you.</p>
                                         <div className="d-flex flex-wrap gap-3">
                                             <Magnetic>
                                                 <Link href="/consultation" className="btn bg_oran text-white px-4 py-3 rounded-pill fw-bold shadow hover-up pulse-button">

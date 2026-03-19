@@ -77,7 +77,7 @@ export default function LanguageCourses() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white">
                                         <h4 className="fw-bold mb-0 text-white">99.8% Student Satisfaction</h4>
-                                        <p className="small mb-0 opacity-75">Join our community of successful scholars.</p>
+                                        <p className="small text-white mb-0 opacity-75">Join our community of successful scholars.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -216,7 +216,7 @@ export default function LanguageCourses() {
                             <Reveal animation="scale-in">
                                 <div className="p-5 rounded-4 bg_blue text-white shadow-lg">
                                     <h3 className="fw-bold mb-3 h2 text-white">Ready to take the first step?</h3>
-                                    <p className="opacity-75 mb-4">Book a free trial class or get a level assessment today. Our counselors are ready to help you map out your success.</p>
+                                    <p className="text-white opacity-75 mb-4">Book a free trial class or get a level assessment today. Our counselors are ready to help you map out your success.</p>
                                     <div className="d-flex flex-wrap gap-3">
                                         <Magnetic>
                                             <Link href="/consultation" className="btn bg_oran text-white px-4 py-3 rounded-pill fw-bold shadow hover-up pulse-button">

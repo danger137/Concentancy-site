@@ -90,7 +90,7 @@ export default function Accommodation() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white">
                                         <h4 className="fw-bold mb-0 text-white">Safe & Secure Stays</h4>
-                                        <p className="small mb-0 opacity-75">100% verified housing options for peace of mind.</p>
+                                        <p className="small text-white mb-0 opacity-75">100% verified housing options for peace of mind.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -137,7 +137,7 @@ export default function Accommodation() {
                                     />
                                     <div className="position-absolute bottom-0 start-0 w-100 p-4 text-white" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}>
                                         <h4 className="fw-bold mb-1 text-white">Live. Learn. Connect.</h4>
-                                        <p className="small mb-0 opacity-100">Experience premium student living tailored just for you.</p>
+                                        <p className="small text-white mb-0 opacity-100">Experience premium student living tailored just for you.</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -226,7 +226,7 @@ export default function Accommodation() {
                             <Reveal animation="scale-in">
                                 <div className="p-5 rounded-4 bg_blue text-white shadow-lg">
                                     <h3 className="fw-bold mb-3 h2 text-white">Find Your Ideal Home Abroad</h3>
-                                    <p className="opacity-75 mb-4">Don't wait until you arrive. Book your accommodation early to secure the best locations and rates. Our housing experts are ready to help.</p>
+                                    <p className="text-white opacity-75 mb-4">Don't wait until you arrive. Book your accommodation early to secure the best locations and rates. Our housing experts are ready to help.</p>
                                     <div className="d-flex flex-wrap gap-3">
                                         <Magnetic>
                                             <Link href="/consultation" className="btn bg_oran text-white px-4 py-3 rounded-pill fw-bold shadow hover-up pulse-button">
