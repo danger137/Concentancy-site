@@ -172,51 +172,53 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                                 <div className="position-absolute w-100 h-100" style={{ background: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.4))' }}></div>
                             </div>
 
-                            <div className="position-relative z-1 h-100 p-4 p-md-5 d-flex flex-column">
-                                <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center align-items-sm-start gap-3 mb-2">
-                                    <div className="logo-box bg-white p-2 px-3 rounded shadow-lg" style={{ width: '110px' }}>
-                                        <div className="bg-danger text-white fw-black px-1 py-1 rounded-1 x-small mb-1 text-center">TOP 7</div>
-                                        <div className="text-black fw-bold xx-small ls-1 text-center">CONSULTANTS</div>
+                            <div className="position-relative z-1 h-100 p-4 p-md-5 d-flex flex-column detail-content">
+                                <div className="d-flex justify-content-between align-items-start mb-2 header-badges">
+                                    <div className="logo-box bg-white p-2 px-3 rounded shadow-lg">
+                                       <div className="bg-danger text-white fw-black px-1 py-1 rounded-1 x-small mb-1 text-center">TOP 7</div>
+                                       <div className="text-black fw-bold xx-small ls-1 text-center">CONSULTANTS</div>
                                     </div>
-                                    <div className="uni-badge bg-warning rounded-4 p-2 p-md-3 px-3 px-md-4 text-center shadow-lg w-100 w-sm-auto" style={{ maxWidth: '280px' }}>
-                                        <div className="fw-black text-dark fs-4 fs-md-3 mb-0" style={{ lineHeight: 1 }}>{country}</div>
-                                        <div className="xx-small text-dark opacity-75 mt-1 fw-bold" style={{ lineHeight: 1.2 }}>{visaType}</div>
+
+                                    <div className="uni-badge bg-warning rounded-4 p-3 px-4 text-center shadow-lg visa-badge">
+                                        <div className="fw-black text-dark country-name-small" style={{ lineHeight: 1 }}>{country}</div>
+                                        <div className="xx-small text-dark opacity-75 mt-1 fw-bold visa-type-small" style={{ lineHeight: 1.2 }}>{visaType}</div>
                                     </div>
                                 </div>
 
-                                <div className="flex-grow-1 d-flex flex-column justify-content-center mt-4">
-                                    <h1 className="text-white display-4 fw-black mb-1 text-capitalize">{country}</h1>
-                                    <h2 className="text-white display-6 fw-bold mb-3">{visaType}</h2>
+                                <div className="flex-grow-1 d-flex flex-column justify-content-center mt-4 main-text-group">
+                                    <h1 className="text-white display-4 fw-black mb-1 text-capitalize mobile-hide">{country}</h1>
+                                    <h2 className="text-white display-6 fw-bold mb-3 mobile-hide">{visaType}</h2>
                                     
                                     <div className="congrats-wrapper position-relative ps-4 mt-4">
-                                        <div className="position-absolute start-0 top-0 h-100 bg-warning" style={{ width: '8px', borderRadius: '4px' }}></div>
-                                        <h3 className="text-white opacity-90 mb-1" style={{ fontFamily: "'Dancing Script', cursive", fontSize: '2.5rem' }}>Congratulations</h3>
-                                        <h1 className="display-4 fw-bold text-white mb-2" style={{ fontSize: '2.8rem', lineHeight: '1.1' }}>{name}</h1>
-                                        <p className="text-white opacity-90 fs-5 mb-0 fw-medium">{degree}</p>
+                                        <div className="position-absolute start-0 top-0 h-100 bg-warning line-decorator" style={{ width: '8px', borderRadius: '4px' }}></div>
+                                        <h3 className="text-white opacity-90 mb-1 congrats-text" style={{ fontFamily: "'Dancing Script', cursive" }}>Congratulations</h3>
+                                        <h1 className="display-4 fw-bold text-white mb-2 student-name-text" style={{ lineHeight: '1.1' }}>{name}</h1>
+                                        <p className="text-white opacity-90 fs-5 mb-0 fw-medium degree-text">{degree}</p>
                                     </div>
                                 </div>
 
-                                    <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative mx-auto mx-md-0" 
-                                            style={{ width: '240px', height: '150px', border: '4px solid #111' }}>
-                                        <img src={currentStory.image || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
+                                <div className="visa-sticker-wrapper z-3">
+                                    <div className="visa-sticker shadow-2xl rounded-2 overflow-hidden position-relative">
+                                        <img src={currentStory.image || config.flag || "/img/hero_main.png"} alt="Visa" className="w-100 h-100 object-fit-cover" />
                                         <div className="position-absolute bottom-0 start-0 w-100 p-2 bg-white bg-opacity-95 d-flex justify-content-between">
                                             <span className="fw-black xx-small text-dark mt-1">OFFICIAL VISA GRANTED</span>
                                             <i className="fa fa-check-circle text-success fs-5"></i>
                                         </div>
                                     </div>
+                                </div>
 
-                                <div className="footer-links d-flex flex-wrap gap-2 justify-content-center justify-content-md-start align-items-center mt-auto pt-4 border-top border-white border-opacity-10">
+                                <div className="footer-links d-flex gap-3 justify-content-start align-items-center mt-auto pt-4 border-top border-white border-opacity-10 mobile-stack">
                                     <div className="d-flex align-items-center gap-2 px-3 py-2 bg-warning rounded-pill shadow-lg">
-                                        <div className="bg-white rounded-circle d-flex align-items-center justify-content-center" style={{ width: '20px', height: '20px' }}>
-                                            <i className="fa fa-whatsapp text-dark x-small"></i>
+                                        <div className="bg-white rounded-circle p-1 d-flex align-items-center justify-content-center" style={{ width: '24px', height: '24px' }}>
+                                            <i className="fa fa-whatsapp text-dark small"></i>
                                         </div>
-                                        <span className="text-dark fw-black x-small">0312 6522076</span>
+                                        <span className="text-dark fw-black small text-nowrap">0312 6522076</span>
                                     </div>
                                     <div className="d-flex align-items-center gap-2 px-3 py-2 bg-warning rounded-pill shadow-lg">
-                                        <div className="bg-white rounded-circle d-flex align-items-center justify-content-center" style={{ width: '20px', height: '20px' }}>
-                                            <i className="fa fa-globe text-dark x-small"></i>
+                                        <div className="bg-white rounded-circle p-1 d-flex align-items-center justify-content-center" style={{ width: '24px', height: '24px' }}>
+                                            <i className="fa fa-globe text-dark small"></i>
                                         </div>
-                                        <span className="text-dark fw-black x-small">Top7Consultant.com</span>
+                                        <span className="text-dark fw-black small text-nowrap">Top7Consultant.com</span>
                                     </div>
                                 </div>
                             </div>
@@ -239,26 +241,48 @@ const InlineCountrySlider: React.FC<InlineCountrySliderProps> = ({ country, stor
                 .xx-small { font-size: 0.5rem; }
                 .fw-black { font-weight: 900; }
                 .nav-arrow-btn {
-                    background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255,255,255,0.2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(5px);
+                    background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(255,255,255,0.3); width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.4rem; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(10px); outline: none;
                 }
                 .nav-arrow-btn:hover { background: var(--col_oran); transform: scale(1.1); border-color: transparent; }
-                .shadow-2xl { box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5); }
+                .shadow-2xl { box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8); }
                 .country-title-responsive { font-size: 5.5rem; letter-spacing: -2px; }
-                .mobile-success-viewport { height: 70vh; maxHeight: 650px; }
+                .slider-viewport { height: 85vh; min-height: 650px; max-height: 900px; }
+                .mobile-success-viewport { height: 85vh; min-height: 650px; max-height: 900px; }
+                .congrats-text { font-size: 2.8rem; }
+                .student-name-text { font-size: 3rem; }
+                .visa-sticker-wrapper { position: absolute; right: 0; top: 55%; transform: translateY(-50%); margin-right: 2rem; display: block; }
+                .visa-sticker { width: 280px; height: 170px; border: 5px solid #111; }
+                .uni-badge { min-width: 220px; }
+                .country-name-small { font-size: 1.75rem; }
+                .logo-box { width: 110px; }
 
                 @media (max-width: 768px) {
                     .mobile-success-viewport { height: auto; min-height: 900px; max-height: none; }
-                    .country-title-responsive { font-size: 3rem !important; letter-spacing: -1px; }
+                    .country-title-responsive { font-size: 3.5rem !important; letter-spacing: -1px; }
                     .story-counter-badge { transform: none !important; margin-top: 1rem !important; }
                     .slider-viewport { height: auto !important; max-height: none !important; }
                     .premium-success-card { height: auto !important; }
                     .dark-info-section { padding-bottom: 3rem !important; }
+                    .detail-content { padding: 20px !important; padding-bottom: 80px !important; }
+                    .visa-badge { min-width: 120px !important; padding: 8px !important; border-radius: 12px !important; }
+                    .country-name-small { font-size: 1.1rem !important; }
+                    .congrats-text { font-size: 1.8rem !important; }
+                    .student-name-text { font-size: 1.8rem !important; }
+                    .degree-text { font-size: 0.9rem !important; }
+                    .visa-sticker-wrapper { position: relative; right: auto; top: auto; transform: none; display: flex; justify-content: center; margin: 30px 0; width: 100%; display: block !important; }
+                    .visa-sticker { width: 100%; max-width: 300px; height: 180px; }
+                    .logo-box { width: 80px !important; padding: 5px !important; }
+                    .mobile-hide { display: none; }
+                    .mobile-stack { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
                 }
                 @media (max-width: 480px) {
                     .mobile-success-viewport { min-height: 1000px; }
-                    .country-title-responsive { font-size: 2.2rem !important; }
-                    .congrats-wrapper h3 { font-size: 1.8rem !important; }
-                    .congrats-wrapper h1 { font-size: 2rem !important; }
+                    .country-title-responsive { font-size: 2.5rem !important; }
+                    .congrats-wrapper h3 { font-size: 1.6rem !important; }
+                    .congrats-wrapper h1 { font-size: 1.6rem !important; }
+                    .visa-sticker { max-width: 240px; height: 140px; }
+                    .visa-badge { min-width: 100px !important; }
+                    .country-name-small { font-size: 1rem !important; }
                 }
             `}</style>
         </div>

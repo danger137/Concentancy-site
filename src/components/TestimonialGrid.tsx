@@ -277,11 +277,11 @@ const SuccessStoryModal: React.FC<SuccessStoryModalProps> = ({ country, stories,
 
                 .close-btn-container { top: 40px; right: 40px; }
                 .close-btn { font-size: 1.1rem; font-weight: bold; outline: none; }
-                .slider-viewport { height: 80vh; min-height: 550px; maxHeight: 700px; }
+                .slider-viewport { height: 85vh; min-height: 650px; max-height: 900px; }
                 .country-bg-text { font-size: 5.5rem; }
                 .congrats-text { font-size: 2.8rem; }
                 .student-name-text { font-size: 3rem; }
-                .visa-sticker-wrapper { position: absolute; end: 0; top: 50%; transform: translateY(-50%); margin-right: 1.5rem; display: block; }
+                .visa-sticker-wrapper { position: absolute; right: 0; top: 55%; transform: translateY(-50%); margin-right: 2rem; display: block; }
                 .visa-sticker { width: 280px; height: 170px; border: 5px solid #111; }
                 .uni-badge { min-width: 220px; }
                 .country-name-small { font-size: 1.75rem; }
