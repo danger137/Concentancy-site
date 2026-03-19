@@ -286,7 +286,7 @@ export default function StudyAbroad() {
                     <Reveal animation="scale-in">
                         <div className="cta-box-premium text-center">
                             <h2 className="display-4 fw-bold mb-3 text-white">Begin Your Journey Today</h2>
-                            <p className="lead opacity-75 mb-5 mx-auto" style={{ maxWidth: '700px' }}>
+                            <p className="lead text-white opacity-75 mb-5 mx-auto" style={{ maxWidth: '700px' }}>
                                 Expert guidance is just a click away. Let us handle the complexity of admissions while you focus on your bright future abroad.
                             </p>
                             <div className="d-flex flex-wrap justify-content-center gap-4">

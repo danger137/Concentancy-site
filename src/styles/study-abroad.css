@@ -99,7 +99,7 @@
     .study-abroad-hero h1 {
         font-size: 3rem !important;
     }
-    .btn {
+    .cta-box-premium .btn {
         min-width: 250px !important;
         display: inline-flex !important;
         justify-content: center !important;
@@ -137,7 +137,7 @@
         font-size: 1.05rem !important;
         padding: 0 !important;
     }
-    .btn {
+    .cta-box-premium .btn {
         min-width: 280px !important;
         display: flex !important;
         align-items: center !important;
@@ -171,7 +171,7 @@
         padding: 2rem 0 !important;
     }
     /* Button Text Fix for Ultra-Small Screens */
-    .btn {
+    .cta-box-premium .btn {
         padding: 0.95rem 1.25rem !important;
         font-size: 0.9rem !important;
         width: 100% !important;

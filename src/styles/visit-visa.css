@@ -12,7 +12,7 @@
     .center_o h1 {
         font-size: 2.8rem !important;
     }
-    .btn {
+    .center_o .btn, .bg_blue .btn {
         min-width: 250px !important;
         display: inline-flex !important;
         justify-content: center !important;
@@ -39,7 +39,7 @@
     .p_5 {
         padding: 3rem 0 !important;
     }
-    .btn {
+    .center_o .btn, .bg_blue .btn {
         min-width: 280px !important; /* Slightly wider for tablets */
         display: flex !important;
         align-items: center !important;
@@ -107,7 +107,7 @@
     }
 
     /* Buttons */
-    .btn {
+    .center_o .btn, .bg_blue .btn {
         width: 100% !important;
         min-width: 250px !important; /* Ensure they have same min width */
         margin-bottom: 5px;

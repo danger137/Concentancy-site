@@ -169,7 +169,7 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
                                                 style={{ flex: 1, height: '52px', fontSize: '15px' }}
                                             />
                                             <button
-                                                className="btn fw-bold text-uppercase border-0 d-flex align-items-center justify-content-center px-4 flex-shrink-0"
+                                                className="btn fw-bold text-uppercase border-0 d-flex align-items-center justify-content-center px-3 px-sm-4 flex-shrink-0"
                                                 type="submit"
                                                 disabled={loading}
                                                 style={{
@@ -179,7 +179,8 @@ const Footer = ({ initialSettings }: { initialSettings?: any }) => {
                                                     fontSize: '12px',
                                                     letterSpacing: '0.5px',
                                                     transition: 'background 0.3s',
-                                                    minWidth: '120px'
+                                                    minWidth: '100px',
+                                                    height: '52px'
                                                 }}
                                                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#e86b00')}
                                                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#FF7700')}
