@@ -1,0 +1,213 @@
+/* Study Abroad Page Styles */
+
+/* Hero Section */
+.study-abroad-hero {
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.study-abroad-hero h1 {
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+/* Service Card Premium Styles */
+.service-card-premium {
+    background: white;
+    border-radius: 24px !important;
+    border: 1px solid #eef2f6 !important;
+    padding: 2.5rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.service-card-premium:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(255, 119, 0, 0.2) !important;
+}
+
+/* Icon Wrapper */
+.icon-circle-premium {
+    width: 65px;
+    height: 65px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+}
+
+.service-card-premium:hover .icon-circle-premium {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Country Tags */
+.country-tag {
+    background: #f8fbff;
+    color: #07294D;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border: 1px solid #eef2f6;
+    display: inline-block;
+    margin-right: 12px;
+    margin-top: 4px;
+    transition: all 0.3s ease;
+}
+
+.service-card-premium:hover .country-tag {
+    background: #FF7700;
+    color: white;
+    border-color: transparent;
+}
+
+/* CTA Section Internal */
+.cta-box-premium {
+    background: linear-gradient(135deg, #07294D 0%, #0a3d70 100%);
+    border-radius: 30px !important;
+    padding: 4rem !important;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.cta-box-premium .btn {
+    width: 320px !important;
+    height: 64px !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    font-size: 1.15rem !important;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .study-abroad-hero h1 {
+        font-size: 3rem !important;
+    }
+    .cta-box-premium .btn {
+        min-width: 250px !important;
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .d-flex.flex-wrap.justify-content-center {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .study-abroad-hero {
+        min-height: 350px;
+        padding: 4rem 0 !important;
+    }
+    .study-abroad-hero h1 {
+        font-size: 2.2rem !important;
+    }
+    .display-5 {
+        font-size: 2rem !important;
+    }
+    .p_5 {
+        padding: 3rem 0 !important;
+    }
+    .cta-box-premium {
+        padding: 3rem 1.5rem !important;
+        text-align: center !important;
+    }
+    .cta-box-premium .btn {
+        width: 100% !important;
+        max-width: 340px !important;
+        height: 60px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: 1.05rem !important;
+        padding: 0 !important;
+    }
+    .cta-box-premium .btn {
+        min-width: 280px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .d-flex.flex-wrap {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .study-abroad-hero h1 {
+        font-size: 1.8rem !important;
+    }
+    .service-card-premium {
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .study-abroad-hero h1 {
+        font-size: 1.35rem !important; /* Slightly smaller to ensure no break issues */
+        padding: 0 2px !important;
+    }
+    .service-card-premium {
+        padding: 1.25rem 0.5rem !important; /* Narrower padding to keep content inside */
+    }
+    .p_5 {
+        padding: 2rem 0 !important;
+    }
+    /* Button Text Fix for Ultra-Small Screens */
+    .cta-box-premium .btn {
+        padding: 0.95rem 1.25rem !important;
+        font-size: 0.9rem !important;
+        width: 100% !important;
+        min-width: 250px !important;
+        max-width: 280px !important;
+        margin: 0 auto 10px auto !important;
+        white-space: nowrap !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .d-flex.flex-wrap {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+    
+    /* Remove side gaps on ultra-small screens */
+    .container, .container-xl, .container-lg, .container-md, .container-sm {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Small adjustment to ensure the lead text doesn't overflow */
+    .lead {
+        font-size: 0.95rem !important;
+        padding: 0 5px;
+    }
+
+    .display-5 {
+        font-size: 1.6rem !important;
+    }
+}

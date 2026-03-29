@@ -1,0 +1,70 @@
+/* ═══════════════════════════════════════════════════
+   Org Chart Styles - react-organizational-chart
+   ═══════════════════════════════════════════════════ */
+
+.org-chart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 2rem 1rem 3rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Override library's default ul/li styles */
+.org-chart-wrapper ul {
+    padding-top: 20px !important;
+}
+
+.org-chart-wrapper li {
+    padding: 20px 5px 0 !important;
+}
+
+/* Card hover glow effect */
+.org-card {
+    transition: box-shadow 0.3s ease;
+}
+
+.org-card:hover {
+    box-shadow: 0 12px 35px rgba(255, 119, 0, 0.18) !important;
+}
+
+/* Smooth scrollbar for horizontal scroll */
+.org-chart-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.org-chart-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.org-chart-wrapper::-webkit-scrollbar-thumb {
+    background: #FF7700;
+    border-radius: 10px;
+}
+
+/* Staff bubbles container animation */
+.staff-bubble {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.staff-bubble:hover {
+    box-shadow: 0 6px 20px rgba(255, 119, 0, 0.15) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+    .org-chart-wrapper {
+        padding: 1.5rem 0.5rem 2rem;
+    }
+    
+    .org-chart-wrapper li {
+        padding: 15px 3px 0 !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .org-chart-wrapper {
+        padding: 1rem 0.25rem 2rem;
+    }
+}

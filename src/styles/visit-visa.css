@@ -1,0 +1,152 @@
+/* Visit Visa Page Styles */
+
+/* Hero Section */
+.center_o {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .center_o h1 {
+        font-size: 2.8rem !important;
+    }
+    .center_o .btn, .bg_blue .btn {
+        min-width: 250px !important;
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .d-flex.flex-wrap.gap-3 {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .center_o {
+        min-height: 300px;
+    }
+    .center_o h1 {
+        font-size: 2.2rem !important;
+    }
+    .display-5 {
+        font-size: 2rem !important;
+    }
+    .display-6 {
+        font-size: 1.8rem !important;
+    }
+    .p_5 {
+        padding: 3rem 0 !important;
+    }
+    .center_o .btn, .bg_blue .btn {
+        min-width: 280px !important; /* Slightly wider for tablets */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .d-flex.flex-wrap {
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .center_o h1 {
+        font-size: 1.8rem !important;
+    }
+    .display-5 {
+        font-size: 1.6rem !important;
+    }
+}
+
+@media (max-width: 320px) {
+    /* Hero */
+    .center_o {
+        min-height: 250px;
+        padding: 2rem 0 !important;
+    }
+    .center_o h1 {
+        font-size: 1.45rem !important;
+        line-height: 1.2;
+    }
+    .center_o h2 {
+        font-size: 0.9rem !important;
+    }
+
+    /* General Typography */
+    .display-5 {
+        font-size: 1.45rem !important;
+    }
+    .display-6 {
+        font-size: 1.35rem !important;
+    }
+    .lead {
+        font-size: 0.95rem !important;
+    }
+
+    /* Spacing */
+    .p_5 {
+        padding: 2.5rem 0 !important;
+    }
+    .mt_5 {
+        margin-top: 3rem !important;
+    }
+
+    /* Content adjustments */
+    .ps-md-4 {
+        padding-left: 0 !important;
+    }
+
+    /* Images/Videos */
+    .col-md-6 [style*="height: 500px"],
+    .col-md-6 [style*="height: 450px"] {
+        height: 300px !important;
+    }
+
+    /* Buttons */
+    .center_o .btn, .bg_blue .btn {
+        width: 100% !important;
+        min-width: 250px !important; /* Ensure they have same min width */
+        margin-bottom: 5px;
+        font-size: 0.9rem !important;
+        padding: 0.95rem 1.25rem !important; /* Unified padding */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Scaling the journey animation */
+    .study-animation-wrapper {
+        transform: scale(0.65);
+        margin-top: -50px !important;
+        margin-bottom: -50px !important;
+    }
+
+    /* Centering the CTA box content */
+    .p-5.rounded-4.bg_blue {
+        text-align: center !important;
+        padding: 2rem 1rem !important;
+    }
+
+    .d-flex.flex-wrap.gap-3 {
+        gap: 12px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    /* Feature Cards */
+    .bg-light.border-start {
+        padding: 1rem !important;
+    }
+    .bg-light.border-start i {
+        font-size: 1.5rem !important;
+    }
+    .bg-light.border-start h5 {
+        font-size: 0.9rem !important;
+    }
+}

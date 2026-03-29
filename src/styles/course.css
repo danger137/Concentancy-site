@@ -1,0 +1,132 @@
+/*
+Template Name: Educto
+File: Layout CSS
+Author: TemplatesOnWeb
+Author URI: https://www.templateonweb.com/
+Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
+*/
+/*********************course****************/
+.event_1r .form-select{
+border-radius:30px;
+width:40%;
+ }
+ 
+.course_1r2 .nav-tabs {
+border:none; 
+}
+.course_1r2 .nav-tabs .nav-link {
+border-radius:0;
+border:none;
+color: #000;
+margin: 0px 0px 0px 0px;
+padding: 16px 30px;
+font-weight:bold;
+text-transform:uppercase;
+}
+.course_1r2 .nav-tabs .nav-link:hover {
+color: #FF7700;
+background:none;
+}
+.course_1r2 .nav-tabs .nav-link.active {
+color: #fff;
+background:#FF7700;
+}
+.profile_1i .team_1i2{
+left:25%; 
+ }
+.profile_1i1{
+margin-top:100px; 
+ }
+/*********************course_end****************/
+
+
+
+@media screen and (max-width : 767px){
+.course_1r  {
+margin-top:15px; 
+ }
+.course_1r1 img{
+height:auto; 
+ }
+.home_i1l{
+margin-top:8px;
+margin-bottom:8px;
+text-align:center; 
+ }
+.profile_i1  span{
+float:none!important;
+display:inline-block; 
+ }
+.profile_1i .team_1i2 {
+width:100%!important;
+}
+.profile_1i1{
+margin-top:15px; 
+ }
+.profile_1i1 p{
+text-align:left;
+ }
+.profile2i h4{
+text-align:center; 
+ }
+.profile2i2l{
+margin-top:8px;
+margin-bottom:8px; 
+ }
+.profile2i2l .button{
+display:block;
+width:80%;
+margin-left:auto;
+margin-right:auto;
+text-align:center;
+ }
+ }
+
+@media (min-width:576px) and (max-width:767px) {
+
+
+ }
+@media (min-width:768px) and (max-width:991px) {
+.course_1l2  h6{
+font-size:13px; 
+ }
+.home_i1l .button{
+ font-size:13px;
+ padding-left:0.5rem!important; 
+ padding-right:0.5rem!important; 
+ }
+.home_i1l .button_1{
+ font-size:13px; 
+  padding-left:0.5rem!important; 
+ padding-right:0.5rem!important; 
+ }
+.home_i1l ul li{
+margin-bottom:5px;
+ }
+.profile_i1  span{
+float:none!important;
+display:inline-block; 
+ }
+ }
+
+@media (min-width:992px) and (max-width:1200px) {
+.course_1l2  h6{
+font-size:13px; 
+ }
+.home_i1l .button{
+ font-size:13px;
+ padding-left:0.5rem!important; 
+ padding-right:0.5rem!important; 
+ }
+.home_i1l .button_1{
+ font-size:13px; 
+  padding-left:0.5rem!important; 
+ padding-right:0.5rem!important; 
+ }
+.home_i1l ul li{
+margin-bottom:5px;
+ }
+ }
+
+
+
